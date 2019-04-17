@@ -17,14 +17,6 @@ Page({
     })
   },
   onLoad: function () {
-    wx.request({
-      url: 'http://localhost:5000/test',
-      method: 'GET',
-      success: function(res) {
-        console.log(res);
-        this.setData({code: res.data});
-      }.bind(this)
-    });
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -72,11 +64,7 @@ Page({
   },
   onInput: function () {
     const murl = 'http://localhost:5000/input';
-    var inputBox = wx.createSelectorQuery();
-    inputBox.select('#inputBox');
-    // const a = inputBox.inputValue;
-    const mbody = JSON.stringify({ "hi": inputBox.inputValue});
-    debugger
+    const mbody = JSON.stringify({ "name": this.data.inputValue});
     wx.request({
       url: murl,
       method: 'POST',
