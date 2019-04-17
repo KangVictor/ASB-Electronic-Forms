@@ -1,4 +1,12 @@
 <!--index.wxml-->
+<view class="section">
+  <input id="inputBox" bindinput="bindKeyInput" placeholder="input your name" focus="{{focus}}"/>
+  <view class="btn-area">
+    <button bindtap="onInput">Finish input</button>
+  </view>
+  <view class="section__title">Your name is: {{inputValue}}</view>
+</view>
+
 <view class="row-container">
  <text>Success!</text>
  <text>Go to</text>
