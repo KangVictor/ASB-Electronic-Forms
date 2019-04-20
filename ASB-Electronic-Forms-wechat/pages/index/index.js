@@ -8,7 +8,8 @@ Page({
     code: '',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    focusSuccessMessage: true
   },
   //事件处理函数
   bindViewTap: function() {
@@ -55,11 +56,18 @@ Page({
   //input
   data: {
     focus: false,
-    inputValue: ''
+    inputName: '',
+    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
+    indexClass: '0'
   },
   bindKeyInput: function (e) {
     this.setData({
       inputValue: e.detail.value
+    })
+  },
+  bindPickerClassChange: function(e) {
+    this.setData({
+      indexClass:e.detail.value
     })
   },
   onInput: function () {

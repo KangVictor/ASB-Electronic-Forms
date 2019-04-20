@@ -1,10 +1,18 @@
 <!--index.wxml-->
 <view class="section">
-  <input id="inputBox" bindinput="bindKeyInput" placeholder="input your name" focus="{{focus}}"/>
-  <view class="btn-area">
-    <button bindtap="onInput">Finish input</button>
-  </view>
-  <view class="section__title">Your name is: {{inputValue}}</view>
+  <text class = "smallText">Name</text>
+  <input class="inputBox" id="inputBoxName" bindinput="bindKeyInput"/>
+  <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+    <view class="picker">
+      Class：{{arrayClass[indexClass]}}
+    </view>
+  </picker>
+  <input class="inputBox" id="inputBoxQuantityA"/>
+  <input class="inputBox" id="inputBoxQuantityB"/>
+  <input class="inputBox" id="inputBoxQuantityC"/>
+  <button class="submitButton" bindtap="onInput">
+    Submit
+  </button>
 </view>
 
 <view class="row-container">
@@ -17,7 +25,7 @@
  <text>{{code}}</text>
 </view>
 
-<view class="container">
+<!-- <view class="container">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -28,4 +36,4 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
-</view>
+</view> -->

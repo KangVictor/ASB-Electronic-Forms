@@ -1,5 +1,5 @@
 /**index.wxss**/
-.userinfo {
+/* .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,4 +18,21 @@
 
 .usermotto {
   margin-top: 200px;
+} */
+
+.inputBox {
+  margin-left:17px;
+  margin-top:5px;
+}
+
+.submitButton {
+  margin-left: 15px;
+  margin-top: 15px;
+  width: 100px;
+  height: 50px;
+}
+
+.smallText {
+  margin-left: 17px;
+  margin-top:5px;
 }
