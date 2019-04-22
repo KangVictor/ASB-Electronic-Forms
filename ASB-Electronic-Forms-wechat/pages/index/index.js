@@ -9,7 +9,18 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    focusSuccessMessage: true
+    focusSuccessMessage: true,
+    focus: false,
+    buyerName: '',
+    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
+    indexClass: '0',
+    quanA: 0,
+    quanB: 0,
+    quanC: 0,
+    priceA: 10,
+    priceB: 10,
+    priceC: 10,
+    cost: 0
   },
   //事件处理函数
   bindViewTap: function() {
@@ -80,20 +91,6 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  },
-  //input
-  data: {
-    focus: false,
-    buyerName: '',
-    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
-    indexClass: '0',
-    quanA: 0,
-    quanB: 0,
-    quanC: 0,
-    priceA: 10,
-    priceB: 10,
-    priceC: 10,
-    cost: 0
   },
   changeCost: function() {
     var cc = (this.data.quanA * this.data.priceA + this.data.quanB * this.data.priceB + this.data.quanC * this.data.priceC)
