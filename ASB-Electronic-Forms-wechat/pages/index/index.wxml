@@ -2,9 +2,9 @@
 <view class="section">
   <text class="smallText">Name</text>
   <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" lablel/>
-  <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+  <picker bindchange="bindPickerClassChange" value="{{studentClass}}" range="{{studentClasses}}">
     <view class="smallPicker">
-      Class：{{arrayClass[indexClass]}}
+      Class：{{studentClasses[studentClass]}}
     </view>
   </picker>
   <text class = "smallText">Watergun Red</text>

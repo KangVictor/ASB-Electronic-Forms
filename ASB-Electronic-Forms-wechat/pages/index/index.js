@@ -11,9 +11,9 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     focusSuccessMessage: true,
     focus: false,
-    buyerName: '',
-    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
-    indexClass: '0',
+    studentName: '',
+    studentClasses: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
+    studentClass: '0',
     quanA: 0,
     quanB: 0,
     quanC: 0,
@@ -100,12 +100,12 @@ Page({
   },
   bindNameInput: function (e) {
     this.setData({
-      buyerName: e.detail.value
+      studentName: e.detail.value
     })
   },
   bindPickerClassChange: function(e) {
     this.setData({
-      indexClass:e.detail.value
+      studentClass:e.detail.value
     })
   },
   bindInputBoxQuantityA: function(e) {
@@ -113,12 +113,12 @@ Page({
     changeCost;
   },
   onSubmit: function () {
-    if (!this.data.buyerName.length) {
+    if (!this.data.studentName.length) {
       console.error('please provide your real name');
     } else {
       // post to the server
       const murl = 'http://localhost:5000/create/order';
-      const mbody = JSON.stringify({ "buyerName": this.data.inputName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "Cost": this.data.cost });
+      const mbody = JSON.stringify({ "studentName": this.data.studentName, "studentClass": this.data.studentClasses[this.data.studentClass], "Cost": this.data.cost });
       wx.request({
         url: murl,
         method: 'POST',
