@@ -1,7 +1,7 @@
 const app = getApp()
 
 Page({
-  data: { 
+  data: {
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
@@ -26,12 +26,12 @@ Page({
       buyerName: e.detail.value
     })
   },
-  bindPickerClassChange: function(e) {
+  bindPickerClassChange: function (e) {
     this.setData({
-      indexClass:e.detail.value
+      indexClass: e.detail.value
     })
   },
-  bindInputBoxQuantityA: function(e) {
+  bindInputBoxQuantityA: function (e) {
     var input = parseInt(e.detail.value);
     this.setData({
       quanA: input
@@ -69,8 +69,8 @@ Page({
       })
     } else {
       // navigate to submitPage and send buyerName, class, and cost
-      const murl = 'http://localhost:5000/input';
-      const mbody = JSON.stringify({ "BuyerName": this.data.inputName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "Cost": this.data.cost });
+      const murl = 'http://localhost:5000/create/order';
+      const mbody = JSON.stringify({"BuyerName": this.data.buyerName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "BuyerCost": this.data.cost });
       wx.request({
         url: murl,
         method: 'POST',
@@ -79,9 +79,9 @@ Page({
           "Content-Type": "application/json"
         },
         success: function (res) {
-          this.setData({requestMessage: res.data });
+          this.setData({ requestMessage: res.data });
         }.bind(this),
-        fail: function(){
+        fail: function () {
           wx.navigateTo({
             url: '/pages/submitFailPage/submitFailPage?',
             success: function (res) { },
@@ -90,7 +90,7 @@ Page({
           });
         }
       });
-      if (requestMessage = 'success') {
+      if (this.data.requestMessage = 'success') {
         wx.navigateTo({
           url: '/pages/submitPage/submitPage?',
           success: function (res) { },
@@ -109,7 +109,7 @@ Page({
   },
 })
 
-function changeCost(data){ //Calculates the cost
+function changeCost(data) { //Calculates the cost
   var qa = data.quanA;
   var qb = data.quanB;
   var qc = data.quanC;
