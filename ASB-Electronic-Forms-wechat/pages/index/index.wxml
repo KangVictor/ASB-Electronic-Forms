@@ -1,18 +1,20 @@
 <!--index.wxml-->
 <view class="section">
   <text class = "smallText">Name</text>
-  <input class="inputBox" id="inputBoxName" bindinput="bindKeyInput"/>
+  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" lablel/>
   <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
-    <view class="picker">
+    <view class="smallPicker">
       Class：{{arrayClass[indexClass]}}
     </view>
   </picker>
-  <input class="inputBox" id="inputBoxQuantityA"/>
-  <input class="inputBox" id="inputBoxQuantityB"/>
-  <input class="inputBox" id="inputBoxQuantityC"/>
-  <button class="submitButton" bindtap="onInput">
-    Submit
-  </button>
+  <text class = "smallText">Watergun Red</text>
+  <input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
+  <text class = "smallText">Watergun Blue</text>
+  <input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
+  <text class = "smallText">Watergun Green</text>
+  <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
+  <text class = "costText">Cost: {{cost}} CNY</text>
+  <button class="submitButton" type="primary" bindtap="onSubmit">Submit</button>
 </view>
 
 <view class="row-container">
@@ -22,7 +24,7 @@
  <text>during lunch</text>
  <text>to confirm.</text>
  <text>_________________________</text>
- <text>{{code}}</text>
+ <text>{{submitMessage}}</text>
 </view>
 
 <!-- <view class="container">
