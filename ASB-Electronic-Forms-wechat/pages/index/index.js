@@ -1,109 +1,29 @@
-//index.js
-//获取应用实例
 const app = getApp()
 
 Page({
   data: { 
-    motto: 'Hello World',
-    submitMessage: '',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    focusSuccessMessage: true
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad:function() {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  //input
-  data: {
-    focus: false,
+    //input related
     buyerName: '',
-    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)'],
+    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)', '10(1)', '10(2)', '10(3)', '10(4)', '10(5)', '10(6)', '10(7)', '10(8)', '10(9)', '10(10)', '10(11)'],
     indexClass: '0',
+    requestMessage: '',
     quanA: 0,
     quanB: 0,
     quanC: 0,
+    //price
     priceA: 10,
     priceB: 10,
     priceC: 10,
     cost: 0
   },
-  changeCost: function() {
-    var cc = (this.data.quanA * this.data.priceA + this.data.quanB * this.data.priceB + this.data.quanC * this.data.priceC)
-    this.setData({
-      cost: cc
-    })
-  },
+
+  //input 
   bindNameInput: function (e) {
     this.setData({
-      inputName: e.detail.value
+      buyerName: e.detail.value
     })
   },
   bindPickerClassChange: function(e) {
@@ -112,35 +32,43 @@ Page({
     })
   },
   bindInputBoxQuantityA: function(e) {
-    debugger;
-    this.data.quanA = parseInt(e.detail.value);
-    changeCost;
+    var input = parseInt(e.detail.value);
+    this.setData({
+      quanA: input
+    })
+    var ccost = changeCost(this.data);
+    this.setData({
+      cost: ccost
+    })
   },
-  // bindInputBoxQuantityB: function (e) {
-  //   var quan = parseInt(e.detail.value);
-  //   if (quan < 0) {
-  //     this.setData({ submitMessage: 'No negative quanities' })
-  //   } else {
-  //     this.setData({ 
-  //     quanB: quan,
-  //     cost: (quanA * priceA + quanB * priceB + quanC * priceC)})
-  //   }
-  // },
-  // bindInputBoxQuantityC: function (e) {
-  //   var quan = parseInt(e.detail.value);
-  //   if (quan < 0) {
-  //     this.setData({ submitMessage: 'No negative quanities' })
-  //   } else {
-  //     this.setData({
-  //       quanC: e.detail.value,
-  //       cost: (quanA * priceA + quanB * priceB + quanC * priceC)})
-  //   }
-  // },
+  bindInputBoxQuantityB: function (e) {
+    var input = parseInt(e.detail.value);
+    this.setData({
+      quanB: input
+    })
+    var ccost = changeCost(this.data);
+    this.setData({
+      cost: ccost
+    })
+  },
+  bindInputBoxQuantityC: function (e) {
+    var input = parseInt(e.detail.value);
+    this.setData({
+      quanC: input
+    })
+    var ccost = changeCost(this.data);
+    this.setData({
+      cost: ccost
+    })
+  },
+
   onSubmit: function () {
-    if (this.data.BuyerName == '' || this.data.buyerName == ' ') {
-      submitMessage="Fill in your name"
+    if (this.data.buyerName == '') {//if buyer's name is not blank
+      this.setData({
+        buyerName: userInfo.nickName
+      })
     } else {
-      // post to the server
+      // navigate to submitPage and send buyerName, class, and cost
       const murl = 'http://localhost:5000/input';
       const mbody = JSON.stringify({ "BuyerName": this.data.inputName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "Cost": this.data.cost });
       wx.request({
@@ -151,10 +79,43 @@ Page({
           "Content-Type": "application/json"
         },
         success: function (res) {
-          console.log(res);
-          this.setData({ submitMessage: res.data });
-        }.bind(this)
+          this.setData({requestMessage: res.data });
+        }.bind(this),
+        fail: function(){
+          wx.navigateTo({
+            url: '/pages/submitFailPage/submitFailPage?',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+          });
+        }
       });
+      if (requestMessage = 'success') {
+        wx.navigateTo({
+          url: '/pages/submitPage/submitPage?',
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        });
+      } else {
+        wx.navigateTo({
+          url: '/pages/submitFailPage/submitFailPage?',
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        });
+      }
     }
   },
 })
+
+function changeCost(data){ //Calculates the cost
+  var qa = data.quanA;
+  var qb = data.quanB;
+  var qc = data.quanC;
+  var ca = data.priceA;
+  var cb = data.priceB;
+  var cc = data.priceC;
+  var ccost = (qa * ca + qb * cb + qc * cc);
+  return ccost;
+}

@@ -1,0 +1,2 @@
+<!--pages/submitFailPage/submitFailPage.wxml-->
+<text>an error occured during the interaction with the server</text>

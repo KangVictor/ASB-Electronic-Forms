@@ -1,0 +1,9 @@
+<view class="row-container">
+ <text>Success!</text>
+ <text>Go to</text>
+ <text>ZXB lobby</text>
+ <text>during lunch</text>
+ <text>to confirm.</text>
+ <text>_________________________</text>
+ <text>{{submitMessage}}</text>
+</view>

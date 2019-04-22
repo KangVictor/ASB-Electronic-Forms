@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/submitPage/submitPage",
+    "pages/submitFailPage/submitFailPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
