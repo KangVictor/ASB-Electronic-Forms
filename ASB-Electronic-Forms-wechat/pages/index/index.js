@@ -109,30 +109,9 @@ Page({
     })
   },
   bindInputBoxQuantityA: function(e) {
-    debugger;
     this.data.quanA = parseInt(e.detail.value);
     changeCost;
   },
-  // bindInputBoxQuantityB: function (e) {
-  //   var quan = parseInt(e.detail.value);
-  //   if (quan < 0) {
-  //     this.setData({ submitMessage: 'No negative quanities' })
-  //   } else {
-  //     this.setData({ 
-  //     quanB: quan,
-  //     cost: (quanA * priceA + quanB * priceB + quanC * priceC)})
-  //   }
-  // },
-  // bindInputBoxQuantityC: function (e) {
-  //   var quan = parseInt(e.detail.value);
-  //   if (quan < 0) {
-  //     this.setData({ submitMessage: 'No negative quanities' })
-  //   } else {
-  //     this.setData({
-  //       quanC: e.detail.value,
-  //       cost: (quanA * priceA + quanB * priceB + quanC * priceC)})
-  //   }
-  // },
   onSubmit: function () {
     if (!this.data.buyerName.length) {
       console.error('please provide your real name');
