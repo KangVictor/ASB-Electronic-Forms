@@ -100,7 +100,7 @@ Page({
   },
   bindNameInput: function (e) {
     this.setData({
-      inputName: e.detail.value
+      buyerName: e.detail.value
     })
   },
   bindPickerClassChange: function(e) {
