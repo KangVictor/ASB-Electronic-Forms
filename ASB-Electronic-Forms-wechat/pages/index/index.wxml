@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="section">
-  <text class = "smallText">Name</text>
+  <text class="smallText">Name</text>
   <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" lablel/>
   <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
     <view class="smallPicker">

@@ -137,12 +137,12 @@ Page({
   //   }
   // },
   onSubmit: function () {
-    if (this.data.BuyerName == '' || this.data.buyerName == ' ') {
-      submitMessage="Fill in your name"
+    if (!this.data.buyerName.length) {
+      console.error('please provide your real name');
     } else {
       // post to the server
-      const murl = 'http://localhost:5000/input';
-      const mbody = JSON.stringify({ "BuyerName": this.data.inputName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "Cost": this.data.cost });
+      const murl = 'http://localhost:5000/create/order';
+      const mbody = JSON.stringify({ "buyerName": this.data.inputName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "Cost": this.data.cost });
       wx.request({
         url: murl,
         method: 'POST',
