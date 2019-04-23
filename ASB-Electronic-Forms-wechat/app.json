@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/submitPage/submitPage",
-    "pages/submitFailPage/submitFailPage"
+    "pages/submitFailPage/submitFailPage",
+    "pages/serverFailPage/serverFailPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

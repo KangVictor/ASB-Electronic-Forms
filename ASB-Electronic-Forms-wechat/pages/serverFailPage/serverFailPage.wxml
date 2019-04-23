@@ -1,0 +1,2 @@
+<!--pages/serverFailPage/serverFailPage.wxml-->
+<text>The server is currently not available</text>

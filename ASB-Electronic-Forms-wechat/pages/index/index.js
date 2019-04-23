@@ -7,23 +7,55 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
     buyerName: '',
-    arrayClass: ['9(1)', '9(2)', '9(3)', '9(4)', '9(5)', '9(6)', '9(7)', '9(8)', '9(8)', '9(9)', '9(10)', '9(11)', '10(1)', '10(2)', '10(3)', '10(4)', '10(5)', '10(6)', '10(7)', '10(8)', '10(9)', '10(10)', '10(11)'],
+    arrayGrade: ['9', '10'],
+    indexGrade: '0',
+    arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     indexClass: '0',
     requestMessage: '',
-    quanA: 0,
-    quanB: 0,
-    quanC: 0,
-    //price
-    priceA: 10,
-    priceB: 11,
-    priceC: 13,
+
+    quan: [0, 0, 0, 0, 0, 0, 0, 0],
+    itemPrices: [],
+    itemNames: [],
+    itemNum: 0,
     cost: 0
+  },
+
+  onLoad() {
+    // request to the server for price and quantities of the item
+    const murl = 'http://localhost:5000/getitem';
+    wx.request({
+      url: murl,
+      method: 'GET',
+      success: function (res) {
+        const getPrices = res.data['itemPrice'];
+        const getNames = res.data['itemName'];
+        const getNum = res.data['itemNum'];
+        this.setData({
+          itemNum: getNum,
+          itemNames: getNames,
+          itemPrices: getPrices
+        })
+      }.bind(this),
+      fail: function () {
+        wx.navigateTo({
+          url: '/pages/serverFailPage/serverFailPage?',
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        });
+      }
+    });
   },
 
   //input 
   bindNameInput: function (e) {
     this.setData({
       buyerName: e.detail.value
+    })
+  },
+  bindPickerGradeChange: function (e) {
+    this.setData({
+      indexGrade: e.detail.value
     })
   },
   bindPickerClassChange: function (e) {
@@ -33,9 +65,7 @@ Page({
   },
   bindInputBoxQuantityA: function (e) {
     var input = getQuantity(e.detail.value);
-    this.setData({
-      quanA: input
-    })
+    this.data.quan[0] = input;
     var ccost = changeCost(this.data);
     this.setData({
       cost: ccost
@@ -43,9 +73,7 @@ Page({
   },
   bindInputBoxQuantityB: function (e) {
     var input = getQuantity(e.detail.value);
-    this.setData({
-      quanB: input
-    })
+    this.data.quan[1] = input;
     var ccost = changeCost(this.data);
     this.setData({
       cost: ccost
@@ -53,9 +81,7 @@ Page({
   },
   bindInputBoxQuantityC: function (e) {
     var input = getQuantity(e.detail.value);
-    this.setData({
-      quanC: input
-    })
+    this.data.quan[2] = input;
     var ccost = changeCost(this.data);
     this.setData({
       cost: ccost
@@ -64,6 +90,7 @@ Page({
 
   onSubmit: function () {
     if (this.data.buyerName == '') {//if buyer's name is not blank
+      // should change to error message later on
       wx.navigateTo({
         url: '/pages/submitFailPage/submitFailPage?',
         success: function (res) { },
@@ -73,7 +100,7 @@ Page({
     } else {
       // navigate to submitPage and send buyerName, class, and cost
       const murl = 'http://localhost:5000/create/order';
-      const mbody = JSON.stringify({"BuyerName": this.data.buyerName, "BuyerClass": this.data.arrayClass[this.data.indexClass], "BuyerCost": this.data.cost });
+      const mbody = JSON.stringify({"BuyerName": this.data.buyerName, "BuyerGrade": this.data.arrayGrade[this.data.indexGrade], "BuyerClass": this.data.arrayClass[this.data.indexClass], "BuyerCost": this.data.cost });
       wx.request({
         url: murl,
         method: 'POST',
@@ -82,7 +109,14 @@ Page({
           "Content-Type": "application/json"
         },
         success: function (res) {
-          this.setData({ requestMessage: res.data });
+          console.log('in')
+          this.data.requestMessage = res.data['message'];
+          wx.navigateTo({
+            url: '/pages/submitPage/submitPage?',
+            success: function (res) { },
+            fail: function (res) { },
+            complete: function (res) { },
+          });
         }.bind(this),
         fail: function () {
           wx.navigateTo({
@@ -93,39 +127,41 @@ Page({
           });
         }
       });
-      if (this.data.requestMessage == 'success') {
-        wx.navigateTo({
-          url: '/pages/submitPage/submitPage?',
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
-        });
-      } else {
-        wx.navigateTo({
-          url: '/pages/submitFailPage/submitFailPage?',
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
-        });
-      }
+      // console.log(this.data.requestMessage);
+      // if (this.data.requestMessage == 'success') {
+      //   console.log("success");
+      //   wx.navigateTo({
+      //     url: '/pages/submitPage/submitPage?',
+      //     success: function (res) { },
+      //     fail: function (res) { },
+      //     complete: function (res) { },
+      //   });
+      // } else {
+      //   console.log("fail");
+      //   wx.navigateTo({
+      //     url: '/pages/submitFailPage/submitFailPage?',
+      //     success: function (res) { },
+      //     fail: function (res) { },
+      //     complete: function (res) { },
+      //   });
+      // }
     }
   },
 })
 
-function changeCost(data) { //Calculates the cost
-  var qa = data.quanA;
-  var qb = data.quanB;
-  var qc = data.quanC;
-  var ca = data.priceA;
-  var cb = data.priceB;
-  var cc = data.priceC;
-  var ccost = (qa * ca + qb * cb + qc * cc);
+function changeCost(data) { // Calculates the cost
+  var ccost = 0;
+  for(var count = 0; count < data.itemNum; count++) {
+    ccost += data.quan[count] * data.itemPrices[count]
+  }
   return ccost;
 }
 
-function getQuantity(num) {
-  if(num == '') {
-    num = '0';
+function getQuantity(num) { // if no number, 0, if integer, parse it and return
+  if (num == '' || Number.isInteger(num) == true) {
+    num = 0;
+  } else if (num < 0) {
+    num = 0;
   }
   return parseInt(num);
 }
