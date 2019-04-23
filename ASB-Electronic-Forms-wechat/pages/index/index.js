@@ -15,8 +15,8 @@ Page({
     quanC: 0,
     //price
     priceA: 10,
-    priceB: 10,
-    priceC: 10,
+    priceB: 11,
+    priceC: 13,
     cost: 0
   },
 
@@ -32,7 +32,7 @@ Page({
     })
   },
   bindInputBoxQuantityA: function (e) {
-    var input = parseInt(e.detail.value);
+    var input = getQuantity(e.detail.value);
     this.setData({
       quanA: input
     })
@@ -42,7 +42,7 @@ Page({
     })
   },
   bindInputBoxQuantityB: function (e) {
-    var input = parseInt(e.detail.value);
+    var input = getQuantity(e.detail.value);
     this.setData({
       quanB: input
     })
@@ -52,7 +52,7 @@ Page({
     })
   },
   bindInputBoxQuantityC: function (e) {
-    var input = parseInt(e.detail.value);
+    var input = getQuantity(e.detail.value);
     this.setData({
       quanC: input
     })
@@ -64,9 +64,12 @@ Page({
 
   onSubmit: function () {
     if (this.data.buyerName == '') {//if buyer's name is not blank
-      this.setData({
-        buyerName: userInfo.nickName
-      })
+      wx.navigateTo({
+        url: '/pages/submitFailPage/submitFailPage?',
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
+      });
     } else {
       // navigate to submitPage and send buyerName, class, and cost
       const murl = 'http://localhost:5000/create/order';
@@ -90,7 +93,7 @@ Page({
           });
         }
       });
-      if (this.data.requestMessage = 'success') {
+      if (this.data.requestMessage == 'success') {
         wx.navigateTo({
           url: '/pages/submitPage/submitPage?',
           success: function (res) { },
@@ -118,4 +121,11 @@ function changeCost(data) { //Calculates the cost
   var cc = data.priceC;
   var ccost = (qa * ca + qb * cb + qc * cc);
   return ccost;
+}
+
+function getQuantity(num) {
+  if(num == '') {
+    num = '0';
+  }
+  return parseInt(num);
 }

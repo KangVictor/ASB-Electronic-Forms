@@ -1,2 +1,4 @@
 <!--pages/submitFailPage/submitFailPage.wxml-->
-<text>an error occured during the interaction with the server</text>
+<textarea  class="errorText">
+  - An error occured during the interaction with the server. Please enter your name and item quantities correctly! (If it still doesn't work, contact ASB)
+</textarea>

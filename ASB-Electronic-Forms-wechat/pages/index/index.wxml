@@ -1,16 +1,16 @@
 <view class="section">
   <text class = "smallText">Name</text>
-  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Victor'/>
+  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Steve Wozniak'/>
   <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
     <view class="smallPicker">
       Class：{{arrayClass[indexClass]}}
     </view>
   </picker>
-  <text class = "smallText">Water Gun Red</text>
+  <text class = "smallText">Water Gun Red - {{priceA}} CNY</text>
   <input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
-  <text class = "smallText">Water Gun Blue</text>
+  <text class = "smallText">Water Gun Blue - {{priceB}} CNY</text>
   <input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
-  <text class = "smallText">Water Gun Green</text>
+  <text class = "smallText">Water Gun Green - {{priceC}} CNY</text>
   <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
   <text class = "costText">Cost: {{cost}} CNY</text>
   <button class="submitButton" type="primary" bindtap="onSubmit">Submit</button>
