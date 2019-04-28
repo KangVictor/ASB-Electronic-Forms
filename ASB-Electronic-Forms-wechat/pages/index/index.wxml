@@ -1,25 +1,23 @@
-<view class="section">
-  <text class = "smallText">Name</text>
-  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Steve Wozniak'/>
+<!-- 如果只是展示用户头像昵称，可以使用 <open-data /> 组件 -->
+<!-- <open-data type="userAvatarUrl"></open-data>
+<open-data type="userNickName"></open-data> -->
+<!-- 需要使用 button 来授权登录 -->
+<button
+  wx:if="{{canIUse}}"
+  open-type="getUserInfo"
+  bindtap="bindPurchase"
+  class="goButton"
+>
+  Go purchase
+</button>
 
-  <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
-    <view class="smallPicker">
-      Grade：{{arrayGrade[indexGrade]}}
-    </view>
-  </picker>
-
-  <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
-    <view class="smallPicker">
-      Class：{{arrayClass[indexClass]}}
-    </view>
-  </picker>
-
-  <text class = "smallText"> {{itemNames[0]}} - {{itemPrices[0]}} CNY</text>
-  <input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
-  <text class = "smallText"> {{itemNames[1]}} - {{itemPrices[1]}} CNY</text>
-  <input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
-  <text class = "smallText"> {{itemNames[2]}} - {{itemPrices[2]}} CNY</text>
-  <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
-  <text class = "costText">Cost: {{cost}} CNY</text>
-  <button class="submitButton" type="primary" bindtap="onSubmit">Submit</button>
-</view>
+<button
+  wx:if="{{canIUse}}"
+  open-type="getUserInfo"
+  bindtap="bindAdmin"
+  disabled="{{isNonadmin}}"
+  plain="{{isNonadmin}}"
+  class="goButton"
+>
+  Go check
+</button>

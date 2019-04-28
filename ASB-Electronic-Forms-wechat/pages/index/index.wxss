@@ -1,50 +1,10 @@
-/**index.wxss**/
-/* .userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-} */
-
-.inputBox {
-  margin-left:20px;
-  margin-top:5px;
-}
-
-.submitButton {
+/* pages/userSelect/index.wxss */
+.goButton {
   margin-left: 15px;
   margin-top: 15px;
-  width: 100px;
-  height: 50px;
-}
-
-.smallPicker {
-  margin-left: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.smallText {
-  margin-left: 20px;
-  margin-top: 5px;
-}
-
-.costText {
-  margin-left: 20px;
-  margin-top: 20px;
-  font-size: 20pt;
+  margin-right:15px;
+  height: 60px;
+  font-size: 25px;
+  background-color: #03A9AC;
+  color:white;
 }

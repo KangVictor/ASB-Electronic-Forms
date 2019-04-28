@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/submitPage/submitPage",
     "pages/submitFailPage/submitFailPage",
-    "pages/serverFailPage/serverFailPage"
+    "pages/serverFailPage/serverFailPage",
+    "pages/purchasePage/purchasePage"
   ],
   "window": {
     "backgroundTextStyle": "light",
