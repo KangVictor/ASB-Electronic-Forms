@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 @app.route('/getitem', methods=['GET'])
 def getItem():
+	print("in")
 	itemName = ['Watergun Red', 'Watergun Green', 'Watergun Blue']
 	itemPrice = [10, 11, 12, 0]
 	itemNum = 3  # number of items

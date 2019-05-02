@@ -9,12 +9,13 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
+		"nodeModules": true,
 		"autoAudits": false,
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.0.4",
-	"appid": "wx8742fb1e1bec8987",
+	"appid": "wx3766d060f51ec08a",
 	"projectname": "ASB-Electornic-Form-miniprogram",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -22,6 +23,7 @@
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionRoot": "cloudfunction/",
 	"condition": {
 		"search": {
 			"current": -1,

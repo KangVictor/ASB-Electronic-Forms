@@ -1,3 +1,4 @@
 .DS_Store
 server.pyc
 _pychache_
+/node_modules/
