@@ -1,16 +1,16 @@
 <view class="section">
-  <text class = "smallText">Name</text>
+  <text class = "smallText">* Name</text>
   <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Steve Wozniak'/>
 
   <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
     <view class="smallPicker">
-      Grade：{{arrayGrade[indexGrade]}}
+      * Grade \n\n {{arrayGrade[indexGrade]}}
     </view>
   </picker>
 
   <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
     <view class="smallPicker">
-      Class：{{arrayClass[indexClass]}}
+      * Class \n\n {{arrayClass[indexClass]}}
     </view>
   </picker>
 
@@ -22,4 +22,5 @@
   <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
   <text class = "costText">Cost: {{cost}} CNY</text>
   <button class="submitButton" bindtap="onSubmit">Submit</button>
+  <text class = 'informText'>* must be filled in</text>
 </view>

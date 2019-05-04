@@ -33,33 +33,30 @@ Page({
       title: 'ASB Electronic Form',
     })
     // request to the server for price and quantities of the item
-    const murl = 'http://localhost:5000/getitem';
-    wx.request({
-      url: murl,
-      method: 'GET',
+    wx.cloud.init();
+    wx.cloud.callFunction({
+      name: "getItemInfo",
       success: function (res) {
-        const getPrices = res.data['itemPrice'];
-        const getNames = res.data['itemName'];
-        const getNum = res.data['itemNum'];
+        console.log(res);
+        const getPrices = res.result.data.itemPrice;
+        const getNames = res.result.data.itemName;
+        const getNum = res.result.data.itemNum;
         this.setData({
           itemNum: getNum,
           itemNames: getNames,
           itemPrices: getPrices
         })
+        // make quan = [0, 0, 0, ...]
+        for (var i = 0; i < this.data.itemNum; i++) {
+          this.data.quan[i] = 0;
+        }
       }.bind(this),
       fail: function () {
         wx.navigateTo({
-          url: '/pages/serverFailPage/serverFailPage?',
-          success: function (res) { },
-          fail: function (res) { },
-          complete: function (res) { },
+          url: '/pages/serverFailPage/serverFailPage?'
         });
       }
-    });
-    // make quan = [0, 0, 0]
-    for(var i = 0; i < this.data.itemNum; i++) {
-      this.data.quan[i] = 0;
-    }
+    })
   },
   
   //////////////////////
@@ -151,38 +148,44 @@ Page({
       })
     }
     else { // can submit in this circumstance
-      const murl = 'http://localhost:5000/create/order';
-      const mbody = JSON.stringify({ "BuyerName": this.data.buyerName, "BuyerGrade": this.data.arrayGrade[this.data.indexGrade], "BuyerClass": this.data.arrayClass[this.data.indexClass], "BuyerCost": this.data.cost, "Quantity": this.data.quan});
+      const buyerNa = this.data.buyerName;
+      const buyerCl = this.data.buyerClass;
+      const buyerGr = this.data.buyerGrade;
+      const buyerQu = this.data.quan;
+      const buyerCo = this.data.cost;
       wx.showModal({
-        tittle: 'Confirm',
+        title: 'Confirm',
         content: 'Are you sure to submit?',
         cancelText: 'No',
         confirmText: 'Submit',
         success(res) {
-          if(res.confirm) {
-            // navigate to submitPage and send buyerName, class, and cost
-            wx.request({
-              url: murl,
-              method: 'POST',
-              data: mbody,
-              headers: {
-                "Content-Type": "application/json"
+          if(res.confirm) { // if the buyer wants to submit
+            wx.cloud.callFunction({
+              name: "postOrder",
+              data: {
+                buyerName: buyerNa,
+                buyerGrade: buyerGr,
+                buyerClass: buyerCl,
+                buyerCost: buyerCo,
+                buyerQuan: buyerQu
               },
-              success: function (res) {
-                //navigate to 
-                wx.navigateTo({
-                  url: '/pages/submitPage/submitPage?',
-                  success: function (res) { },
-                  fail: function (res) { },
-                  complete: function (res) { },
-                });
-              }.bind(this),
-              fail: function () {
-                wx.navigateTo({
+              success: (res) => {
+                if(res.result = "success") {
+                  wx.navigateTo({ // if successfully sent order, navigate to submit page
+                    url: '/pages/submitPage/submitPage?',
+                  });
+                } else {
+                  wx.navigateTo({ // if failed to add order, navigate to submit fail page
+                    url: '/pages/submitFailPage/submitFailPage?',
+                  });
+                }
+              },
+              fail: (res) => {
+                wx.navigateTo({ // if failed to send order, navigate to submit fail page
                   url: '/pages/submitFailPage/submitFailPage?',
                 });
               }
-            });
+            })
           }
         }
       });

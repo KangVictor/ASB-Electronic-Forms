@@ -4,7 +4,8 @@
     "pages/submitPage/submitPage",
     "pages/submitFailPage/submitFailPage",
     "pages/serverFailPage/serverFailPage",
-    "pages/purchasePage/purchasePage"
+    "pages/purchasePage/purchasePage",
+    "pages/checkOrderPage/checkOrderPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

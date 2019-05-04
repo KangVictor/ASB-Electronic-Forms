@@ -23,6 +23,11 @@ Page({
 
   bindGetUserInfo(e) {
     var nonAdmin = true;
+    wx.getUserInfo({
+      success(res) {
+        console.log(res.userInfo.avatarUrl);
+      }
+    })
     for(var i = 0; i < this.data.adminAccounts.length; i++) {
       if (e.detail.userInfo['avatarUrl'] == this.data.adminAccounts[i]) { // if not admin, disable the admin button
         nonAdmin = false;
@@ -30,7 +35,7 @@ Page({
       }
     }
     this.setData({ adminButtonDisabled: nonAdmin });
-    if(nonAdmin == true) {
+    if(this.data.nonAdmin == true) {
       wx.showModal({
         title: 'error',
         content: 'Only ASB members can use this function',
@@ -39,7 +44,7 @@ Page({
       })
     } else {
       wx.navigateTo({ // later create choosing page that can choose between file access
-        url: '/pages/purchasePage/purchasePage?'
+        url: '/pages/checkOrderPage/checkOrderPage?'
       });
     }
   },

@@ -1,0 +1,2 @@
+<!--pages/checkOrderPage/checkOrderPage.wxml-->
+<textarea>{{}}</textarea>
