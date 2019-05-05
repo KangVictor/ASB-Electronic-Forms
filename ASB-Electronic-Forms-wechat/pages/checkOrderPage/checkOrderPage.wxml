@@ -1,2 +1,4 @@
 <!--pages/checkOrderPage/checkOrderPage.wxml-->
+<input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
+<button class='getButton' bindtap='searchOrders'> search </button>
 <textarea>{{orders}}</textarea>

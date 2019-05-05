@@ -1,6 +1,6 @@
 <view class="section">
   <text class = "smallText">Name {{nameFilled}}</text>
-  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Steve Wozniak'/>
+  <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Victor Kang'/>
 
   <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
     <view class="smallPicker">

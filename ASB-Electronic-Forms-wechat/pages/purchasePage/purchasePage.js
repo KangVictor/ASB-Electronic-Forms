@@ -7,6 +7,8 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
     buyerName: '',
+    buyerGrade: 9,
+    buyerClass: 1,
     arrayGrade: ['9', '10'],
     indexGrade: '0',
     arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
@@ -82,13 +84,17 @@ Page({
     } else { this.setData({ nameFilled: '*', fillInTextHidden :false })}
   },
   bindPickerGradeChange: function (e) {
+    const getGrade = this.data.arrayGrade[this.data.indexGrade];
     this.setData({
-      indexGrade: e.detail.value
+      indexGrade: e.detail.value,
+      buyerGrade: getGrade
     })
   },
   bindPickerClassChange: function (e) {
+    const getClass = this.data.arrayClass[this.data.indexClass];
     this.setData({
-      indexClass: e.detail.value
+      indexClass: e.detail.value,
+      buyerClass: getClass
     })
   },
   bindInputBoxQuantityA: function (e) {
@@ -167,6 +173,7 @@ Page({
         confirmText: 'Submit',
         success(res) {
           if(res.confirm) { // if the buyer wants to submit
+            wx.cloud.init();
             wx.cloud.callFunction({
               name: "postOrder",
               data: {
