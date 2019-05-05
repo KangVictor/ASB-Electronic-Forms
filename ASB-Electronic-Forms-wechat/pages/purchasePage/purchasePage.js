@@ -12,6 +12,9 @@ Page({
     arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     indexClass: '0',
 
+    nameFilled: '*',
+    fillInTextHidden: false,
+
     quan: [],
     itemPrices: [],
     itemNames: [],
@@ -73,6 +76,10 @@ Page({
     this.setData({
       buyerName: e.detail.value
     })
+    console.log(e.detail.value);
+    if (e.detail.value != '' && e.detail.value != ' ') {
+      this.setData({nameFilled : '', fillInTextHidden: true})
+    } else { this.setData({ nameFilled: '*', fillInTextHidden :false })}
   },
   bindPickerGradeChange: function (e) {
     this.setData({

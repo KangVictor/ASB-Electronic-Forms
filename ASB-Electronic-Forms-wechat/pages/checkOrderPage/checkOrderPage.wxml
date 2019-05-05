@@ -1,2 +1,2 @@
 <!--pages/checkOrderPage/checkOrderPage.wxml-->
-<textarea>{{}}</textarea>
+<textarea>{{orders}}</textarea>
