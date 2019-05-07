@@ -3,20 +3,76 @@ Page({
 
   data: {
     orders:[],
-    keyword:''
+    showNames: [],
+    showGrades: [],
+    showClasses: [],
+    showQuans: [],
+    showCosts: [],
+    itemNum: 0,
+    itemNames: [],
+    itemPrices: [],
+    keyword:'',
+    showOrders:[],
   },
 
   onLoad: function(options) {
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#03A9AC',
+      animation: {
+        duration: 500,
+        timingFunc: 'easeIn'
+      }
+    });
+    wx.setNavigationBarTitle({
+      title: 'Orders check',
+    })
+
     wx.cloud.init();
+    // request to the server for price and quantities of the item
+    wx.cloud.callFunction({
+      name: "getItemInfo",
+      success: function (res) {
+        console.log(res);
+        const getPrices = res.result.data.itemPrice;
+        const getNames = res.result.data.itemName;
+        const getNum = res.result.data.itemNum;
+        this.setData({
+          itemNum: getNum,
+          itemNames: getNames,
+          itemPrices: getPrices
+        })
+      }.bind(this),
+      fail: function () {
+        wx.navigateTo({
+          url: '/pages/serverFailPage/serverFailPage?'
+        });
+      }
+    })
+
+    // request to the server for orders
     wx.cloud.callFunction({
       name: 'getOrder',
       success: function(res) {
         const getorder = res.result.data
-        console.log(getorder[0])
-        this.setData({
-          orders:getorder[0]['buyerName']
+        console.log(getorder);
+        this.setData({ // give orders the the entire data of orders
+          orders: getorder,
+          showOrders: getorder
         })
-      }.bind(this)
+        for (var i = 0; i < this.data.orders.length; i++) { // set datas of orders
+          this.data.showNames[i] = this.data.orders[i]['buyerName'];
+          this.data.showClasses[i] = this.data.orders[i]['buyerClass'];
+          this.data.showGrades[i] = this.data.orders[i]['buyerGrade'];
+          this.data.showQuans[i] = this.data.orders[i]['buyerQuan'];
+          this.data.showCosts[i] = this.data.orders[i]['buyerCost'];
+        }
+      }.bind(this),
+      fail: function () {
+        wx.navigateTo({
+          url: '/pages/serverFailPage/serverFailPage?'
+        });
+      }
     })
   },
 
@@ -27,19 +83,48 @@ Page({
   },
 
   searchOrders: function() {
-    console.log(this.data.orders)
-    const foundOrders = findOrder(this.data.orders, this.data.keyword);
-    if (foundOrders == []) {
-      this.setData({
-        orders:['not found']
+    if (this.data.keyword == '') {// if keyword(name, code) is blank
+      wx.showModal({
+        title: 'Error',
+        content: 'Please enter name or code of the customer',
+        confirmText: 'Ok',
+        showCancel: false
       })
     } else {
-      this.setData({
-        orders:foundOrders
-      })
+      const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
+      console.log(foundOrders);
+      if (foundOrders.length == 0) {
+        this.setData({
+          showNames: ['not found']
+        })
+        console.log("buyer's name not found")
+      } else {
+        this.setData({
+          showOrders: [],
+          showNames: [],
+          showClasses: [],
+          showGrades: [],
+          showQuans: [],
+          showCosts: [],
+        })
+        this.setData({showOrders:foundOrders})
+        for (var i = 0; i < foundOrders.length; i++) { // set datas of orders
+          this.data.showNames[i] = foundOrders[i]['buyerName'];
+          this.data.showClasses[i] = foundOrders[i]['buyerClass'];
+          this.data.showGrades[i] = foundOrders[i]['buyerGrade'];
+          this.data.showQuans[i] = foundOrders[i]['buyerQuan'];
+          this.data.showCosts[i] = foundOrders[i]['buyerCost'];
+        }
+      }
     }
+  },
+  deleteOrder: function() {
+    wx.cloud.callFunction({
+      name: "deleteOrder",
+      success: function (res) {
+      }
+    })
   }
-  
 })
 
 function findOrder(orders, keyword) { // finds order either by code or name
@@ -49,20 +134,19 @@ function findOrder(orders, keyword) { // finds order either by code or name
   if(hasNumber(keyword)){ // checks if the keyWord is a code
   // find the code if so
     for (var i = 0; i < orders.length; i++) {
-      if (orders[i]['code'] == Number(keyword)) {
+      if (orders[i]['_id'] == Number(keyword)) {
         foundOrders[count] = orders[i]
         count ++;
       }
     }
   } else { // find the buyer's name
     for (var i = 0; i < orders.length; i++) {
-      if (orders[i]['name'] == keyword){
+      if (orders[i]['buyerName'] == keyword){
         foundOrders[count] = orders[i];
         count++;
       }
     }
   }
-
   return foundOrders;
 }
 

@@ -7,6 +7,21 @@ Page({
     adminButtonDisabled: false // if admin = false, if nonadmin = true
   },
 
+  onLoad: function() {
+    // change navigation bar color
+    wx.setNavigationBarColor({
+      frontColor: '#ffffff',
+      backgroundColor: '#03A9AC',
+      animation: {
+        duration: 500,
+        timingFunc: 'easeIn'
+      }
+    });
+    wx.setNavigationBarTitle({
+      title: 'ASB Electronic Form',
+    })
+  },
+
   onReady: function(){
     wx.getSetting({
       success(res) {
@@ -22,6 +37,7 @@ Page({
   },
 
   bindGetUserInfo(e) {
+    // check if the user is admin(ASB member)
     var nonAdmin = false;
     // wx.getUserInfo({
     //   success(res) {

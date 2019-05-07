@@ -1,4 +1,11 @@
 <!--pages/checkOrderPage/checkOrderPage.wxml-->
 <input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
 <button class='getButton' bindtap='searchOrders'> search </button>
-<textarea>{{orders}}</textarea>
+<!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
+
+<block wx:for="{{}}" wx:for-item="array-item" wx:key="key">
+  <view class="card">
+    <view class="card-description">
+    </view>
+  </view>
+</block>

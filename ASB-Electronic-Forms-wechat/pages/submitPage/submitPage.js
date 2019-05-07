@@ -1,9 +1,9 @@
 Page({
   data: {
-    submitMessage: ""
+    code: 'err'
   },
-  onLoad: function (options) {
-    
-  },
-
+  onLoad(option) {
+    console.log(option.id)
+    this.setData({code: option.id});
+  }
 })

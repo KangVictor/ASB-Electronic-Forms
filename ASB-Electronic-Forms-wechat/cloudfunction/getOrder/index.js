@@ -8,5 +8,5 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  return db.collection('orders').where({}).get();
+  return await db.collection('orders').where({}).get();
 }

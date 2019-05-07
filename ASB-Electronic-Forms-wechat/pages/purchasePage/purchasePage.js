@@ -40,7 +40,7 @@ Page({
     // request to the server for price and quantities of the item
     wx.cloud.init();
     wx.cloud.callFunction({
-      name: "getItemInfo",
+      name: 'getItemInfo',
       success: function (res) {
         console.log(res);
         const getPrices = res.result.data.itemPrice;
@@ -78,7 +78,6 @@ Page({
     this.setData({
       buyerName: e.detail.value
     })
-    console.log(e.detail.value);
     if (e.detail.value != '' && e.detail.value != ' ') {
       this.setData({nameFilled : '', fillInTextHidden: true})
     } else { this.setData({ nameFilled: '*', fillInTextHidden :false })}
@@ -136,7 +135,6 @@ Page({
       }
     }
     if (this.data.buyerName == '') {// if buyer's name is blank
-      // should change to error message later on
       wx.showModal({
         title: 'Error',
         content: 'Please fill in your name!',
@@ -184,13 +182,13 @@ Page({
                 buyerQuan: buyerQu
               },
               success: (res) => {
-                if(res.result = "success") {
-                  wx.navigateTo({ // if successfully sent order, navigate to submit page
-                    url: '/pages/submitPage/submitPage?',
-                  });
-                } else {
+                if(res.result == "fail") {
                   wx.navigateTo({ // if failed to add order, navigate to submit fail page
                     url: '/pages/submitFailPage/submitFailPage?',
+                  });
+                } else {
+                  wx.navigateTo({ // if successfully sent order, navigate to submit page
+                    url: '/pages/submitPage/submitPage?id=' + res.result.toString(),
                   });
                 }
               },
