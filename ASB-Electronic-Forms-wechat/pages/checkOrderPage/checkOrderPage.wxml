@@ -1,6 +1,7 @@
 <!--pages/checkOrderPage/checkOrderPage.wxml-->
 <input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
 <button class='getButton' bindtap='searchOrders'> search </button>
+<button class='getButton' bindtap='confirmOrder'> confirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
 <block wx:for="{{}}" wx:for-item="array-item" wx:key="key">
@@ -9,3 +10,22 @@
     </view>
   </view>
 </block>
+<scroll-view>
+  <block wx:for="{{showOrders}}" wx:key="unique" style="display: block">
+    <view style="font-size: 20px" style='margin-left:20px; margin-top: 15px;'>
+    {{item._id}}: {{item.buyerName}} {{item.buyerGrade}}({{item.buyerClass}}) 
+    </view>
+    <br />
+    <view style="font-size: 20px" style='margin-left:20px; margin-top: 5x;'>
+    {{item.buyerQuan[0]}} | {{item.buyerQuan[1]}} | {{item.buyerQuan[2]}}
+    </view>
+    <br />
+    <view style="font-size: 20px" style='margin-left:20px; margin-top: 5px;'>
+    {{item.buyerCost}} CNY
+    {{item.confirmed}}
+    </view>
+    <br />
+    <text style='margin-left:20px; margin-top: 2px;'>______________________</text>
+  </block>
+</scroll-view>
+
