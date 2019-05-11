@@ -1,5 +1,5 @@
 .inputBox {
-  margin-left:30px;
+  margin-left:20px;
   margin-top:5px;
   height: 40px;
   font-size: 25px;
@@ -16,7 +16,7 @@
 }
 
 .smallPicker {
-  margin-left: 30px;
+  margin-left: 20px;
   margin-top: 10px;
   height: 40px;
   margin-bottom: 10px;
@@ -24,20 +24,20 @@
 }
 
 .smallText {
-  margin-left: 30px;
+  margin-left: 20px;
   padding-top: 100px;
   font-size: 25px;
 }
 
 .costText {
-  margin-left: 30px;
+  margin-left: 20px;
   margin-top: 100px;
   height: 40px;
   font-size: 20pt;
 }
 
 .informText {
-  margin-left:30px;
+  margin-left:20px;
   height:50px;
   color: grey;
 }
