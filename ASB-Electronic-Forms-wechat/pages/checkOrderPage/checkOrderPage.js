@@ -69,6 +69,9 @@ Page({
       }
     })
 
+    wx.showLoading({
+      title: 'Loading Orders...',
+    })
     // request to the server for orders
     wx.cloud.callFunction({
       name: 'getOrder',
@@ -79,6 +82,7 @@ Page({
           orders: getorder,
           showOrders: getorder
         })
+        wx.hideLoading()
       }.bind(this),
       fail: function () {
         wx.navigateTo({
@@ -86,14 +90,6 @@ Page({
         });
       }
     })
-
-    wx.showLoading({
-      title: 'Loading Orders...',
-    })
-
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1200)
   },
 
   bindKeyInput: function(e) {

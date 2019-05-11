@@ -39,6 +39,9 @@ Page({
     })
     // request to the server for price and quantities of the item
     wx.cloud.init();
+    wx.showLoading({
+      title: 'Loading Items...',
+    })
     wx.cloud.callFunction({
       name: 'getItemInfo',
       success: function (res) {
@@ -55,6 +58,7 @@ Page({
         for (var i = 0; i < this.data.itemNum; i++) {
           this.data.quan[i] = 0;
         }
+        wx.hideLoading()
       }.bind(this),
       fail: function () {
         wx.navigateTo({
@@ -62,13 +66,6 @@ Page({
         });
       }
     })
-    wx.showLoading({
-      title: 'Loading Items...',
-    })
-
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1200)
   },
   
   //////////////////////
