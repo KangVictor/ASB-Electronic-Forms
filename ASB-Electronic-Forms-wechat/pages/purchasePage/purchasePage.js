@@ -62,13 +62,6 @@ Page({
         });
       }
     })
-    wx.showLoading({
-      title: 'Loading Items...',
-    })
-
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1200)
   },
   
   //////////////////////

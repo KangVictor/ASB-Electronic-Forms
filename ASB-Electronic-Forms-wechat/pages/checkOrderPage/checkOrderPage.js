@@ -13,34 +13,9 @@ Page({
     itemNames: [],
     itemPrices: [],
     keyword:'',
-    quan:[]
   },
 
   onLoad: function(options) {
-    wx.cloud.init();
-    wx.cloud.callFunction({
-      name: 'getItemInfo',
-      success: function (res) {
-        console.log(res);
-        const getPrices = res.result.data.itemPrice;
-        const getNames = res.result.data.itemName;
-        const getNum = res.result.data.itemNum;
-        this.setData({
-          itemNum: getNum,
-          itemNames: getNames,
-          itemPrices: getPrices
-        })
-        // make quan = [0, 0, 0, ...]
-        for (var i = 0; i < this.data.itemNum; i++) {
-          this.data.quan[i] = 0;
-        }
-      }.bind(this),
-      fail: function () {
-        wx.navigateTo({
-          url: '/pages/serverFailPage/serverFailPage?'
-        });
-      }
-    })
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#03A9AC',
@@ -53,6 +28,7 @@ Page({
       title: 'Orders check',
     })
 
+    wx.cloud.init();
     // request to the server for price and quantities of the item
     wx.cloud.callFunction({
       name: "getItemInfo",
@@ -84,6 +60,13 @@ Page({
           orders: getorder,
           showOrders: getorder
         })
+        // for (var i = 0; i < this.data.orders.length; i++) { // set datas of orders
+        //   this.data.showNames[i] = this.data.orders[i]['buyerName'];
+        //   this.data.showClasses[i] = this.data.orders[i]['buyerClass'];
+        //   this.data.showGrades[i] = this.data.orders[i]['buyerGrade'];
+        //   this.data.showQuans[i] = this.data.orders[i]['buyerQuan'];
+        //   this.data.showCosts[i] = this.data.orders[i]['buyerCost'];
+        // }
       }.bind(this),
       fail: function () {
         wx.navigateTo({
@@ -91,14 +74,6 @@ Page({
         });
       }
     })
-
-    wx.showLoading({
-      title: 'Loading Orders...',
-    })
-
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1200)
   },
 
   bindKeyInput: function(e) {
@@ -129,10 +104,20 @@ Page({
       } else {
         this.setData({
           showOrders: [],
-          
+          // showNames: [],
+          // showClasses: [],
+          // showGrades: [],
+          // showQuans: [],
+          // showCosts: [],
         })
         this.setData({showOrders:foundOrders})
-        
+        // for (var i = 0; i < foundOrders.length; i++) { // set datas of orders
+        //   this.data.showNames[i] = foundOrders[i]['buyerName'];
+        //   this.data.showClasses[i] = foundOrders[i]['buyerClass'];
+        //   this.data.showGrades[i] = foundOrders[i]['buyerGrade'];
+        //   this.data.showQuans[i] = foundOrders[i]['buyerQuan'];
+        //   this.data.showCosts[i] = foundOrders[i]['buyerCost'];
+        // }
       }
     }
   },
