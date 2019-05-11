@@ -8,6 +8,21 @@ Page({
   },
 
   onLoad: function() {
+    wx.login({
+      success(res) {
+        if (res.code) {
+          // 发起网络请求
+          wx.request({
+            url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx3766d060f51ec08a&secret=SECRET&js_code=${res.code}&grant_type=authorization_code`,
+            data: {
+              code: res.code
+            }
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
     // change navigation bar color
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
