@@ -74,10 +74,11 @@ Page({
   //////////////////////
   //input 
   bindNameInput: function (e) {
-    if (hasNumber(e.detail.value)) { // check if name contains number
+    var english = /^[A-Za-z\s]*$/;
+    if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title:'error',
-        content:'No numbers in name!',
+        content:'Accepts English Letters Only',
         showCancel: false,
         confirmText: 'Ok'
       })
@@ -136,6 +137,7 @@ Page({
   //////////////////////
 
   onSubmit: function () {
+    var english = /^[A-Za-z\s]*$/;
     for(var i = 0; i < this.data.quan.length; i++) {
       if (this.data.quan[i] < 0) {
         showNoNegativeModal();
@@ -157,12 +159,12 @@ Page({
         showCancel: false
       })
     }
-    else if(hasNumber(this.data.buyerName)) { // incorrect name or quantity
+    else if (!this.data.buyerName.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
-        title: 'Error',
-        content: 'No numbers in name!',
-        confirmText: 'Ok',
-        showCancel: false
+        title: 'error',
+        content: 'Accepts English Letters Only',
+        showCancel: false,
+        confirmText: 'Ok'
       })
     }
     else { // can submit in this circumstance
