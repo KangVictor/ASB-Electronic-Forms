@@ -13,7 +13,6 @@ Page({
     itemNames: [],
     itemPrices: [],
     keyword:'',
-    quan:[]
   },
 
   onLoad: function(options) {
@@ -30,10 +29,6 @@ Page({
           itemNames: getNames,
           itemPrices: getPrices
         })
-        // make quan = [0, 0, 0, ...]
-        for (var i = 0; i < this.data.itemNum; i++) {
-          this.data.quan[i] = 0;
-        }
       }.bind(this),
       fail: function () {
         wx.navigateTo({
@@ -108,6 +103,22 @@ Page({
   },
 
   searchOrders: function() {
+    wx.cloud.callFunction({
+      name: 'getOrder',
+      success: function (res) {
+        const getorder = res.result.data
+        console.log(getorder);
+        this.setData({ // give orders the the entire data of orders
+          orders: getorder,
+        })
+      }.bind(this),
+      fail: function () {
+        wx.navigateTo({
+          url: '/pages/serverFailPage/serverFailPage?'
+        });
+      }
+    })
+
     if (this.data.keyword == '') {// if keyword(name, code) is blank
       wx.showModal({
         title: 'Error',
@@ -136,26 +147,41 @@ Page({
       }
     }
   },
+
   confirmOrder: function() {
-    console.log(this.data.showOrders[0]._id)
+    console.log('id: ' + this.data.showOrders[0]._id)
+    wx.showLoading({
+      title: 'Loading',
+    })
     wx.cloud.callFunction({
       name: "confirmOrder",
       data:{
-        orderId: this.data.showOrders._id
+        orderId: this.data.showOrders[0]._id
       },
       success: function (res) {
-        console.log('in success')
-        this.data.showOrders.confirmed = true;
+        wx.cloud.callFunction({
+          name: 'getOrder',
+          success: function (res) {
+            const getorder = res.result.data
+            console.log(getorder);
+            this.setData({ // give orders the the entire data of orders
+              orders: getorder,
+            })
+            const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
+            this.setData({
+              showOrders:foundOrders
+            })
+            wx.hideLoading()
+          }.bind(this),
+          fail: function () {
+            wx.navigateTo({
+              url: '/pages/serverFailPage/serverFailPage?'
+            });
+          }
+        })
       }.bind(this)
     })
   },
-  deleteOrder: function() {
-    wx.cloud.callFunction({
-      name: "deleteOrder",
-      success: function (res) {
-      }
-    })
-  }
 })
 
 function findOrder(orders, keyword) { // finds order either by code or name
