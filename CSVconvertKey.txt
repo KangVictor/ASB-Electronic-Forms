@@ -1,0 +1,1 @@
+_id,buyerClass,buyerCost,buyerGrade,buyerName,buyerQuan,confirmed
