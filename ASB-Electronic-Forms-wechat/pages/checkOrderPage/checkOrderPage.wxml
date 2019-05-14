@@ -2,6 +2,7 @@
 <input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
 <button class='getButton' bindtap='searchOrders'> search </button>
 <button class='getButton' bindtap='confirmOrder'> confirm </button>
+<button class='getButton' bindtap='unconfirmOrder'> unconfirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
 <text style="font-size:15px; color:grey">{{itemNames[0]}} | {{itemNames[1]}} | {{itemNames[2]}}</text>

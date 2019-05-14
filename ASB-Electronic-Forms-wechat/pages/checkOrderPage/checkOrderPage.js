@@ -16,6 +16,7 @@ Page({
   },
 
   onLoad: function(options) {
+    // request to the server for price and quantities of the item
     wx.cloud.init();
     wx.cloud.callFunction({
       name: 'getItemInfo',
@@ -46,27 +47,6 @@ Page({
     });
     wx.setNavigationBarTitle({
       title: 'Orders check',
-    })
-
-    // request to the server for price and quantities of the item
-    wx.cloud.callFunction({
-      name: "getItemInfo",
-      success: function (res) {
-        console.log(res);
-        const getPrices = res.result.data.itemPrice;
-        const getNames = res.result.data.itemName;
-        const getNum = res.result.data.itemNum;
-        this.setData({
-          itemNum: getNum,
-          itemNames: getNames,
-          itemPrices: getPrices
-        })
-      }.bind(this),
-      fail: function () {
-        wx.navigateTo({
-          url: '/pages/serverFailPage/serverFailPage?'
-        });
-      }
     })
 
     wx.showLoading({
@@ -139,7 +119,6 @@ Page({
           
         })
         this.setData({showOrders:foundOrders})
-        
       }
     }
   },
@@ -178,6 +157,41 @@ Page({
       }.bind(this)
     })
   },
+
+  unconfirmOrder: function() {
+    console.log('id: ' + this.data.showOrders[0]._id)
+    wx.showLoading({
+      title: 'Loading',
+    })
+    wx.cloud.callFunction({
+      name: "unconfirmOrder",
+      data: {
+        orderId: this.data.showOrders[0]._id
+      },
+      success: function (res) {
+        wx.cloud.callFunction({
+          name: 'getOrder',
+          success: function (res) {
+            const getorder = res.result.data
+            console.log(getorder);
+            this.setData({ // give orders the the entire data of orders
+              orders: getorder,
+            })
+            const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
+            this.setData({
+              showOrders: foundOrders
+            })
+            wx.hideLoading()
+          }.bind(this),
+          fail: function () {
+            wx.navigateTo({
+              url: '/pages/serverFailPage/serverFailPage?'
+            });
+          }
+        })
+      }.bind(this)
+    })
+  }
 })
 
 function findOrder(orders, keyword) { // finds order either by code or name
