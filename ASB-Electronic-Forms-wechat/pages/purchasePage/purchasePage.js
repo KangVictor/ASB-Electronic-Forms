@@ -35,7 +35,7 @@ Page({
       }
     });
     wx.setNavigationBarTitle({
-      title: 'ASB Electronic Form',
+      title: 'Purchase Page ',
     })
     // request to the server for price and quantities of the item
     wx.cloud.init();
