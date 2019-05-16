@@ -3,6 +3,9 @@ Page({
     code: 'err'
   },
   onLoad(option) {
+    wx.setNavigationBarTitle({
+      title: 'Submit Succes',
+    })
     console.log(option.id)
     this.setData({code: option.id});
   },
