@@ -14,7 +14,7 @@
   </view>
 </block>
 <scroll-view>
-  <block wx:for="{{showOrders}}" wx:key="unique" style="display: block">
+  <block wx:for="{{showOrders}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
     <view style="font-size: 20px" style='margin-left:20px; margin-top: 15px;'>
     {{item._id}}: {{item.buyerName}} {{item.buyerGrade}}({{item.buyerClass}}) 
     </view>

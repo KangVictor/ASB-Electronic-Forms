@@ -3,14 +3,16 @@ Page({
 
   data: {
     orders:[],
+    firstten:[],
     showOrders: [],
     itemNum: 0,
     itemNames: [],
     itemPrices: [],
     keyword:'',
+    showNum: 5
   },
 
-  onLoad: function(options) {
+  onLoad: function() {
     // request to the server for price and quantities of the item
     wx.cloud.init();
     wx.cloud.callFunction({
@@ -47,6 +49,7 @@ Page({
     wx.showLoading({
       title: 'Loading Orders...',
     })
+
     // request to the server for orders
     wx.cloud.callFunction({
       name: 'getOrder',
@@ -55,8 +58,16 @@ Page({
         console.log(getorder);
         this.setData({ // give orders the the entire data of orders
           orders: getorder,
-          showOrders: getorder
         })
+        
+        var recent = []; // recent 15 orders are shown
+        for (var i = 0; i < 15; i++) {
+          recent[i] = getorder[getorder.length - i - 1]
+        }
+        this.setData({
+          showOrders: recent
+        })
+
         wx.hideLoading()
       }.bind(this),
       fail: function () {

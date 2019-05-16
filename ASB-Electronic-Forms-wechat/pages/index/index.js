@@ -50,7 +50,7 @@ Page({
           backColor:'#03A9AC'
         })
       }
-    }.bind(this), 5000)
+    }.bind(this), 4000)
 
     // change navigation bar color
     wx.setNavigationBarColor({
