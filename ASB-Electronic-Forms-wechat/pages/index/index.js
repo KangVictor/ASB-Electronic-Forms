@@ -10,8 +10,8 @@ Page({
     interval: 2500,
     duration: 1000,
     imgUrls: ['/itemImg/singleWG.jpg', '/itemImg/doubleWG.jpg', '/itemImg/classicWG.jpg'],
-    backColor: '#ffffff',
-    whiteFont: '#ffffff'
+    backColor: '#f8f8f8',
+    whiteFont: '#f8f8f8'
   },
 
   onLoad: function() {

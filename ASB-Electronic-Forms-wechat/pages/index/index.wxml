@@ -23,7 +23,7 @@ class="goButton">
 
 <button
 disabled="{{adminButtonDisabled}}"
-style='margin-top:100px; padding-left:0px; background-color:{{backColor}}; color:{{whiteFont}}'
+style='padding-bottom: bottom; margin-top:100px; padding-left:0px; background-color:{{backColor}}; color:{{whiteFont}}'
 bindtap='onAdminButton'>
   orders (ASB)
 </button>
