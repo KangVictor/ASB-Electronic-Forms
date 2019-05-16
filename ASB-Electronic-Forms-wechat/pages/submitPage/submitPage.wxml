@@ -5,8 +5,10 @@
   <text>during lunch</text>
   <text>to confirm.</text>
   <text>__________</text>
+  <text>Take a screenshot of this page!</text>
   <text>Remember your code to</text>
   <text>find your order easily!</text>
   <text>___________</text>
-  <text>code: {{code}}</text>
+  <text>{{code}}</text>
+  <button class='goButton' bindtap='returnHome'>return</button>
 </view>

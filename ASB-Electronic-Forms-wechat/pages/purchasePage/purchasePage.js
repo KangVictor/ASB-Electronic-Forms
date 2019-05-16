@@ -194,7 +194,7 @@ Page({
                   });
                 } else {
                   wx.navigateTo({ // if successfully sent order, navigate to submit page
-                    url: '/pages/submitPage/submitPage?id=' + res.result.toString(),
+                    url: '/pages/submitPage/submitPage?id=code: ' + res.result.toString() + " name: " + buyerNa,
                   });
                 }
               },
