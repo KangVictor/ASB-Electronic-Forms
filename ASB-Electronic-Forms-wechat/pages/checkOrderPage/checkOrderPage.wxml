@@ -5,7 +5,7 @@
 <button class='getButton' bindtap='unconfirmOrder'> unconfirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
-<text style="font-size:15px; color:grey">{{itemNames[0]}} | {{itemNames[1]}} | {{itemNames[2]}}</text>
+<text style="font-size:12px; color:grey">{{itemNames[0]}} | {{itemNames[1]}} | {{itemNames[2]}}</text>
 
 <block wx:for="{{}}" wx:for-item="array-item" wx:key="key">
   <view class="card">
@@ -15,7 +15,7 @@
 </block>
 <scroll-view>
   <block wx:for="{{showOrders}}" wx:key="unique" style="display: block">
-    <view style="font-size: 25px" style='margin-left:20px; margin-top: 15px;'>
+    <view style="font-size: 20px" style='margin-left:20px; margin-top: 15px;'>
     {{item._id}}: {{item.buyerName}} {{item.buyerGrade}}({{item.buyerClass}}) 
     </view>
     <br />

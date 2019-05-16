@@ -3,11 +3,6 @@ Page({
 
   data: {
     orders:[],
-    // showNames: [],
-    // showGrades: [],
-    // showClasses: [],
-    // showQuans: [],
-    // showCosts: [],
     showOrders: [],
     itemNum: 0,
     itemNames: [],
@@ -95,13 +90,8 @@ Page({
       }
     })
 
-    if (this.data.keyword == '') {// if keyword(name, code) is blank
-      wx.showModal({
-        title: 'Error',
-        content: 'Please enter name or code of the customer',
-        confirmText: 'Ok',
-        showCancel: false
-      })
+    if (this.data.keyword == '') {// if keyword(name, code) is blank just show all orders
+      this.setData({showOrders: this.data.orders})
     } else {
       const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
       console.log(foundOrders);
@@ -112,7 +102,7 @@ Page({
           confirmText: 'Ok',
           showCancel: false
         })
-        console.log("buyer's name not found")
+        console.log("buyer not found")
       } else {
         this.setData({
           showOrders: [],
