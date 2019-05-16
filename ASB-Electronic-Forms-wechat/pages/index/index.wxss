@@ -9,6 +9,16 @@
   color:white;
 }
 
+.slide-image {
+  height:300px;
+  width:300px;
+}
+
+.itemImgSwiper {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;

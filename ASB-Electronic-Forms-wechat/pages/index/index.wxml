@@ -1,33 +1,36 @@
-<!-- <swiper
-  indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}"
-  interval="{{interval}}"
-  duration="{{duration}}"
->
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" />
-    </swiper-item>
-  </block>
-</swiper> -->
-<button open-type="getUserInfo"
-  bindtap="bindPurchase"
-  class="goButton"
->
-  Go purchase
-</button>
+<view style='align-content:center'>
+  <swiper
+    class='itemImgSwiper'
+    indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}"
+    interval="{{interval}}"
+    duration="{{duration}}"
+    circular='{{circular}}'
+  >
+    <block wx:for="{{imgUrls}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" width="100" height="150" />
+      </swiper-item>
+    </block>
+  </swiper>
 
-<button
-  open-type="getUserInfo"
-  wx:if="{{canIUse}}"
-  disabled="{{adminButtonDisabled}}"
-  bindgetuserinfo="bindGetUserInfo"
-  class="goButton"
->
-  Go check (ASB only)
-</button>
-<view class="userinfo">
-  <text style='margin-top: 20px'>Welcome!</text>
-  <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
-  <open-data type="userNickName"></open-data>
+  <view class="userinfo">
+    <text style='margin-top: 20px'>Welcome!</text>
+    <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+    <open-data type="userNickName"></open-data>
+  </view>
+
+  <button 
+    bindtap="bindPurchase"
+    class="goButton">
+    Go purchase
+  </button>
+
+  <button
+    disabled="{{adminButtonDisabled}}"
+    style='margin-top:100px; margin-botton:200px; background-color:{{backColor}}; color:{{whiteFont}}'
+    bindtap='onAdminButton'
+  >
+    orders (ASB)
+  </button>
 </view>
