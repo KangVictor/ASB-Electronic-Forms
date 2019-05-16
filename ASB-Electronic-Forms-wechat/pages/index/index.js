@@ -4,10 +4,10 @@ Page({
   data: {
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     adminButtonDisabled: true, // if admin = false, if nonadmin = true
-    indicatorDots: true,
+    indicatorDots: false,
     autoplay: true,
     circular: true,
-    interval: 2000,
+    interval: 2500,
     duration: 1000,
     imgUrls: ['/itemImg/singleWG.jpg', '/itemImg/doubleWG.jpg', '/itemImg/classicWG.jpg'],
     backColor: '#ffffff',
