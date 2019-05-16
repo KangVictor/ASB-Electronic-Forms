@@ -1,13 +1,14 @@
-<view class="section">
+<view class="page-body">
   <text class = "smallText">Name {{nameFilled}}</text>
   <input class="inputBox" id="inputBoxName" bindinput="bindNameInput" placeholder='ex) Victor Kang'/>
-
+  <!-- <text class = "smallText">Grade</text> -->
   <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
     <view class="smallPicker">
       Grade {{arrayGrade[indexGrade]}}
     </view>
   </picker>
 
+  <!-- <text class = "smallText">Class</text> -->
   <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
     <view class="smallPicker">
       Class {{arrayClass[indexClass]}}
