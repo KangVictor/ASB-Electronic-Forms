@@ -2,12 +2,11 @@
 Page({
 
   data: {
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     adminButtonDisabled: true, // if admin = false, if nonadmin = true
-    indicatorDots: false,
+    indicatorDots: true,
     autoplay: true,
     circular: true,
-    interval: 2500,
+    interval: 5000,
     duration: 1000,
     imgUrls: ['/itemImg/singleWG.jpg', '/itemImg/doubleWG.jpg', '/itemImg/classicWG.jpg'],
     backColor: '#f8f8f8',
@@ -16,6 +15,7 @@ Page({
 
   onLoad: function() {
     var getOpenId=''
+    var self = this
     wx.login({
       success(res) {
         if (res.code) {
@@ -26,6 +26,11 @@ Page({
             header: { 'content-type': 'application/json'  },
             success(res) {
               getOpenId = res.data.openid
+              if(isAdmin(adminAccounts, getOpenId)){
+                self.setData({
+                  adminButtonDisabled: false
+                })
+              }
             }
           })
         }
@@ -37,20 +42,14 @@ Page({
     wx.cloud.callFunction({
       name: 'getWhiteList',
       success: function (res) {
-          adminAccounts = res.result.data
+        adminAccounts = res.result.data
+        if (isAdmin(adminAccounts, getOpenId)) {
+          self.setData({
+            adminButtonDisabled: false
+          })
+        }
       },
     })
-
-    setTimeout(function () {
-      console.log(adminAccounts)
-      console.log(getOpenId)
-      if(isAdmin(adminAccounts, getOpenId)){
-        this.setData({
-          adminButtonDisabled: false,
-          backColor:'#03A9AC'
-        })
-      }
-    }.bind(this), 4000)
 
     // change navigation bar color
     wx.setNavigationBarColor({
