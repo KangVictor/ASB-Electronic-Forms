@@ -6,7 +6,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
-    buyerName: '',
+    buyerLastName: '',
+    buyerFirstName:'',
     buyerGrade: 9,
     buyerClass: 1,
     arrayGrade: ['9', '10'],
@@ -14,13 +15,16 @@ Page({
     arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     indexClass: '0',
 
-    nameFilled: '*',
+    firstNameFilled: '*',
+    lastNameFilled: '*',
     fillInTextHidden: false,
 
+    submitButtonDisabled: false,
+
     quan: [],
-    itemPrices: [],
-    itemNames: [],
-    itemNum: 0,
+    itemPrices: [5, 10, 15],
+    itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
+    itemNum: 3,
     cost: 0
   },
 
@@ -38,39 +42,39 @@ Page({
       title: 'Purchase Page ',
     })
     // request to the server for price and quantities of the item
-    wx.cloud.init();
-    wx.showLoading({
-      title: 'Loading Items...',
-    })
-    wx.cloud.callFunction({
-      name: 'getItemInfo',
-      success: function (res) {
-        console.log(res);
-        const getPrices = res.result.data.itemPrice;
-        const getNames = res.result.data.itemName;
-        const getNum = res.result.data.itemNum;
-        this.setData({
-          itemNum: getNum,
-          itemNames: getNames,
-          itemPrices: getPrices
-        })
-        // make quan = [0, 0, 0, ...]
-        for (var i = 0; i < this.data.itemNum; i++) {
-          this.data.quan[i] = 0;
-        }
-        wx.hideLoading()
-      }.bind(this),
-      fail: function () {
-        wx.navigateTo({
-          url: '/pages/serverFailPage/serverFailPage?'
-        });
-      }
-    })
+    // wx.cloud.init();
+    // wx.showLoading({
+    //   title: 'Loading Items...',
+    // })
+    // wx.cloud.callFunction({
+    //   name: 'getItemInfo',
+    //   success: function (res) {
+    //     console.log(res);
+    //     const getPrices = res.result.data.itemPrice;
+    //     const getNames = res.result.data.itemName;
+    //     const getNum = res.result.data.itemNum;
+    //     this.setData({
+    //       itemNum: getNum,
+    //       itemNames: getNames,
+    //       itemPrices: getPrices
+    //     })
+    //     // make quan = [0, 0, 0, ...]
+    //     for (var i = 0; i < this.data.itemNum; i++) {
+    //       this.data.quan[i] = 0;
+    //     }
+    //     wx.hideLoading()
+    //   }.bind(this),
+    //   fail: function () {
+    //     wx.navigateTo({
+    //       url: '/pages/serverFailPage/serverFailPage?'
+    //     });
+    //   }
+    // })
   },
   
   //////////////////////
   //input 
-  bindNameInput: function (e) {
+  bindFirstNameInput: function (e) {
     var english = /^[A-Za-z\s]*$/;
     if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
@@ -79,14 +83,46 @@ Page({
         showCancel: false,
         confirmText: 'Ok'
       })
+    } else {
+      this.setData({
+        buyerFirstName: e.detail.value
+      })
+      console.log(this.data.buyerFirstName)
+      if (e.detail.value != '' && e.detail.value != ' ') {
+        if (this.data.lastNameFilled == '') {
+          this.setData({  fillInTextHidden: true })
+        }
+        this.setData({ firstNameFilled: ''})
+      } else {
+        this.setData({  fillInTextHidden: false, firstNameFilled: '*' })
+      }
     }
-    this.setData({
-      buyerName: e.detail.value
-    })
-    if (e.detail.value != '' && e.detail.value != ' ') {
-      this.setData({nameFilled : '', fillInTextHidden: true})
-    } else { this.setData({ nameFilled: '*', fillInTextHidden :false })}
   },
+  bindLastNameInput: function (e) {
+    var english = /^[A-Za-z\s]*$/;
+    if (!e.detail.value.match(english)) { // check if name contains nonEnglish letters
+      wx.showModal({
+        title: 'error',
+        content: 'Accepts English Letters Only',
+        showCancel: false,
+        confirmText: 'Ok'
+      })
+    } else {
+      this.setData({
+        buyerLastName: e.detail.value
+      })
+      console.log(this.data.buyerLastName)
+      if (e.detail.value != '' && e.detail.value != ' ') {
+        if (this.data.firstNameFilled == '') {
+          this.setData({ fillInTextHidden: true })
+        }
+        this.setData({ lastNameFilled: '' })
+      } else {
+        this.setData({ fillInTextHidden: false, lastNameFilled: '*' })
+      }
+    }
+  },
+
   bindPickerGradeChange: function (e) {
     const getGrade = this.data.arrayGrade[this.data.indexGrade];
     this.setData({
@@ -140,14 +176,15 @@ Page({
         showNoNegativeModal();
       }
     }
-    if (this.data.buyerName == '') {// if buyer's name is blank
+    if (this.data.buyerFirstName == '' || this.data.buyerLastName == '') {// if buyer's name is blank
+      console.log(this.data.buyerFirstName)
       wx.showModal({
         title: 'Error',
         content: 'Please fill in your name!',
         confirmText: 'Ok',
         showCancel: false
       })
-    } 
+    }
     else if (this.data.cost == 0) {
       wx.showModal({
         title: 'Error',
@@ -156,7 +193,7 @@ Page({
         showCancel: false
       })
     }
-    else if (!this.data.buyerName.match(english)) { // check if name contains nonEnglish letters
+    else if (!this.data.buyerFirstName.match(english) || !this.data.buyerLastName.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title: 'error',
         content: 'Accepts English Letters Only',
@@ -165,11 +202,14 @@ Page({
       })
     }
     else { // can submit in this circumstance
-      const buyerNa = this.data.buyerName;
+      const buyerNa = this.data.buyerFirstName + ' ' + this.data.buyerLastName;
       const buyerCl = this.data.buyerClass;
       const buyerGr = this.data.buyerGrade;
       const buyerQu = this.data.quan;
       const buyerCo = this.data.cost;
+
+      this.setData({ submitButtonDisabled: true })
+      
       wx.showModal({
         title: 'Confirm',
         content: 'Are you sure to submit?',
@@ -178,6 +218,9 @@ Page({
         success(res) {
           if(res.confirm) { // if the buyer wants to submit
             wx.cloud.init();
+            wx.showLoading({
+              title: 'Confirming',
+            })
             wx.cloud.callFunction({
               name: "postOrder",
               data: {
@@ -188,6 +231,7 @@ Page({
                 buyerQuan: buyerQu
               },
               success: (res) => {
+                wx.hideLoading()
                 if(res.result == "fail") {
                   wx.navigateTo({ // if failed to add order, navigate to submit fail page
                     url: '/pages/submitFailPage/submitFailPage?',
