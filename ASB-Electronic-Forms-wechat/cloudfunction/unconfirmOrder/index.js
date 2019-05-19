@@ -12,15 +12,10 @@ exports.main = async (event, context) => {
   await db.collection('orders').where({
     _id: orderId
   })
-    .update({
-      data: {
-        confirmed: false
-      },
-      success(res) {
-        return "success"
-      },
-      fail(res) {
-        return "fail"
-      }
-    })
+  .update({
+    data: {
+      confirmed: false
+    },
+  })
+  return await db.collection('orders').where({}).get();
 }

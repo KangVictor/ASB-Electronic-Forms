@@ -5,9 +5,8 @@ Page({
     orders:[],
     firstten:[],
     showOrders: [],
-    itemNum: 0,
-    itemNames: [],
-    itemPrices: [],
+    itemNum: 3,
+    itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
     keyword:'',
     showNum: 5
   },
@@ -15,25 +14,6 @@ Page({
   onLoad: function() {
     // request to the server for price and quantities of the item
     wx.cloud.init();
-    wx.cloud.callFunction({
-      name: 'getItemInfo',
-      success: function (res) {
-        console.log(res);
-        const getPrices = res.result.data.itemPrice;
-        const getNames = res.result.data.itemName;
-        const getNum = res.result.data.itemNum;
-        this.setData({
-          itemNum: getNum,
-          itemNames: getNames,
-          itemPrices: getPrices
-        })
-      }.bind(this),
-      fail: function () {
-        wx.navigateTo({
-          url: '/pages/serverFailPage/serverFailPage?'
-        });
-      }
-    })
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#03A9AC',
@@ -135,26 +115,14 @@ Page({
         orderId: this.data.showOrders[0]._id
       },
       success: function (res) {
-        wx.cloud.callFunction({
-          name: 'getOrder',
-          success: function (res) {
-            const getorder = res.result.data
-            console.log(getorder);
-            this.setData({ // give orders the the entire data of orders
-              orders: getorder,
-            })
-            const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
-            this.setData({
-              showOrders:foundOrders
-            })
-            wx.hideLoading()
-          }.bind(this),
-          fail: function () {
-            wx.navigateTo({
-              url: '/pages/serverFailPage/serverFailPage?'
-            });
-          }
+        this.setData({ // give orders the the entire data of orders
+          orders: res.result.data,
         })
+        const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
+        this.setData({
+          showOrders: foundOrders
+        })
+        wx.hideLoading()
       }.bind(this)
     })
   },
@@ -170,26 +138,14 @@ Page({
         orderId: this.data.showOrders[0]._id
       },
       success: function (res) {
-        wx.cloud.callFunction({
-          name: 'getOrder',
-          success: function (res) {
-            const getorder = res.result.data
-            console.log(getorder);
-            this.setData({ // give orders the the entire data of orders
-              orders: getorder,
-            })
-            const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
-            this.setData({
-              showOrders: foundOrders
-            })
-            wx.hideLoading()
-          }.bind(this),
-          fail: function () {
-            wx.navigateTo({
-              url: '/pages/serverFailPage/serverFailPage?'
-            });
-          }
+        this.setData({ // give orders the the entire data of orders
+          orders: res.result.data,
         })
+        const foundOrders = findOrder(this.data.orders, (this.data.keyword).toLowerCase());
+        this.setData({
+          showOrders: foundOrders
+        })
+        wx.hideLoading()
       }.bind(this)
     })
   }

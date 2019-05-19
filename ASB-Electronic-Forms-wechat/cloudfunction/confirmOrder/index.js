@@ -9,6 +9,7 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const orderId = event.orderId;
   console.log(orderId);
+  var checkSuccess = false;
   await db.collection('orders').where({
     _id: orderId
     })
@@ -17,10 +18,8 @@ exports.main = async (event, context) => {
         confirmed: true
       },
       success(res) {
-        return "success"
+        console.log('in')
       },
-      fail(res) {
-        return "fail"
-      }
   })
+  return await db.collection('orders').where({}).get();
 }
