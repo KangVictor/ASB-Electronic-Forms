@@ -1,8 +1,19 @@
 /* pages/submitPage/submitPage.wxss */
 .goButton {
-  margin-top: 30px;
-  height: 60px;
-  font-size: 25px;
+  margin-top: 30rpx;
+  height: 120rpx;
+  width: 200rpx;
+  font-size: 50rpx;
   background-color: #03A9AC;
   color:white;
+}
+
+.smallText {
+  margin-top:20rpx;
+  font-size:45rpx;
+}
+
+.bigText {
+  margin-top:20rpx;
+  font-size:50rpx;
 }

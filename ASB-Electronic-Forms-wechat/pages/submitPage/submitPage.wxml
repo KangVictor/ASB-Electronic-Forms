@@ -1,14 +1,14 @@
 <view class="row-container">
-  <text>Success!</text>
-  <text>Go to</text>
-  <text>ZXB lobby</text>
-  <text>during lunch</text>
-  <text>to confirm.</text>
-  <text>__________</text>
-  <text>Take a screenshot of this page!</text>
-  <text>Remember your code to</text>
-  <text>find your order easily!</text>
-  <text>___________</text>
-  <text>{{code}}</text>
+  <text class='smallText'>Success!</text>
+  <text class='smallText'>Go to</text>
+  <text class='smallText'>ZXB lobby</text>
+  <text class='smallText'>during lunch</text>
+  <text class='smallText'>to confirm.</text>
+  <text class='smallText'>__________</text>
+  <text class='bigText'>Take a screenshot of this page!</text>
+  <text class='smallText'>Remember your code to</text>
+  <text class='smallText'>find your order easily!</text>
+  <text class='smallText'>___________</text>
+  <text class='bigText'>{{code}}</text>
   <button class='goButton' bindtap='returnHome'>return</button>
 </view>
