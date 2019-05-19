@@ -11,8 +11,9 @@
 </view>
 
 <view class="userinfo">
-  <text style='margin-top: 20px; font-size: 20px'>Welcome!</text>
-  <open-data type="userNickName" style='font-size: 20px'></open-data>
+  <text style="margin-top: 5rpx;color:grey;">swipe to see items</text>
+  <text style='margin-top: 10rpx; font-size: 40rpx'>Welcome!</text>
+  <open-data type="userNickName" style='font-size: 40rpx'></open-data>
 </view>
 
 <button 

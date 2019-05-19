@@ -1,22 +1,22 @@
 /* pages/userSelect/index.wxss */
 .goButton {
-  margin-left: 15px;
-  margin-top: 15px;
-  margin-right:15px;
-  height: 60px;
-  font-size: 25px;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+  margin-right:30rpx;
+  height: 120rpx;
+  font-size: 45rpx;
   background-color: #03A9AC;
   color:white;
 }
 
 .slide-image {
-  height:300px;
-  width:300px;
+  height:300rpx;
+  width:300rpx;
 }
 
 .itemImgSwiper {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 
 .userinfo {

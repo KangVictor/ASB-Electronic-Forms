@@ -3,7 +3,7 @@ Page({
 
   data: {
     adminButtonDisabled: true, // if admin = false, if nonadmin = true
-    indicatorDots: true,
+    indicatorDots: false,
     autoplay: true,
     circular: true,
     interval: 5000,
