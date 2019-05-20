@@ -6,7 +6,7 @@
   font-size: 45rpx;
 }
 
-.submitButton {
+.reserveButton {
   margin-left: 40rpx;
   margin-top: 20rpx;
   margin-bottom: 15rpx;
@@ -40,7 +40,7 @@
 }
 
 .informText {
-  margin-left:15rpx;
+  margin-left:25rpx;
   height:50rpx;
   color: grey;
 }

@@ -17,7 +17,7 @@
 </view>
 
 <button 
-bindtap="bindPurchase"
+bindtap="bindGoReserve"
 class="goButton">
   Go purchase
 </button>

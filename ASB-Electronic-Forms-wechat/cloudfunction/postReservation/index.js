@@ -11,16 +11,16 @@ exports.main = async (event, context) => {
   // use randomId for the order
   const randomId = createRandomId(orders)
 
-  const lowerCasedName = (event.buyerName).toLowerCase();
+  const lowerCasedName = (event.studentName).toLowerCase();
   
-  await db.collection("orders").add({
+  await db.collection("reservations").add({
     data: {
       _id: randomId,
-      buyerName: lowerCasedName,
-      buyerClass: event.buyerClass,
-      buyerGrade: event.buyerGrade,
-      buyerQuan: event.buyerQuan,
-      buyerCost: event.buyerCost,
+      studentName: lowerCasedName,
+      studentClass: event.studentClass,
+      studentGrade: event.studentGrade,
+      studentQuan: event.studentQuan,
+      studentTotal: event.studentTotal,
       confirmed: false
     },
     fail(res) {

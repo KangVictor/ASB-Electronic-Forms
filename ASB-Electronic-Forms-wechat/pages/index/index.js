@@ -52,14 +52,6 @@ Page({
       },
     })
 
-    setTimeout(function(){
-      if (isAdmin(adminAccounts, getOpenId)) {
-        self.setData({
-          adminButtonDisabled: false
-        })
-      }
-    }, 8000)
-
     // change navigation bar color
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
@@ -76,15 +68,15 @@ Page({
 
   onAdminButton() {
     wx.navigateTo({
-      url: '/pages/checkOrderPage/checkOrderPage?'
+      url: '/pages/checkReservationPage/checkReservationPage?'
     });
 
     
   },
 
-  bindPurchase: function () {
-    wx.navigateTo({ // navigate to purchasePage
-      url: '/pages/purchasePage/purchasePage?'
+  bindGoReserve: function () {
+    wx.navigateTo({ // navigate to go reservation Page
+      url: '/pages/reservationPage/reservationPage?'
     });
   },
 })

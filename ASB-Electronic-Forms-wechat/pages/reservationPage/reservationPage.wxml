@@ -18,12 +18,12 @@ placeholder='ex) Kang'/>
   </view>
 </picker>
 
-<text class = "smallText"> {{itemNames[0]}} ({{itemPrices[0]}} CNY)</text>
+<text class = "smallText"> {{itemNames[0]}} ({{item[0]}})</text>
 <input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
-<text class = "smallText"> {{itemNames[1]}} ({{itemPrices[1]}} CNY)</text>
+<text class = "smallText"> {{itemNames[1]}} ({{item[1]}})</text>
 <input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
-<text class = "smallText"> {{itemNames[2]}} ({{itemPrices[2]}} CNY)</text>
+<text class = "smallText"> {{itemNames[2]}} ({{item[2]}})</text>
 <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
-<text class = "costText">Cost: {{cost}} CNY</text>
-<button class="submitButton" bindtap="onSubmit" disabled='{{submitButtonDisabled}}'>Submit</button> 
+<text class = "costText">{{total}} pt</text>
+<button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 
 <text class = 'informText' hidden='{{fillInTextHidden}}'>* must be filled in</text>

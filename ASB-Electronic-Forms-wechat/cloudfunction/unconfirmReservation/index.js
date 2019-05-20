@@ -9,17 +9,13 @@ const db = cloud.database();
 exports.main = async (event, context) => {
   const orderId = event.orderId;
   console.log(orderId);
-  var checkSuccess = false;
-  await db.collection('orders').where({
+  await db.collection('reservations').where({
     _id: orderId
-    })
-    .update({
-      data: {
-        confirmed: true
-      },
-      success(res) {
-        console.log('in')
-      },
   })
-  return await db.collection('orders').where({}).get();
+  .update({
+    data: {
+      confirmed: false
+    },
+  })
+  return await db.collection('reservations').where({}).get();
 }

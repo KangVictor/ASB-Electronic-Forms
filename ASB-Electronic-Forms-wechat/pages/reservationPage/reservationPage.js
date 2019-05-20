@@ -6,10 +6,10 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
-    buyerLastName: '',
-    buyerFirstName:'',
-    buyerGrade: 9,
-    buyerClass: 1,
+    studentLastName: '',
+    studentFirstName:'',
+    studentGrade: 9,
+    studentClass: 1,
     arrayGrade: ['9', '10'],
     indexGrade: '0',
     arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
@@ -19,13 +19,13 @@ Page({
     lastNameFilled: '*',
     fillInTextHidden: false,
 
-    submitButtonDisabled: false,
+    reserveButtonDisabled: false,
 
     quan: [0, 0, 0],
-    itemPrices: [5, 8, 15],
+    item: [5, 8, 15],
     itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
     itemNum: 3,
-    cost: 0
+    total: 0
   },
 
   onLoad() {
@@ -39,37 +39,8 @@ Page({
       }
     });
     wx.setNavigationBarTitle({
-      title: 'Purchase Page ',
+      title: 'Reserve for Summer Bash!',
     })
-    // request to the server for price and quantities of the item
-    // wx.cloud.init();
-    // wx.showLoading({
-    //   title: 'Loading Items...',
-    // })
-    // wx.cloud.callFunction({
-    //   name: 'getItemInfo',
-    //   success: function (res) {
-    //     console.log(res);
-    //     const getPrices = res.result.data.itemPrice;
-    //     const getNames = res.result.data.itemName;
-    //     const getNum = res.result.data.itemNum;
-    //     this.setData({
-    //       itemNum: getNum,
-    //       itemNames: getNames,
-    //       itemPrices: getPrices
-    //     })
-    //     // make quan = [0, 0, 0, ...]
-    //     for (var i = 0; i < this.data.itemNum; i++) {
-    //       this.data.quan[i] = 0;
-    //     }
-    //     wx.hideLoading()
-    //   }.bind(this),
-    //   fail: function () {
-    //     wx.navigateTo({
-    //       url: '/pages/serverFailPage/serverFailPage?'
-    //     });
-    //   }
-    // })
   },
   
   //////////////////////
@@ -85,9 +56,8 @@ Page({
       })
     } else {
       this.setData({
-        buyerFirstName: e.detail.value
+        studentFirstName: e.detail.value
       })
-      console.log(this.data.buyerFirstName)
       if (e.detail.value != '' && e.detail.value != ' ') {
         if (this.data.lastNameFilled == '') {
           this.setData({  fillInTextHidden: true })
@@ -109,9 +79,8 @@ Page({
       })
     } else {
       this.setData({
-        buyerLastName: e.detail.value
+        studentLastName: e.detail.value
       })
-      console.log(this.data.buyerLastName)
       if (e.detail.value != '' && e.detail.value != ' ') {
         if (this.data.firstNameFilled == '') {
           this.setData({ fillInTextHidden: true })
@@ -127,14 +96,14 @@ Page({
     const getGrade = this.data.arrayGrade[this.data.indexGrade];
     this.setData({
       indexGrade: e.detail.value,
-      buyerGrade: getGrade
+      studentGrade: getGrade
     })
   },
   bindPickerClassChange: function (e) {
     const getClass = this.data.arrayClass[this.data.indexClass];
     this.setData({
       indexClass: e.detail.value,
-      buyerClass: getClass
+      studentClass: getClass
     })
   },
   bindInputBoxQuantityA: function (e) {
@@ -143,8 +112,8 @@ Page({
     if(this.data.quan[0] < 0){
       showNoNegativeModal();
     } else{
-      var ccost = changeCost(this.data);
-      this.setData({ cost: ccost})
+      var ctotal = changeTotal(this.data);
+      this.setData({ total: ctotal})
     }
   },
   bindInputBoxQuantityB: function (e) {
@@ -153,8 +122,8 @@ Page({
     if (this.data.quan[1] < 0) {
       showNoNegativeModal();
     } else {
-      var ccost = changeCost(this.data);
-      this.setData({ cost: ccost })
+      var ctotal = changeTotal(this.data);
+      this.setData({ total: ctotal })
     }
   },
   bindInputBoxQuantityC: function (e) {
@@ -163,21 +132,20 @@ Page({
     if (this.data.quan[0] < 0) {
       showNoNegativeModal();
     } else {
-      var ccost = changeCost(this.data);
-      this.setData({ cost: ccost })
+      var ctotal = changeTotal(this.data);
+      this.setData({ total: ctotal })
     }
   },
   //////////////////////
 
-  onSubmit: function () {
+  onReserveButton: function () {
     var english = /^[A-Za-z\s]*$/;
     for(var i = 0; i < this.data.quan.length; i++) {
       if (this.data.quan[i] < 0) {
         showNoNegativeModal();
       }
     }
-    if (this.data.buyerFirstName == '' || this.data.buyerLastName == '') {// if buyer's name is blank
-      console.log(this.data.buyerFirstName)
+    if (this.data.studentFirstName == '' || this.data.studentLastName == '') {// if student's name is blank
       wx.showModal({
         title: 'Error',
         content: 'Please fill in your name!',
@@ -185,15 +153,15 @@ Page({
         showCancel: false
       })
     }
-    else if (this.data.cost == 0) {
+    else if (this.data.total == 0) {
       wx.showModal({
         title: 'Error',
-        content: 'Please buy something ;-;',
+        content: "You can't reserve nothing ;-;",
         confirmText: 'Ok',
         showCancel: false
       })
     }
-    else if (!this.data.buyerFirstName.match(english) || !this.data.buyerLastName.match(english)) { // check if name contains nonEnglish letters
+    else if (!this.data.studentFirstName.match(english) || !this.data.studentLastName.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title: 'error',
         content: 'Accepts English Letters Only',
@@ -201,53 +169,57 @@ Page({
         confirmText: 'Ok'
       })
     }
-    else { // can submit in this circumstance
-      const buyerNa = this.data.buyerFirstName + ' ' + this.data.buyerLastName;
-      const buyerCl = this.data.buyerClass;
-      const buyerGr = this.data.buyerGrade;
-      const buyerQu = this.data.quan;
-      const buyerCo = this.data.cost;
+    else { // can reserve in this circumstance
+      const studentNa = this.data.studentFirstName + ' ' + this.data.studentLastName;
+      const studentCl = this.data.studentClass;
+      const studentGr = this.data.studentGrade;
+      const studentQu = this.data.quan;
+      const studentTo = this.data.total;
 
-      this.setData({ submitButtonDisabled: true })
-      
+      this.setData({ reserveButtonDisabled: true })
+      const self = this;
       wx.showModal({
         title: 'Confirm',
-        content: 'Are you sure to submit?',
+        content: studentNa + studentGr + '(' + studentCl + ')' + '\n' + 'are you sure to reserve?',
         cancelText: 'No',
         confirmText: 'Submit',
         success(res) {
-          if(res.confirm) { // if the buyer wants to submit
+          if(res.confirm) { // if the student wants to submit
             wx.cloud.init();
             wx.showLoading({
               title: 'Confirming',
             })
             wx.cloud.callFunction({
-              name: "postOrder",
+              name: "postReservation",
               data: {
-                buyerName: buyerNa,
-                buyerGrade: buyerGr,
-                buyerClass: buyerCl,
-                buyerCost: buyerCo,
-                buyerQuan: buyerQu
+                studentName: studentNa,
+                studentGrade: studentGr,
+                studentClass: studentCl,
+                studentTotal: studentTo,
+                studentQuan: studentQu
               },
               success: (res) => {
                 wx.hideLoading()
                 if(res.result == "fail") {
-                  wx.navigateTo({ // if failed to add order, navigate to submit fail page
+                  wx.navigateTo({ // if failed, navigate to submit fail page
                     url: '/pages/submitFailPage/submitFailPage?',
                   });
                 } else {
-                  wx.navigateTo({ // if successfully sent order, navigate to submit page
-                    url: '/pages/submitPage/submitPage?id=code: ' + res.result.toString() + " name: " + buyerNa,
+                  wx.navigateTo({ // if successfully sent reservation, navigate to submit page
+                    url: '/pages/submitPage/submitPage?id=code: ' + res.result.toString() + " name: " + studentNa,
                   });
                 }
               },
               fail: (res) => {
-                wx.navigateTo({ // if failed to send order, navigate to submit fail page
+                wx.hideLoading()
+                wx.navigateTo({ // if failed to send reservation, navigate to submit fail page
                   url: '/pages/submitFailPage/submitFailPage?',
                 });
               }
             })
+          } else {
+            console.log('in')
+            self.setData({reserveButtonDisabled:false})
           }
         }
       });
@@ -268,14 +240,14 @@ function hasNumber(myString) { // Check if the name contains integer
   return /\d/.test(myString);
 }
 
-function changeCost(data) { // Calculates the cost
-  var ccost = 0;
+function changeTotal(data) { // Calculates the total
+  var ctotal = 0;
   for(var count = 0; count < data.itemNum; count++) {
     if (data.quan[count] != null){
-      ccost += data.quan[count] * data.itemPrices[count]
+      ctotal += data.quan[count] * data.item[count]
     }
   }
-  return ccost;
+  return ctotal;
 }
 
 function getQuantity(num) { // if no number, 0, if integer, parse it and return'
