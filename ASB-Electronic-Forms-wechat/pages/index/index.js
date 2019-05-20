@@ -1,16 +1,15 @@
 // pages/userSelect/index.js
 Page({
-
   data: {
     adminButtonDisabled: true, // if admin = false, if nonadmin = true
     indicatorDots: false,
     autoplay: true,
     circular: true,
-    interval: 5000,
-    duration: 1000,
+    interval: 2000,
+    duration: 1500,
     imgUrls: ['/itemImg/singleWG.jpg', '/itemImg/doubleWG.jpg', '/itemImg/classicWG.jpg'],
     backColor: '#f8f8f8',
-    whiteFont: '#f8f8f8'
+    adminAccounts:[]
   },
 
   onLoad: function() {
@@ -26,6 +25,7 @@ Page({
             header: { 'content-type': 'application/json'  },
             success(res) {
               getOpenId = res.data.openid
+              console.log(res.data.openid)
               if(isAdmin(adminAccounts, getOpenId)){
                 self.setData({
                   adminButtonDisabled: false
@@ -42,6 +42,7 @@ Page({
     wx.cloud.callFunction({
       name: 'getWhiteList',
       success: function (res) {
+        console.log('in')
         adminAccounts = res.result.data
         if (isAdmin(adminAccounts, getOpenId)) {
           self.setData({
@@ -50,6 +51,14 @@ Page({
         }
       },
     })
+
+    setTimeout(function(){
+      if (isAdmin(adminAccounts, getOpenId)) {
+        self.setData({
+          adminButtonDisabled: false
+        })
+      }
+    }, 8000)
 
     // change navigation bar color
     wx.setNavigationBarColor({
@@ -81,6 +90,8 @@ Page({
 })
 
 function isAdmin(adminList, userOpenId) {
+  console.log(adminList)
+  console.log(userOpenId)
   var check = false
   for(var i = 0; i < adminList.length; i++){
     if(userOpenId == adminList[i]['openId']) {

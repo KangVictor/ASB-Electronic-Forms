@@ -22,7 +22,7 @@ Page({
     submitButtonDisabled: false,
 
     quan: [0, 0, 0],
-    itemPrices: [5, 10, 15],
+    itemPrices: [5, 8, 15],
     itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
     itemNum: 3,
     cost: 0
