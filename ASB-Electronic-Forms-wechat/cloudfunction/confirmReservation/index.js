@@ -8,13 +8,14 @@ const db = cloud.database();
 // 云函数入口函数
 exports.main = async (event, context) => {
   const reservationId = event.reservationId;
+  var checkSuccess = false;
   await db.collection('reservations').where({
     _id: reservationId
-  })
-  .update({
-    data: {
-      confirmed: false
-    },
+    })
+    .update({
+      data: {
+        confirmed: true
+      },
   })
   return await db.collection('reservations').where({}).get();
 }

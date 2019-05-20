@@ -1,4 +1,4 @@
-// 云函数入口文件
+// gets orders that are made buy the buyers
 const cloud = require('wx-server-sdk')
 
 cloud.init()
@@ -7,14 +7,6 @@ const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const reservationId = event.reservationId;
-  await db.collection('reservations').where({
-    _id: reservationId
-  })
-  .update({
-    data: {
-      confirmed: false
-    },
-  })
+  const wxContext = cloud.getWXContext()
   return await db.collection('reservations').where({}).get();
 }
