@@ -14,35 +14,13 @@ Page({
 
   onLoad: function() {
     var getOpenId=''
-    var self = this
-    wx.login({
-      success(res) {
-        if (res.code) {
-          wx.request({
-            url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx3766d060f51ec08a&secret=4479f86f657f87374e1b5226519cd73b&js_code=${res.code}&grant_type=authorization_code`,
-            data: { code: res.code },
-            method: 'GET',
-            header: { 'content-type': 'application/json'  },
-            success(res) {
-              getOpenId = res.data.openid
-              console.log(res.data.openid)
-              if(isAdmin(adminAccounts, getOpenId)){
-                self.setData({
-                  adminButtonDisabled: false
-                })
-              }
-            }
-          })
-        }
-      }
-    })
-
     var adminAccounts = []
+    const self = this;
+
     wx.cloud.init()
     wx.cloud.callFunction({
       name: 'getWhiteList',
       success: function (res) {
-        console.log('in')
         adminAccounts = res.result.data
         if (isAdmin(adminAccounts, getOpenId)) {
           self.setData({
@@ -50,6 +28,19 @@ Page({
           })
         }
       },
+    })
+
+    wx.cloud.callFunction({
+      name: 'checkID',
+      success: function(res){
+        console.log(res.result.openid)
+        getOpenId = res.result.openid
+        if (isAdmin(adminAccounts, getOpenId)) {
+          self.setData({
+            adminButtonDisabled: false
+          })
+        }
+      }
     })
 
     // change navigation bar color
@@ -70,8 +61,6 @@ Page({
     wx.navigateTo({
       url: '/pages/checkReservationPage/checkReservationPage?'
     });
-
-    
   },
 
   bindGoReserve: function () {
@@ -82,8 +71,8 @@ Page({
 })
 
 function isAdmin(adminList, userOpenId) {
-  console.log(adminList)
-  console.log(userOpenId)
+  // console.log(adminList)
+  // console.log(userOpenId)
   var check = false
   for(var i = 0; i < adminList.length; i++){
     if(userOpenId == adminList[i]['openId']) {
