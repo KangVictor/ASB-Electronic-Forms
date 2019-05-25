@@ -89,37 +89,14 @@ Page({
     }
   },
 
-  confirmReservation: function() {
-    console.log('id: ' + this.data.showReservation[0]._id)
+  confirm: function(event) {
+    console.log(event.currentTarget.id)
+    console.log('id: ' + event.currentTarget.id)
     wx.showLoading({
       title: 'Loading',
     })
     wx.cloud.callFunction({
       name: "confirmReservation",
-      data:{
-        reservationId: this.data.showReservation[0]._id
-      },
-      success: function (res) {
-        this.setData({ // give reservation the the entire data of reservation
-          reservation: res.result.data,
-        })
-        const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
-        this.setData({
-          showReservation: foundreservation
-        })
-        wx.hideLoading()
-      }.bind(this)
-    })
-  },
-
-  unconfirmReservation: function() {
-    console.log('id: ' + this.data.showReservation[0]._id)
-    wx.showLoading({
-      title: 'Loading',
-    })
-    console.log(this.data.showReservation[0]._id)
-    wx.cloud.callFunction({
-      name: "unconfirmReservation",
       data: {
         reservationId: this.data.showReservation[0]._id
       },

@@ -1,6 +1,5 @@
 <input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
 <button class='getButton' bindtap='searchReservation'> search </button>
-<button class='getButton' bindtap='confirmReservation'> confirm </button>
 <button class='getButton' bindtap='unconfirmReservation'> unconfirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
@@ -14,23 +13,25 @@
 </block>
 <scroll-view>
   <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-    <view style="font-size: 20px" style='margin-left:20px; margin-top: 15px;'>
+  <view style="font-size: 20px; margin-left:20px; margin-top: 15px;" bindtap='confirm' id='{{item._id}}'>
+    <view >
     {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
     </view>
     <br />
-    <view style="font-size: 20px" style='margin-left:20px; margin-top: 5x;'>
+    <view>
     {{item.studentQuan[0]}} | {{item.studentQuan[1]}} | {{item.studentQuan[2]}}
     </view>
     <br />
-    <view style="font-size: 20px" style='margin-left:20px; margin-top: 5px;'>
+    <view >
     {{item.studentTotal}} pt
     </view>
     <br />
-    <view style="font-size: 20px" style='margin-left:20px; margin-top: 5px;'>
+    <view >
     confirmed: {{item.confirmed}}
     </view>
     <br />
-    <text style='margin-left:20px; margin-top: 2px;'>______________________</text>
+    <text>______________________</text>
+  </view>
   </block>
 </scroll-view>
 
