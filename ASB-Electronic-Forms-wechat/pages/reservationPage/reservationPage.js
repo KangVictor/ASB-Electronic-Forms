@@ -39,7 +39,7 @@ Page({
       }
     });
     wx.setNavigationBarTitle({
-      title: 'Reserve for Summer Bash!',
+      title: 'Reserve',
     })
   },
   
@@ -200,6 +200,7 @@ Page({
               },
               success: (res) => {
                 wx.hideLoading()
+                console.log('case a')
                 if(res.result == "fail") {
                   wx.navigateTo({ // if failed, navigate to submit fail page
                     url: '/pages/submitFailPage/submitFailPage?',
@@ -211,6 +212,7 @@ Page({
                 }
               },
               fail: (res) => {
+                console.log('case b')
                 wx.hideLoading()
                 wx.navigateTo({ // if failed to send reservation, navigate to submit fail page
                   url: '/pages/submitFailPage/submitFailPage?',

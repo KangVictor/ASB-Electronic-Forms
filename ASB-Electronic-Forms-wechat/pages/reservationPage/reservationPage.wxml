@@ -18,11 +18,11 @@ placeholder='ex) Kang'/>
   </view>
 </picker>
 
-<text class = "smallText"> {{itemNames[0]}} ({{item[0]}})</text>
+<text class = "smallText"> {{itemNames[0]}} ({{item[0]}} pt)</text>
 <input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
-<text class = "smallText"> {{itemNames[1]}} ({{item[1]}})</text>
+<text class = "smallText"> {{itemNames[1]}} ({{item[1]}} pt)</text>
 <input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
-<text class = "smallText"> {{itemNames[2]}} ({{item[2]}})</text>
+<text class = "smallText"> {{itemNames[2]}} ({{item[2]}} pt)</text>
 <input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
 <text class = "costText">{{total}} pt</text>
 <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 

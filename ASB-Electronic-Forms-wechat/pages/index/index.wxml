@@ -11,7 +11,7 @@
 </view>
 
 <view class="userinfo">
-  <text style="margin-top: 5rpx;color:grey;">swipe to see items</text>
+  <text style="margin-top: 5rpx;color:grey;">swipe to see waterguns</text>
   <text style='margin-top: 10rpx; font-size: 40rpx'>Welcome!</text>
   <open-data type="userNickName" style='font-size: 40rpx'></open-data>
 </view>
@@ -19,7 +19,7 @@
 <button 
 bindtap="bindGoReserve"
 class="goButton">
-  Go purchase
+  Go Reserve
 </button>
 
 <button
@@ -27,5 +27,20 @@ disabled="{{adminButtonDisabled}}"
 hidden='{{adminButtonDisabled}}'
 class='goButton'
 bindtap='onAdminButton'>
-  orders (ASB)
+  Check Reservations (ASB)
 </button>
+
+<!-- <view class='row-container'>
+  <text style='font-size: 30rpx'>1. Choose waterguns for use during Summer Bash</text>
+  <text style='font-size: 30rpx'>2. Fill in your name, grade, and class</text>
+  <text style='font-size: 30rpx'>3. Click the button to reserve</text>
+  <text style='font-size: 30rpx'>4. Come to ZXB Lobby during lunch to confirm your reservation</text>
+  <text style="color:grey;">Summber Bash is in 5/31!</text>
+</view> -->
+<view class="row-container">
+  <text class='smallText'>_________________</text>
+  <text class='smallText'>1. Correctly fill in your name, grade, and class</text>
+  <text class='smallText'>2. Reserve your waterguns for Summer Bash</text>
+  <text class='smallText'>3. Come to ZXB lobby during lunch and confirm</text>
+  <text class='smallText'>_________________</text>
+</view>

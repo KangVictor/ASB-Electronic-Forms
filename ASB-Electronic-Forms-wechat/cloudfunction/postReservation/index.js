@@ -6,7 +6,7 @@ const db = cloud.database();
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const orders = await db.collection("orders").where({}).get({});
+  const orders = await db.collection("reservations").where({}).get({});
   
   // use randomId for the order
   const randomId = createRandomId(orders)
