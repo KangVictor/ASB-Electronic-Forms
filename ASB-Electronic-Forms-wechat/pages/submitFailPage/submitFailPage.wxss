@@ -1,0 +1,8 @@
+/* pages/submitFailPage/submitFailPage.wxss */
+
+.errorText {
+  margin-top: 10px;
+  margin-right: 15px;
+  color: #e64340;
+  text-align: center;
+}

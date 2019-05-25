@@ -1,0 +1,12 @@
+<view class="row-container">
+  <text class='smallText'>Success!</text>
+  <text class='smallText'>Come to ZXB lobby</text>
+  <text class='smallText'>during lunch to confirm.</text>
+  <text class='smallText'>________________</text>
+  <text class='bigText'>Take a screenshot of this page!</text>
+  <text class='smallText'>Remember your code to</text>
+  <text class='smallText'>find your order easily!</text>
+  <text class='smallText'>_________________</text>
+  <text class='bigText'>{{code}}</text>
+  <button class='goButton' bindtap='returnHome'>return</button>
+</view>
