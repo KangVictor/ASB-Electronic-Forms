@@ -1,18 +1,25 @@
+.title{
+  margin-left: 50rpx;
+  margin-top: 40rpx;
+  margin-bottom: 20rpx;
+  font-size: 50rpx;
+}
+
 .inputBox {
   margin-left:40rpx;
   margin-top:15rpx;
   margin-bottom: 15rpx;
   height: 40rpx;
-  font-size: 45rpx;
+  font-size: 35rpx;
 }
 
 .reserveButton {
   margin-left: 40rpx;
   margin-top: 20rpx;
   margin-bottom: 15rpx;
-  width: 200rpx;
-  height: 100rpx;
-  font-size: 45rpx;
+  width: 210rpx;
+  height: 95rpx;
+  font-size: 40rpx;
   background-color: #03A9AC;
   color:white;
 }
@@ -22,27 +29,34 @@
   margin-top: 30rpx;
   margin-bottom: 40rpx;
   height: 45rpx;
-  font-size: 45rpx;
+  font-size: 35rpx;
 }
 
 .smallText {
   margin-left: 40rpx;
   margin-top: 15rpx;
   margin-bottom: 15rpx;
-  font-size: 45rpx;
+  font-size: 35rpx;
 }
 
 .costText {
-  margin-left: 30rpx;
+  margin-left: 50rpx;
   margin-top: 100rpx;
   height: 40rpx;
-  font-size: 45rpx;
+  font-size: 40rpx;
 }
 
 .informText {
   margin-left:25rpx;
   height:50rpx;
   color: grey;
+}
+
+.inputBoxWrapper{
+  margin: 20rpx;
+  padding: 12rpx;
+  background-color: white;
+  color: black;
 }
 
 @import "./weui.wxss";

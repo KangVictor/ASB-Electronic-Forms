@@ -91,14 +91,13 @@ Page({
 
   confirm: function(event) {
     console.log(event.currentTarget.id)
-    console.log('id: ' + event.currentTarget.id)
     wx.showLoading({
       title: 'Loading',
     })
     wx.cloud.callFunction({
       name: "confirmReservation",
       data: {
-        reservationId: this.data.showReservation[0]._id
+        reservationId: event.currentTarget.id
       },
       success: function (res) {
         this.setData({ // give reservation the the entire data of reservation
