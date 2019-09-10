@@ -5,8 +5,7 @@
     "pages/submitFailPage/submitFailPage",
     "pages/serverFailPage/serverFailPage",
     "pages/reservationPage/reservationPage",
-    "pages/checkReservationPage/checkReservationPage",
-    "pages/demographicsPage/demographicsPage"
+    "pages/checkReservationPage/checkReservationPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
