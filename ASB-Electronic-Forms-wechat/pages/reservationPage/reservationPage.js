@@ -118,22 +118,13 @@ Page({
         this.data.items[i].quantity = input;
       }
     }
-    if(input < 0){
-      showNoNegativeModal();
-    } else{
-      var ctotal = changeTotal(this.data);
-      this.setData({ total: ctotal})
-    }
+    var ctotal = changeTotal(this.data);
+    this.setData({ total: ctotal})
   },
   //////////////////////
 
   onReserveButton: function () {
     var english = /^[A-Za-z\s]*$/;
-    for(var i = 0; i < this.data.quan.length; i++) {
-      if (this.data.quan[i] < 0) {
-        showNoNegativeModal();
-      }
-    }
     if (this.data.studentFirstName == '' || this.data.studentLastName == '') {// if student's name is blank
       wx.showModal({
         title: 'Error',
@@ -217,15 +208,6 @@ Page({
     }
   },
 })
-
-function showNoNegativeModal() {
-  wx.showModal({
-    title: 'Error',
-    content: 'No negative quantity',
-    confirmText: 'Ok',
-    showCancel: false
-  })
-}
 
 function hasNumber(myString) { // Check if the name contains integer
   return /\d/.test(myString);
