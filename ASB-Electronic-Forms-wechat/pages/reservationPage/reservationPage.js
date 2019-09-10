@@ -21,7 +21,6 @@ Page({
 
     reserveButtonDisabled: false,
 
-    quan: [0, 0, 0],
     items: [
       { name: 'Single Tube Watergun', quantity: 0, value: 5 },
       { name: 'Double Tube Watergun', quantity: 0, value: 8 },
@@ -150,17 +149,20 @@ Page({
       })
     }
     else { // can reserve in this circumstance
+      var studentQu = [];
+      for(var i = 0; i < this.data.itemNum; i++) {
+        studentQu[i] = this.data.items[i].quantity
+      }
       const studentNa = this.data.studentFirstName + ' ' + this.data.studentLastName;
       const studentCl = this.data.studentClass;
       const studentGr = this.data.studentGrade;
-      const studentQu = this.data.quan;
       const studentTo = this.data.total;
 
       this.setData({ reserveButtonDisabled: true })
       const self = this;
       wx.showModal({
         title: 'Confirm',
-        content: studentNa + studentGr + '(' + studentCl + ')' + ' will you reserve?',
+        content: studentNa + " " + studentGr + '(' + studentCl + ') ' + 'will you reserve?',
         cancelText: 'No',
         confirmText: 'Submit',
         success(res) {
