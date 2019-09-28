@@ -3,23 +3,20 @@
 <button class='getButton' bindtap='unconfirmReservation'> unconfirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
-<text style="font-size:12px; color:grey">{{itemNames[0]}} | {{itemNames[1]}} | {{itemNames[2]}}</text>
+<text style="font-size:12px; color:grey">
+SG: {{itemNames[0]}} 
+DG: {{itemNames[1]}} 
+CG: {{itemNames[2]}}</text>
 
-<block wx:for="{{}}" wx:for-item="array-item" wx:key="key">
-  <view class="card">
-    <view class="card-description">
-    </view>
-  </view>
-</block>
-<scroll-view>
-  <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-  <view style="font-size: 20px; margin-left:20px; margin-top: 15px;" bindtap='confirm' id='{{item._id}}'>
+
+<block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
+  <view class="resBoxWrapper" bindtap='confirm' id='{{item._id}}'>
     <view >
     {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
     </view>
     <br />
     <view>
-    {{item.studentQuan[0]}} | {{item.studentQuan[1]}} | {{item.studentQuan[2]}}
+    SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
     </view>
     <br />
     <view >
@@ -29,9 +26,7 @@
     <view >
     confirmed: {{item.confirmed}}
     </view>
-    <br />
-    <text>______________________</text>
   </view>
-  </block>
-</scroll-view>
+</block>
+
 

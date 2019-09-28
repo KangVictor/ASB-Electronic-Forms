@@ -1,6 +1,5 @@
 // pages/checkReservationPage/checkReservationPage.js
 Page({
-
   data: {
     reservation:[],
     firstten:[],
@@ -100,6 +99,7 @@ Page({
         reservationId: event.currentTarget.id
       },
       success: function (res) {
+        console.log("in")
         this.setData({ // give reservation the the entire data of reservation
           reservation: res.result.data,
         })
@@ -107,6 +107,7 @@ Page({
         this.setData({
           showReservation: foundreservation
         })
+        console.log(res)
         wx.hideLoading()
       }.bind(this)
     })
