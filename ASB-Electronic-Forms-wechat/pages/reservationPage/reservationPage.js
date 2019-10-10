@@ -95,7 +95,7 @@ Page({
   },
 
   bindPickerGradeChange: function (e) {
-    const getGrade = this.data.arrayGrade[this.data.indexGrade];
+    const getGrade = this.data.arrayGrade[e.detail.value];
     this.setData({
       indexGrade: e.detail.value,
       studentGrade: getGrade
@@ -103,7 +103,7 @@ Page({
   },
 
   bindPickerClassChange: function (e) {
-    const getClass = this.data.arrayClass[this.data.indexClass];
+    const getClass = this.data.arrayClass[e.detail.value];
     this.setData({
       indexClass: e.detail.value,
       studentClass: getClass
