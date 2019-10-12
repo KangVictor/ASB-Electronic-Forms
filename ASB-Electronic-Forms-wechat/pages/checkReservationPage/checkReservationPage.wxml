@@ -3,14 +3,14 @@
 <button class='getButton' bindtap='unconfirmReservation'> unconfirm </button>
 <!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
 
-<text style="font-size:12px; color:grey">
+<text style="font-size:25rpx; color:grey">
 SG: {{itemNames[0]}} 
 DG: {{itemNames[1]}} 
 CG: {{itemNames[2]}}</text>
 
 
 <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-  <view class="resBoxWrapper" bindtap='confirm' id='{{item._id}}'>
+  <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
     <view >
     {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
     </view>
