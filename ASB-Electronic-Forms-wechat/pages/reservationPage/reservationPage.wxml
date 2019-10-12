@@ -1,29 +1,38 @@
-<text class = "smallText">First Name {{firstNameFilled}}</text>
-<input class="inputBox" id='inputBoxFirstName' bindinput="bindFirstNameInput" 
+<text class="title"> Summer Bash </text>
+<view class="inputBoxWrapper">
+  <text class = "smallText">First Name {{firstNameFilled}}</text>
+  <input class="inputBox" id='inputBoxFirstName' bindinput="bindFirstNameInput" 
 placeholder='ex) Victor'/>
+</view>
 
-<text class = "smallText">Last Name {{lastNameFilled}}</text>
-<input class="inputBox" id='inputBoxLastName' bindinput="bindLastNameInput" 
+<view class="inputBoxWrapper">
+  <text class = "smallText">Last Name {{lastNameFilled}}</text>
+  <input class="inputBox" id='inputBoxLastName' bindinput="bindLastNameInput" 
 placeholder='ex) Kang'/>
+</view>
 
-<picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
-  <view class="smallPicker">
-    Grade {{arrayGrade[indexGrade]}}
+<view class="inputBoxWrapper">
+  <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
+   <view class="smallPicker">
+      Grade: {{arrayGrade[indexGrade]}}
+    </view>
+  </picker>
+  <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+    <view class="smallPicker">
+      Class: {{arrayClass[indexClass]}}
+    </view>
+  </picker>
+</view>
+
+
+<view wx:for="{{items}}">
+  <view class = "inputBoxWrapper">
+    <text class = "smallText"> {{item.name}} ({{item.value}} pt)</text>
+    <input class="inputBox" id="{{item.name}}" placeholder='0' type='number' bindinput='bindInputBoxQuantity'/>
   </view>
-</picker>
+</view>
 
-<picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
-  <view class="smallPicker">
-    Class {{arrayClass[indexClass]}}
-  </view>
-</picker>
 
-<text class = "smallText"> {{itemNames[0]}} ({{item[0]}} pt)</text>
-<input class="inputBox" id="inputBoxQuantityA" placeholder='0' type='number' bindinput='bindInputBoxQuantityA'/>
-<text class = "smallText"> {{itemNames[1]}} ({{item[1]}} pt)</text>
-<input class="inputBox" id="inputBoxQuantityB" placeholder='0' type='number' bindinput='bindInputBoxQuantityB'/>
-<text class = "smallText"> {{itemNames[2]}} ({{item[2]}} pt)</text>
-<input class="inputBox" id="inputBoxQuantityC" placeholder='0' type='number' bindinput='bindInputBoxQuantityC'/>
 <text class = "costText">{{total}} pt</text>
 <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 
 <text class = 'informText' hidden='{{fillInTextHidden}}'>* must be filled in</text>

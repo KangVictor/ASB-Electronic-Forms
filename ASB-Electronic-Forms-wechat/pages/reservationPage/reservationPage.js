@@ -21,9 +21,11 @@ Page({
 
     reserveButtonDisabled: false,
 
-    quan: [0, 0, 0],
-    item: [5, 8, 15],
-    itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
+    items: [
+      { name: 'Single Tube Watergun', quantity: 0, value: 5 },
+      { name: 'Double Tube Watergun', quantity: 0, value: 8 },
+      { name: 'Classic Watergun', quantity: 0, value: 15 }
+    ],
     itemNum: 3,
     total: 0
   },
@@ -93,58 +95,35 @@ Page({
   },
 
   bindPickerGradeChange: function (e) {
-    const getGrade = this.data.arrayGrade[this.data.indexGrade];
+    const getGrade = this.data.arrayGrade[e.detail.value];
     this.setData({
       indexGrade: e.detail.value,
       studentGrade: getGrade
     })
   },
+
   bindPickerClassChange: function (e) {
-    const getClass = this.data.arrayClass[this.data.indexClass];
+    const getClass = this.data.arrayClass[e.detail.value];
     this.setData({
       indexClass: e.detail.value,
       studentClass: getClass
     })
   },
-  bindInputBoxQuantityA: function (e) {
+
+  bindInputBoxQuantity: function (e) {
     var input = getQuantity(e.detail.value);
-    this.data.quan[0] = input;
-    if(this.data.quan[0] < 0){
-      showNoNegativeModal();
-    } else{
-      var ctotal = changeTotal(this.data);
-      this.setData({ total: ctotal})
+    for(var i = 0; i < this.data.itemNum; i++) { // find the target item with name given by id
+      if(this.data.items[i].name == e.currentTarget.id) {
+        this.data.items[i].quantity = input;
+      }
     }
-  },
-  bindInputBoxQuantityB: function (e) {
-    var input = getQuantity(e.detail.value);
-    this.data.quan[1] = input;
-    if (this.data.quan[1] < 0) {
-      showNoNegativeModal();
-    } else {
-      var ctotal = changeTotal(this.data);
-      this.setData({ total: ctotal })
-    }
-  },
-  bindInputBoxQuantityC: function (e) {
-    var input = getQuantity(e.detail.value);
-    this.data.quan[2] = input;
-    if (this.data.quan[0] < 0) {
-      showNoNegativeModal();
-    } else {
-      var ctotal = changeTotal(this.data);
-      this.setData({ total: ctotal })
-    }
+    var ctotal = changeTotal(this.data);
+    this.setData({ total: ctotal})
   },
   //////////////////////
 
   onReserveButton: function () {
     var english = /^[A-Za-z\s]*$/;
-    for(var i = 0; i < this.data.quan.length; i++) {
-      if (this.data.quan[i] < 0) {
-        showNoNegativeModal();
-      }
-    }
     if (this.data.studentFirstName == '' || this.data.studentLastName == '') {// if student's name is blank
       wx.showModal({
         title: 'Error',
@@ -170,17 +149,20 @@ Page({
       })
     }
     else { // can reserve in this circumstance
+      var studentQu = [];
+      for(var i = 0; i < this.data.itemNum; i++) {
+        studentQu[i] = this.data.items[i].quantity
+      }
       const studentNa = this.data.studentFirstName + ' ' + this.data.studentLastName;
       const studentCl = this.data.studentClass;
       const studentGr = this.data.studentGrade;
-      const studentQu = this.data.quan;
       const studentTo = this.data.total;
 
       this.setData({ reserveButtonDisabled: true })
       const self = this;
       wx.showModal({
         title: 'Confirm',
-        content: studentNa + studentGr + '(' + studentCl + ')' + '\n' + 'are you sure to reserve?',
+        content: studentNa + " " + studentGr + '(' + studentCl + ') ' + 'will you reserve?',
         cancelText: 'No',
         confirmText: 'Submit',
         success(res) {
@@ -229,15 +211,6 @@ Page({
   },
 })
 
-function showNoNegativeModal() {
-  wx.showModal({
-    title: 'Error',
-    content: 'No negative quantity',
-    confirmText: 'Ok',
-    showCancel: false
-  })
-}
-
 function hasNumber(myString) { // Check if the name contains integer
   return /\d/.test(myString);
 }
@@ -245,8 +218,8 @@ function hasNumber(myString) { // Check if the name contains integer
 function changeTotal(data) { // Calculates the total
   var ctotal = 0;
   for(var count = 0; count < data.itemNum; count++) {
-    if (data.quan[count] != null){
-      ctotal += data.quan[count] * data.item[count]
+    if (data.items[count].quantity != null){
+      ctotal += data.items[count].quantity * data.items[count].value
     }
   }
   return ctotal;

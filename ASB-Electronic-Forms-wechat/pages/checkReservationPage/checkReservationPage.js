@@ -1,6 +1,5 @@
 // pages/checkReservationPage/checkReservationPage.js
 Page({
-
   data: {
     reservation:[],
     firstten:[],
@@ -89,48 +88,34 @@ Page({
     }
   },
 
-  confirmReservation: function() {
-    console.log('id: ' + this.data.showReservation[0]._id)
+  onConfirm: function(event) {
+    console.log(event.currentTarget.id)
     wx.showLoading({
       title: 'Loading',
     })
+    // find the confirmed variable
+    var index
+    for(var i = 0; i < this.data.reservation.length; i++){
+      if(this.data.reservation[i]._id == event.currentTarget.id) {
+        index = i
+        break
+      }
+    }
+    // confirm the selected reservation
     wx.cloud.callFunction({
       name: "confirmReservation",
-      data:{
-        reservationId: this.data.showReservation[0]._id
-      },
-      success: function (res) {
-        this.setData({ // give reservation the the entire data of reservation
-          reservation: res.result.data,
-        })
-        const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
-        this.setData({
-          showReservation: foundreservation
-        })
-        wx.hideLoading()
-      }.bind(this)
-    })
-  },
-
-  unconfirmReservation: function() {
-    console.log('id: ' + this.data.showReservation[0]._id)
-    wx.showLoading({
-      title: 'Loading',
-    })
-    console.log(this.data.showReservation[0]._id)
-    wx.cloud.callFunction({
-      name: "unconfirmReservation",
       data: {
-        reservationId: this.data.showReservation[0]._id
+        reservationId: Number.parseInt(event.currentTarget.id),
+        confirmed: this.data.reservation[index].confirmed,
       },
       success: function (res) {
-        this.setData({ // give reservation the the entire data of reservation
-          reservation: res.result.data,
-        })
-        const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
-        this.setData({
-          showReservation: foundreservation
-        })
+        this.data.reservation[index].confirmed = !this.data.reservation[index].confirmed
+        for (var i = 0; i < this.data.showReservation.length; i++) {
+          if (this.data.showReservation[i]._id == event.currentTarget.id) {
+            this.data.showReservation[i].confirmed == !this.data.showReservation[i].confirmed
+            break
+          }
+        }
         wx.hideLoading()
       }.bind(this)
     })
