@@ -88,26 +88,34 @@ Page({
     }
   },
 
-  confirm: function(event) {
+  onConfirm: function(event) {
     console.log(event.currentTarget.id)
     wx.showLoading({
       title: 'Loading',
     })
+    // find the confirmed variable
+    var index
+    for(var i = 0; i < this.data.reservation.length; i++){
+      if(this.data.reservation[i]._id == event.currentTarget.id) {
+        index = i
+        break
+      }
+    }
+    // confirm the selected reservation
     wx.cloud.callFunction({
       name: "confirmReservation",
       data: {
-        reservationId: event.currentTarget.id
+        reservationId: Number.parseInt(event.currentTarget.id),
+        confirmed: this.data.reservation[index].confirmed,
       },
       success: function (res) {
-        console.log("in")
-        this.setData({ // give reservation the the entire data of reservation
-          reservation: res.result.data,
-        })
-        const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
-        this.setData({
-          showReservation: foundreservation
-        })
-        console.log(res)
+        this.data.reservation[index].confirmed = !this.data.reservation[index].confirmed
+        for (var i = 0; i < this.data.showReservation.length; i++) {
+          if (this.data.showReservation[i]._id == event.currentTarget.id) {
+            this.data.showReservation[i].confirmed == !this.data.showReservation[i].confirmed
+            break
+          }
+        }
         wx.hideLoading()
       }.bind(this)
     })
