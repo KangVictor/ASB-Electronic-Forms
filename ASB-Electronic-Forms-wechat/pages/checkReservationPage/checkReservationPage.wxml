@@ -11,7 +11,7 @@ CG: {{itemNames[2]}}</text>
 
 <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
   <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
-    <view >
+    <view>
     {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
     </view>
     <br />
@@ -28,5 +28,3 @@ CG: {{itemNames[2]}}</text>
     </view>
   </view>
 </block>
-
-

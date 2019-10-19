@@ -37,19 +37,12 @@ Page({
         console.log(getReservation);
         this.setData({ // give reservation the the entire data of reservation
           reservation: getReservation,
-        })
-        
-        var recent = []; // recent 15 reservation are shown
-        for (var i = 0; i < 15; i++) {
-          recent[i] = getReservation[getReservation.length - i - 1]
-        }
-        this.setData({
-          showReservation: recent
+          showReservation: getReservation.slice(0, 14)
         })
 
         wx.hideLoading()
       }.bind(this),
-      fail: function () {
+      fail: function() {
         wx.navigateTo({
           url: '/pages/serverFailPage/serverFailPage?'
         });
@@ -94,28 +87,21 @@ Page({
       title: 'Loading',
     })
     // find the confirmed variable
-    var index
-    for(var i = 0; i < this.data.reservation.length; i++){
-      if(this.data.reservation[i]._id == event.currentTarget.id) {
-        index = i
-        break
-      }
-    }
+    
+    const matchingReservation = findMatchingReservation(event.currentTarget.id, this.data.reservation)
+
     // confirm the selected reservation
     wx.cloud.callFunction({
       name: "confirmReservation",
       data: {
         reservationId: Number.parseInt(event.currentTarget.id),
-        confirmed: this.data.reservation[index].confirmed,
+        confirmed: matchingReservation.confirmed,
       },
       success: function (res) {
-        this.data.reservation[index].confirmed = !this.data.reservation[index].confirmed
-        for (var i = 0; i < this.data.showReservation.length; i++) {
-          if (this.data.showReservation[i]._id == event.currentTarget.id) {
-            this.data.showReservation[i].confirmed == !this.data.showReservation[i].confirmed
-            break
-          }
-        }
+        matchingReservation.confirmed = !matchingReservation.confirmed
+        this.setData({
+          showReservation: this.data.reservation.slice(0, 14)
+        })
         wx.hideLoading()
       }.bind(this)
     })
@@ -148,4 +134,8 @@ function findReservation(reservation, keyword) { // finds Reservation either by 
 
 function hasNumber(myString) { // Check if the name contains integer
   return /\d/.test(myString);
+}
+
+function findMatchingReservation(id, model) {
+  return model.find(element => {return element._id == id})
 }
