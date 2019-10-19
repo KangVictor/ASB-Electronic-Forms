@@ -28,3 +28,8 @@ CG: {{itemNames[2]}}</text>
     </view>
   </view>
 </block>
+
+<block class='flexBox'>
+  <button disabled="{{!hasNext}}" bindtap="onNext">next</button>
+  <button disabled="{{!hasPrev}}" bindtap="onPrev">before</button>
+</block>

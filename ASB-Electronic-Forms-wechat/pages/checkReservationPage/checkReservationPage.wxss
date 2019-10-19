@@ -23,6 +23,10 @@
   color: black;
 }
 
+.flexBox{
+  justify-content: flex-start;
+}
+
 page {
   background-color: #F8F8F8;
   height: 100%;
