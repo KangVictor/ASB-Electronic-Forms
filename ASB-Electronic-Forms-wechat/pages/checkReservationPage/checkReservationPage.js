@@ -9,7 +9,7 @@ Page({
     keyword:'',
     showNum: 5,
     currentPage: 0,
-    numResPerPage: 2,
+    numResPerPage: 3,
     hasNext: true,
     hasPrev: false
   },
@@ -66,13 +66,11 @@ Page({
       const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
       console.log(foundreservation);
       if (foundreservation.length == 0) {
-        wx.showModal({
-          title: 'not found',
-          content: 'Buyer name not found',
-          confirmText: 'Ok',
-          showCancel: false
+        wx.showToast({
+          title: '   not found   ',
+          icon: 'none',
+          duration: 800
         })
-        console.log("buyer not found")
       } else {
         this.setData({
           showReservation: [],
