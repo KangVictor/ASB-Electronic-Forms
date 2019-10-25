@@ -1,32 +1,32 @@
-<input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
-<button class='getButton' bindtap='searchReservation'> search </button>
-<button class='getButton' bindtap='unconfirmReservation'> unconfirm </button>
-<!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
+<input class="inputBox" bindinput="bindSearchInput" placeholder='Name or code'/>
 
-<text style="font-size:25rpx; color:grey">
-SG: {{itemNames[0]}} 
-DG: {{itemNames[1]}} 
-CG: {{itemNames[2]}}</text>
+<view style="margin-left:30rpx">
+  <text style="font-size:25rpx; color:grey;"> SG: {{itemNames[0]}} 
+  DG: {{itemNames[1]}} 
+  CG: {{itemNames[2]}}
+  </text>
+</view>
 
-
-<block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-  <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
-    <view >
-    {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
+<scroll-view class="scroller" scroll-y="true">
+  <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
+    <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
+      <view>
+      {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
+      </view>
+      <br />
+      <view>
+      SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
+      </view>
+      <br />
+      <view >
+      {{item.studentTotal}} pt
+      </view>
+      <br />
+      <view >
+      confirmed: {{item.confirmed}}
+      </view>
     </view>
-    <br />
-    <view>
-    SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
-    </view>
-    <br />
-    <view >
-    {{item.studentTotal}} pt
-    </view>
-    <br />
-    <view >
-    confirmed: {{item.confirmed}}
-    </view>
-  </view>
-</block>
+  </block>
+</scroll-view> 
 
 
