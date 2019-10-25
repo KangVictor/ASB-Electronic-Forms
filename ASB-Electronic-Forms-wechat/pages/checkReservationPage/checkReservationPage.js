@@ -60,21 +60,18 @@ Page({
     })
     // search
     if (this.data.keyword == '') {// if keyword(name, code) is blank just show all reservation
-      this.setData({ showReservation: this.data.reservation })
+      const getReservation = this.data.reservation.slice(0,this.data.numResPerPage)
+      this.setData({ showReservation: getReservation })
     } else {
       const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
       console.log(foundreservation);
       if (foundreservation.length == 0) {
         wx.showToast({
-          title: '   not found   ',
+          title: 'not found',
           icon: 'none',
           duration: 800
         })
       } else {
-        this.setData({
-          showReservation: [],
-
-        })
         this.setData({ showReservation: foundreservation })
       }
     }

@@ -7,7 +7,7 @@
   </text>
 </view>
 
-<scroll-view class="scroller" scroll-y="true" bindscrolltolower="onTouchEnd">
+<scroll-view class="scroller" scroll-y="true">
   <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
     <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
       <view>
