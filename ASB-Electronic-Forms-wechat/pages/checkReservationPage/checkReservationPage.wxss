@@ -6,6 +6,10 @@
   font-size: 40rpx;
 }
 
+.scroller {
+  height: 80%
+}
+
 .getButton {
   margin-left: 25rpx;
   margin-top: 10rpx;

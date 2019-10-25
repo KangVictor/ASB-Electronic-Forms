@@ -7,9 +7,8 @@ Page({
     itemNum: 3,
     itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
     keyword:'',
-    showNum: 5,
     currentPage: 0,
-    numResPerPage: 3,
+    numResPerPage: 10,
     hasNext: true,
     hasPrev: false
   },
@@ -105,38 +104,6 @@ Page({
         wx.hideLoading()
       }.bind(this)
     })
-  },
-
-  onNext: function () {
-    const startIndex = (this.data.currentPage + 1) * this.data.numResPerPage
-    const showRes = this.data.reservation.slice(startIndex, startIndex + this.data.numResPerPage)
-
-    this.setData({
-      hasPrev:true,
-      currentPage: this.data.currentPage + 1,
-      showReservation: showRes
-    })
-
-    if((this.data.currentPage + 1) * this.data.numResPerPage >= this.data.reservation.length) {
-      this.setData({hasNext:false})
-    }
-    console.log(showRes)
-    console.log(this.data.reservation)
-  },
-
-  onPrev: function () {
-    const startIndex = (this.data.currentPage - 1) * this.data.numResPerPage
-    const showRes = this.data.reservation.slice(startIndex, startIndex + this.data.numResPerPage)
-
-    this.setData({
-      hasNext: true,
-      currentPage: this.data.currentPage - 1,
-      showReservation: showRes
-    })
-    if (this.data.currentPage == 0) {
-      this.setData({ hasPrev: false })
-    }
-    console.log(showRes)
   },
 })
 

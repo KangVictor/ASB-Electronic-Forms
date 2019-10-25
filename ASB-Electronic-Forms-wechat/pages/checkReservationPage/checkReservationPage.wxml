@@ -7,28 +7,24 @@
   </text>
 </view>
 
-
-<block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-  <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
-    <view>
-    {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
+<scroll-view class="scroller" scroll-y="true" bindscrolltolower="onTouchEnd">
+  <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
+    <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
+      <view>
+      {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
+      </view>
+      <br />
+      <view>
+      SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
+      </view>
+      <br />
+      <view >
+      {{item.studentTotal}} pt
+      </view>
+      <br />
+      <view >
+      confirmed: {{item.confirmed}}
+      </view>
     </view>
-    <br />
-    <view>
-    SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
-    </view>
-    <br />
-    <view >
-    {{item.studentTotal}} pt
-    </view>
-    <br />
-    <view >
-    confirmed: {{item.confirmed}}
-    </view>
-  </view>
-</block>
-
-<block class='flexBox'>
-  <button disabled="{{!hasNext}}" bindtap="onNext">next</button>
-  <button disabled="{{!hasPrev}}" bindtap="onPrev">before</button>
-</block>
+  </block>
+</scroll-view> 
