@@ -1,8 +1,8 @@
 /* pages/checkOrderPage/checkOrderPage.wxss */
 .inputBox {
   margin-left:30rpx;
-  margin-top:10rpx;
-  height: 40rpx;
+  margin-top:25rpx;
+  margin-bottom: 25rpx;
   font-size: 40rpx;
 }
 

@@ -1,9 +1,11 @@
 <input class="inputBox" bindinput="bindSearchInput" placeholder='Name or code'/>
 
-<text style="font-size:25rpx; color:grey">
-SG: {{itemNames[0]}} 
-DG: {{itemNames[1]}} 
-CG: {{itemNames[2]}}</text>
+<view style="margin-left:30rpx">
+  <text style="font-size:25rpx; color:grey;"> SG: {{itemNames[0]}} 
+  DG: {{itemNames[1]}} 
+  CG: {{itemNames[2]}}
+  </text>
+</view>
 
 
 <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
