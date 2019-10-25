@@ -1,7 +1,4 @@
-<input class="inputBox" bindinput="bindKeyInput" placeholder='Name or code'/>
-<button class='getButton' bindtap='searchReservation'> search </button>
-<button class='getButton' bindtap='unconfirmReservation'> unconfirm </button>
-<!-- <button class='getButton' bindtap='deleteOrder'> delete </button> -->
+<input class="inputBox" bindinput="bindSearchInput" placeholder='Name or code'/>
 
 <text style="font-size:25rpx; color:grey">
 SG: {{itemNames[0]}} 

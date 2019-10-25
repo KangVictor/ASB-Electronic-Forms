@@ -9,7 +9,7 @@ Page({
     keyword:'',
     showNum: 5,
     currentPage: 0,
-    numResPerPage: 1,
+    numResPerPage: 2,
     hasNext: true,
     hasPrev: false
   },
@@ -54,17 +54,15 @@ Page({
     })
   },
 
-  bindKeyInput: function(e) {
+  bindSearchInput: function(e) {
+    // change the keyword
     this.setData({
       keyword: e.detail.value
     })
-  },
-
-  searchReservation: function() {
+    // search
     if (this.data.keyword == '') {// if keyword(name, code) is blank just show all reservation
-      this.setData({showReservation: this.data.reservation})
+      this.setData({ showReservation: this.data.reservation })
     } else {
-      console.log('in')
       const foundreservation = findReservation(this.data.reservation, (this.data.keyword).toLowerCase());
       console.log(foundreservation);
       if (foundreservation.length == 0) {
@@ -78,9 +76,9 @@ Page({
       } else {
         this.setData({
           showReservation: [],
-          
+
         })
-        this.setData({showReservation:foundreservation})
+        this.setData({ showReservation: foundreservation })
       }
     }
   },
@@ -144,28 +142,15 @@ Page({
   },
 })
 
-function findReservation(reservation, keyword) { // finds Reservation either by code or name
-  var foundreservation = [];
-  var count = 0;
-
-  if(hasNumber(keyword)){ // checks if the keyWord is a code
-  // find the code if so
-    for (var i = 0; i < reservation.length; i++) {
-      if (reservation[i]['_id'] == Number(keyword)) {
-        foundreservation[count] = reservation[i]
-        count ++;
-      }
-    }
+function findReservation(reservations, keyword) {
+  let foundReservations
+  if (hasNumber(keyword)) { // checks if the keyWord is a code
+    // find the code if so
+    foundReservations = reservations.filter((reservation) => { return (String(reservation._id)).includes(keyword); })
   } else { // find the buyer's name
-    console.log(reservation)
-    for (var i = 0; i < reservation.length; i++) {
-      if (reservation[i]['studentName'] == keyword){
-        foundreservation[count] = reservation[i];
-        count++;
-      }
-    }
+    foundReservations = reservations.filter((reservation) => { return reservation.studentName.includes(keyword); })
   }
-  return foundreservation;
+  return foundReservations
 }
 
 function hasNumber(myString) { // Check if the name contains integer
