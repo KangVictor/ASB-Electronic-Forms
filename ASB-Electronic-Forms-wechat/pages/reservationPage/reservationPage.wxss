@@ -1,8 +1,12 @@
 .title{
   margin-left: 50rpx;
-  margin-top: 40rpx;
-  margin-bottom: 20rpx;
+  margin-top: 30rpx;
   font-size: 50rpx;
+}
+
+.main-page{
+  display: flex;
+  flex-direction: column;
 }
 
 .inputBox {
@@ -39,10 +43,16 @@
   font-size: 35rpx;
 }
 
+.section-text {
+  margin-left: 55rpx;
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+  font-size:33rpx;
+}
+
 .costText {
   margin-left: 50rpx;
-  margin-top: 100rpx;
-  height: 40rpx;
+  margin-top: 30rpx;
   font-size: 40rpx;
 }
 
@@ -53,7 +63,9 @@
 }
 
 .inputBoxWrapper{
-  margin: 20rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 7rpx;
   padding: 12rpx;
   background-color: white;
   color: black;

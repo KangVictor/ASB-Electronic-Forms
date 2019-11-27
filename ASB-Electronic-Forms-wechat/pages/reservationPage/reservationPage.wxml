@@ -1,38 +1,43 @@
-<text class="title"> Summer Bash </text>
-<view class="inputBoxWrapper">
-  <text class = "smallText">First Name {{firstNameFilled}}</text>
-  <input class="inputBox" id='inputBoxFirstName' bindinput="bindFirstNameInput" 
-placeholder='ex) Victor'/>
-</view>
+<view class="main-page">
+  <text class="title"> Summer Bash </text>
 
-<view class="inputBoxWrapper">
-  <text class = "smallText">Last Name {{lastNameFilled}}</text>
-  <input class="inputBox" id='inputBoxLastName' bindinput="bindLastNameInput" 
-placeholder='ex) Kang'/>
-</view>
-
-<view class="inputBoxWrapper">
-  <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
-   <view class="smallPicker">
-      Grade: {{arrayGrade[indexGrade]}}
-    </view>
-  </picker>
-  <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
-    <view class="smallPicker">
-      Class: {{arrayClass[indexClass]}}
-    </view>
-  </picker>
-</view>
-
-
-<view wx:for="{{items}}">
-  <view class = "inputBoxWrapper">
-    <text class = "smallText"> {{item.name}} ({{item.value}} pt)</text>
-    <input class="inputBox" id="{{item.name}}" placeholder='0' type='number' bindinput='bindInputBoxQuantity'/>
+  <text class="section-text">Info</text>
+  <view class="inputBoxWrapper">
+    <text class = "smallText">First Name {{firstNameFilled}}</text>
+    <input class="inputBox" id='inputBoxFirstName' bindinput="bindFirstNameInput" 
+  placeholder='ex) Victor'/>
   </view>
+
+  <view class="inputBoxWrapper">
+    <text class = "smallText">Last Name {{lastNameFilled}}</text>
+    <input class="inputBox" id='inputBoxLastName' bindinput="bindLastNameInput" 
+  placeholder='ex) Kang'/>
+  </view>
+
+  <view class="inputBoxWrapper">
+    <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
+    <view class="smallPicker">
+        Grade: {{arrayGrade[indexGrade]}}
+      </view>
+    </picker>
+    <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+      <view class="smallPicker">
+        Class: {{arrayClass[indexClass]}}
+      </view>
+    </picker>
+  </view>
+
+  <text class="section-text">Items</text>
+
+  <view wx:for="{{items}}">
+    <view class = "inputBoxWrapper">
+      <text class = "smallText"> {{item.name}} ({{item.value}} pt)</text>
+      <input class="inputBox" id="{{item.name}}" placeholder='0' type='number' bindinput='bindInputBoxQuantity'/>
+    </view>
+  </view>
+
+
+  <text class = "costText">{{total}} pt</text>
+  <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 
+  <text class = 'informText' hidden='{{fillInTextHidden}}'>* must be filled in</text>
 </view>
-
-
-<text class = "costText">{{total}} pt</text>
-<button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 
-<text class = 'informText' hidden='{{fillInTextHidden}}'>* must be filled in</text>
