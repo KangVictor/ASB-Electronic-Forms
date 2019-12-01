@@ -3,15 +3,9 @@
 
   <text class="section-text">Info</text>
   <view class="inputBoxWrapper">
-    <text class = "smallText">First Name {{firstNameFilled}}</text>
-    <input class="inputBox" id='inputBoxFirstName' bindinput="bindFirstNameInput" 
-  placeholder='ex) Victor'/>
-  </view>
-
-  <view class="inputBoxWrapper">
-    <text class = "smallText">Last Name {{lastNameFilled}}</text>
-    <input class="inputBox" id='inputBoxLastName' bindinput="bindLastNameInput" 
-  placeholder='ex) Kang'/>
+    <text class = "smallText">Name {{nameFilled}}</text>
+    <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" 
+  placeholder='ex) Victor Kang'/>
   </view>
 
   <view class="inputBoxWrapper">

@@ -6,8 +6,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
-    studentLastName: '',
-    studentFirstName:'',
+    studentName:'',
     studentGrade: 9,
     studentClass: 1,
     arrayGrade: ['9', '10'],
@@ -15,8 +14,7 @@ Page({
     arrayClass: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11'],
     indexClass: '0',
 
-    firstNameFilled: '*',
-    lastNameFilled: '*',
+    nameFilled: '*',
     fillInTextHidden: false,
 
     reserveButtonDisabled: false,
@@ -47,8 +45,8 @@ Page({
   
   //////////////////////
   //input 
-  bindFirstNameInput: function (e) {
-    var english = /^[A-Za-z\s]*$/;
+  bindNameInput: function (e) {
+    var english = /^[A-Za-z\s]*$/; //regex
     if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title:'error',
@@ -58,42 +56,19 @@ Page({
       })
     } else {
       this.setData({
-        studentFirstName: e.detail.value
+        studentName: e.detail.value
       })
       if (e.detail.value != '' && e.detail.value != ' ') {
-        if (this.data.lastNameFilled == '') {
+        if (this.data.nameFilled == '') {
           this.setData({  fillInTextHidden: true })
         }
-        this.setData({ firstNameFilled: ''})
+        this.setData({ nameFilled: ''})
       } else {
         this.setData({  fillInTextHidden: false, firstNameFilled: '*' })
       }
     }
   },
-  bindLastNameInput: function (e) {
-    var english = /^[A-Za-z\s]*$/;
-    if (!e.detail.value.match(english)) { // check if name contains nonEnglish letters
-      wx.showModal({
-        title: 'error',
-        content: 'Accepts English Letters Only',
-        showCancel: false,
-        confirmText: 'Ok'
-      })
-    } else {
-      this.setData({
-        studentLastName: e.detail.value
-      })
-      if (e.detail.value != '' && e.detail.value != ' ') {
-        if (this.data.firstNameFilled == '') {
-          this.setData({ fillInTextHidden: true })
-        }
-        this.setData({ lastNameFilled: '' })
-      } else {
-        this.setData({ fillInTextHidden: false, lastNameFilled: '*' })
-      }
-    }
-  },
-
+  
   bindPickerGradeChange: function (e) {
     const getGrade = this.data.arrayGrade[e.detail.value];
     this.setData({
@@ -124,7 +99,7 @@ Page({
 
   onReserveButton: function () {
     var english = /^[A-Za-z\s]*$/;
-    if (this.data.studentFirstName == '' || this.data.studentLastName == '') {// if student's name is blank
+    if (this.data.studentName == '') {// if student's name is blank
       wx.showModal({
         title: 'Error',
         content: 'Please fill in your name!',
@@ -140,7 +115,7 @@ Page({
         showCancel: false
       })
     }
-    else if (!this.data.studentFirstName.match(english) || !this.data.studentLastName.match(english)) { // check if name contains nonEnglish letters
+    else if (!this.data.studentName.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title: 'error',
         content: 'Accepts English Letters Only',
@@ -153,7 +128,7 @@ Page({
       for(var i = 0; i < this.data.itemNum; i++) {
         studentQu[i] = this.data.items[i].quantity
       }
-      const studentNa = this.data.studentFirstName + ' ' + this.data.studentLastName;
+      const studentNa = this.data.studentName;
       const studentCl = this.data.studentClass;
       const studentGr = this.data.studentGrade;
       const studentTo = this.data.total;
