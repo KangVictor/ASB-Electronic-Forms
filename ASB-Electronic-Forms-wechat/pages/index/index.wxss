@@ -5,7 +5,7 @@
   margin-right:30rpx;
   height: 120rpx;
   font-size: 45rpx;
-  background-color: #03A9AC;
+  background-color: #3f9675;
   color:white;
 }
 

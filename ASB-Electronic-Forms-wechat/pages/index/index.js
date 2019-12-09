@@ -7,7 +7,7 @@ Page({
     circular: true,
     interval: 2000,
     duration: 1500,
-    imgUrls: ['/itemImg/singleWG.jpg', '/itemImg/doubleWG.jpg', '/itemImg/classicWG.jpg'],
+    imgUrls: ['/resources/singleWG.jpg', '/resources/doubleWG.jpg', '/resources/classicWG.jpg'],
     backColor: '#f8f8f8',
     adminAccounts:[]
   },
@@ -46,7 +46,7 @@ Page({
     // change navigation bar color
     wx.setNavigationBarColor({
       frontColor: '#ffffff',
-      backgroundColor: '#03A9AC',
+      backgroundColor: '#3f9675',
       animation: {
         duration: 500,
         timingFunc: 'easeIn'

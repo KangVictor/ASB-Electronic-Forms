@@ -13,6 +13,26 @@
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#ffac3a",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "/resources/home.png",
+        "selectedIconPath": "resources/homeS.png",
+        "text": "Home"
+      },
+      {
+        "pagePath": "pages/reservationPage/reservationPage",
+        "iconPath": "/resources/reservations.png",
+        "selectedIconPath": "resources/reservationsS.png",
+        "text": "reservaitons"
+      }
+    ]
+  },
   "sitemapLocation": "sitemap.json",
   "cloud": true
 }
