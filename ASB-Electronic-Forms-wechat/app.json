@@ -4,8 +4,9 @@
     "pages/submitPage/submitPage",
     "pages/submitFailPage/submitFailPage",
     "pages/serverFailPage/serverFailPage",
-    "pages/reservationPage/reservationPage",
-    "pages/checkReservationPage/checkReservationPage"
+    "pages/reservationPage/cataloguePage/cataloguePage",
+    "pages/checkReservationPage/checkReservationPage",
+    "pages/reservationPage/recipientPage/recipientPage"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,7 @@
         "text": "Home"
       },
       {
-        "pagePath": "pages/reservationPage/reservationPage",
+        "pagePath": "pages/reservationPage/cataloguePage/cataloguePage",
         "iconPath": "/resources/reservations.png",
         "selectedIconPath": "resources/reservationsS.png",
         "text": "reservaitons"
