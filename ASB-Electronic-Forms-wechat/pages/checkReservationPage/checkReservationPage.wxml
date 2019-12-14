@@ -1,12 +1,5 @@
 <input class="inputBox" bindinput="bindSearchInput" placeholder='Name or code'/>
 
-<view style="margin-left:30rpx">
-  <text style="font-size:25rpx; color:grey;"> SG: {{itemNames[0]}} 
-  DG: {{itemNames[1]}} 
-  CG: {{itemNames[2]}}
-  </text>
-</view>
-
 <scroll-view class="scroller" scroll-y="true">
   <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
     <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
@@ -14,10 +7,25 @@
       {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
       </view>
       <br />
-      <view>
-      SG: {{item.studentQuan[0]}} DG: {{item.studentQuan[1]}} CG: {{item.studentQuan[2]}}
+      <view wx:if="{{item.studentQuan[0] != 0}}">
+        {{items[0].name}} : {{item.studentQuan[0]}} 
       </view>
       <br />
+      <view wx:if="{{item.studentQuan[1] != 0}}">
+        {{items[1].name}} : {{item.studentQuan[1]}} 
+      </view>
+      <br />
+      <view wx:if="{{item.studentQuan[2] != 0}}">
+        {{items[2].name}} : {{item.studentQuan[2]}} 
+      </view>
+      <br />
+      <view wx:if="{{item.studentQuan[3] != 0}}">
+        {{items[3].name}} : {{item.studentQuan[3]}} 
+      </view>
+      <br />
+      <view wx:if="{{item.studentQuan[4] != 0}}">
+        {{items[4].name}} : {{item.studentQuan[4]}} 
+      </view>
       <view >
       {{item.studentTotal}} pt
       </view>

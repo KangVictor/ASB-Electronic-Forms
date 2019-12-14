@@ -4,7 +4,7 @@
   height: 120rpx;
   width: 200rpx;
   font-size: 50rpx;
-  background-color: #03A9AC;
+  background-color: #0c9460;
   color:white;
 }
 

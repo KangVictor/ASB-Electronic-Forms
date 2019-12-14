@@ -1,7 +1,14 @@
 <view class="main-page">
-  <text class="title"> Summer Bash </text>
+  <text class="title"> December Delights </text>
 
-  <text class="section-text">Info</text>
+  <text class="section-text">From</text>
+  <view class="inputBoxWrapper">
+    <text class = "smallText">Name</text>
+    <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" 
+  placeholder='ex) Victor Kang'/>
+  </view>
+
+  <text class="section-text">To</text>
   <view class="inputBoxWrapper">
     <text class = "smallText">Name {{nameFilled}}</text>
     <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" 

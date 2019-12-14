@@ -1,9 +1,9 @@
 <view class="page-body">
   <view class="page-section page-section-spacing swiper">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper style="height:400rpx" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="*this">
         <swiper-item>
-          <image class='center-swiper' src="{{item}}" class="swiper-item" width="200" height="300" />
+          <image class='center-swiper' src="{{item}}" class="swiper-item" width="200rpx" height="400rpx"/>
         </swiper-item>
       </block>
     </swiper>
@@ -26,7 +26,7 @@ bindtap='onAdminButton'>
 <view class="row-container">
   <text class='smallText'>_________________</text>
   <text class='smallText'>1. Correctly fill in your name, grade, and class</text>
-  <text class='smallText'>2. Reserve your waterguns for Summer Bash</text>
+  <text class='smallText'>2. Reserve your treats for December Delights</text>
   <text class='smallText'>3. Come to ZTB lobby during lunch to confirm</text>
   <text class='smallText'>_________________</text>
 </view>

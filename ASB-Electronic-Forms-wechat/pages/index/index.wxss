@@ -44,6 +44,7 @@ page {
   line-height: 1.6; 
 }
 .page-body{
+  display: flex;
   padding-top: 60rpx;
 }
 .page-section{
@@ -84,10 +85,7 @@ button:last-child{
   padding: 0;
 }
 .swiper-item{
-  margin-left: 15%;
   display: block;
-  width:200px;
-  height: 150px;
 }
 .page-section-title{
   margin-top: 60rpx;

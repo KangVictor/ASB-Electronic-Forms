@@ -20,11 +20,16 @@ Page({
     reserveButtonDisabled: false,
 
     items: [
-      { name: 'Single Tube Watergun', quantity: 0, value: 5 },
-      { name: 'Double Tube Watergun', quantity: 0, value: 8 },
-      { name: 'Classic Watergun', quantity: 0, value: 15 }
+      // { name: 'Single Tube Watergun', quantity: 0, value: 5 },
+      // { name: 'Double Tube Watergun', quantity: 0, value: 8 },
+      // { name: 'Classic Watergun', quantity: 0, value: 15 }
+      { name: 'Candy Cane', quantity: 0, value: 3 },
+      { name: 'Chocolate', quantity: 0, value: 5 },
+      { name: 'Brownie', quantity: 0, value: 10 },
+      { name: 'Gingerbread Cookie', quantity: 0, value: 15 },
+      { name: 'Sugar Cookie', quantity: 0, value: 10 }
     ],
-    itemNum: 3,
+    itemNum: 5,
     total: 0
   },
 

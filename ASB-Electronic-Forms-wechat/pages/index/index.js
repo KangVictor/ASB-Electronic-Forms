@@ -7,7 +7,7 @@ Page({
     circular: true,
     interval: 2000,
     duration: 1500,
-    imgUrls: ['/resources/singleWG.jpg', '/resources/doubleWG.jpg', '/resources/classicWG.jpg'],
+    imgUrls: ['/resources/brownies.jpeg', '/resources/candy-cane.jpeg', '/resources/chocolate.jpeg', '/resources/gingerbread.jpg', '/resources/sugar-cookies.jpg'],
     backColor: '#f8f8f8',
     adminAccounts:[]
   },

@@ -5,7 +5,16 @@ Page({
     firstten:[],
     showReservation: [],
     itemNum: 3,
-    itemNames: ['Single Tube Watergun', 'Double Tube Watergun', 'Classic Watergun'],
+    items: [
+      // { name: 'Single Tube Watergun', quantity: 0, value: 5 },
+      // { name: 'Double Tube Watergun', quantity: 0, value: 8 },
+      // { name: 'Classic Watergun', quantity: 0, value: 15 }
+      { name: 'Candy Cane', quantity: 0, value: 3 },
+      { name: 'Chocolate', quantity: 0, value: 5 },
+      { name: 'Brownie', quantity: 0, value: 10 },
+      { name: 'Gingerbread Cookie', quantity: 0, value: 15 },
+      { name: 'Sugar Cookie', quantity: 0, value: 10 }
+    ],
     keyword:'',
     currentPage: 0,
     numResPerPage: 10,
@@ -14,6 +23,7 @@ Page({
   },
 
   onLoad: function() {
+    console.log(this.data.items[0].name)
     // request to the server for price and quantities of the item
     wx.cloud.init();
     wx.setNavigationBarColor({

@@ -24,7 +24,7 @@
   width: 210rpx;
   height: 95rpx;
   font-size: 40rpx;
-  background-color: #0c9460;
+  background-color: #3f9675;
   color:white;
 }
 
