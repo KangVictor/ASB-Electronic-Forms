@@ -1,21 +1,18 @@
-// pages/navtab/navtab.js
+// components/recipientcard/recipientcard.js
 Component({
   /**
    * Component properties
    */
   properties: {
-    name: {
-        type: String,
-        value: 'Item'
-    },
-    value: {
-        type: Number,
-        value: 0
-    },
-    imgurl: {
+    recipientName:{
       type: String,
-      value: '/'
+      value: 'John'
     },
+    quantity:{
+      type: Number,
+      value: 1
+    },
+    removable: Boolean
   },
 
   /**

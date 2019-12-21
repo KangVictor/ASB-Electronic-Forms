@@ -1,0 +1,5 @@
+/* components/recipientcard/recipientcard.wxss */
+.row-box{
+  display: flex;
+  flex-direction: row;
+}
