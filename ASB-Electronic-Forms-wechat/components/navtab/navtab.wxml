@@ -1,0 +1,8 @@
+<!--pages/navtab/navtab.wxml-->
+<view wx:if='{{!hidetop}}' class='hr' />
+<navigator open-type="{{tab ? 'switchTab' : 'navigate'}}"  url="{{url}}" class='navigator'>
+    <view class='navigator-text'>{{text}}</view>
+    <view wx:if="{{subtitle}}" class='navigator-arrow'>{{subtitle}}</view>
+    <view wx:else class='navigator-arrow' />
+</navigator>
+<view wx:if='{{!hidebottom}}' class='hr' />

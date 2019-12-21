@@ -1,4 +1,6 @@
 <view class="main-page">
+  <navtab class='navtab' text='Activities' url='activity/activity?id={{clubid}}'/>
+
   <text class="title"> December Delights </text>
 
   <text class="section-text">From</text>
