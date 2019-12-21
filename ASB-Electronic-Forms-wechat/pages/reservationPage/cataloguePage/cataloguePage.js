@@ -23,11 +23,11 @@ Page({
       // { name: 'Single Tube Watergun', quantity: 0, value: 5 },
       // { name: 'Double Tube Watergun', quantity: 0, value: 8 },
       // { name: 'Classic Watergun', quantity: 0, value: 15 }
-      { name: 'Candy Cane', quantity: 0, value: 3 },
-      { name: 'Chocolate', quantity: 0, value: 5 },
-      { name: 'Brownie', quantity: 0, value: 10 },
-      { name: 'Gingerbread Cookie', quantity: 0, value: 15 },
-      { name: 'Sugar Cookie', quantity: 0, value: 10 }
+      { name: 'Candy Cane', quantity: 0, value: 3, imgUrl: '/resources/candy-cane.jpeg'},
+      { name: 'Chocolate', quantity: 0, value: 5, imgUrl: '/resources/chocolate.jpeg'},
+      { name: 'Brownie', quantity: 0, value: 10, imgUrl: '/resources/brownies.jpeg'},
+      { name: 'Gingerbread Cookie', quantity: 0, value: 15, imgUrl: '/resources/gingerbread.jpg'},
+      { name: 'Sugar Cookie', quantity: 0, value: 10, imgUrl: '/resources/sugar-cookies.jpg'}
     ],
     itemNum: 5,
     total: 0
@@ -89,18 +89,6 @@ Page({
       studentClass: getClass
     })
   },
-
-  bindInputBoxQuantity: function (e) {
-    var input = getQuantity(e.detail.value);
-    for(var i = 0; i < this.data.itemNum; i++) { // find the target item with name given by id
-      if(this.data.items[i].name == e.currentTarget.id) {
-        this.data.items[i].quantity = input;
-      }
-    }
-    var ctotal = changeTotal(this.data);
-    this.setData({ total: ctotal})
-  },
-  //////////////////////
 
   onReserveButton: function () {
     var english = /^[A-Za-z\s]*$/;

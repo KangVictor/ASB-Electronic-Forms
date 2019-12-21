@@ -24,9 +24,10 @@
   <text class="section-text">Items</text>
 
   <view wx:for="{{items}}">
-    <view class = "inputBoxWrapper">
+    <view class = "inputBoxWrapper" id="{{item.name}}">
       <text class = "smallText"> {{item.name}} ({{item.value}} pt)</text>
-      <input class="inputBox" id="{{item.name}}" placeholder='0' type='number' bindinput='bindInputBoxQuantity'/>
+      <text class = "smallText"> {{item.quantity}}</text>
+      <image src="{{item.imgUrl}}"></image>
     </view>
   </view>
 

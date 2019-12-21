@@ -63,6 +63,8 @@
 }
 
 .inputBoxWrapper{
+  display: flex;
+  flex-direction: column;
   margin-left: 20rpx;
   margin-right: 20rpx;
   margin-bottom: 7rpx;
