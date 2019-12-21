@@ -4,18 +4,18 @@ Component({
    * Component properties
    */
   properties: {
-      url: {
+      name: {
           type: String,
-          value: '/pages/home/home'
+          value: 'Item'
       },
-      text: {
-          type: String,
-          value: 'Action'
+      value: {
+          type: Number,
+          value: 0
       },
-      hidetop: Boolean,
-      hidebottom: Boolean,
-      tab: Boolean,
-      subtitle: String
+      imgurl: {
+        type: String,
+        value: '/'
+      },
   },
 
   /**

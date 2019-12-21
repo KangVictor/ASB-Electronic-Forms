@@ -1,6 +1,4 @@
 <view class="main-page">
-  <navtab class='navtab' text='Activities' url='activity/activity?id={{clubid}}'/>
-
   <text class="title"> December Delights </text>
 
   <text class="section-text">From</text>
@@ -26,11 +24,7 @@
   <text class="section-text">Items</text>
 
   <view wx:for="{{items}}">
-    <view class = "inputBoxWrapper" id="{{item.name}}">
-      <text class = "smallText"> {{item.name}} ({{item.value}} pt)</text>
-      <text class = "smallText"> {{item.quantity}}</text>
-      <image src="{{item.imgUrl}}"></image>
-    </view>
+    <navtab class="navtab" name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
   </view>
 
 
