@@ -1,5 +1,5 @@
 {
   "usingComponents": {
-    "navtab": "/components/navtab/navtab"
+    "itemcard": "/components/itemcard/itemcard"
   }
 }

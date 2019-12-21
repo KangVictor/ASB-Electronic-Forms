@@ -24,7 +24,7 @@
   <text class="section-text">Items</text>
 
   <view wx:for="{{items}}">
-    <navtab class="navtab" name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
+    <itemcard class="itemcard" name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
   </view>
 
 
