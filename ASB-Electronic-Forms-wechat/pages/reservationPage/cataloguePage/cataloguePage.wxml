@@ -24,7 +24,8 @@
   <text class="section-text">Items</text>
 
   <view wx:for="{{items}}">
-    <itemcard class="itemcard" name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
+    <itemcard name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
+    <recipientcard removable='false' />
   </view>
 
 
