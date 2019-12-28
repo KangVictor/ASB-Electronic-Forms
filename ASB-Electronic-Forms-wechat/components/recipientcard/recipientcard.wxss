@@ -6,19 +6,24 @@
 }
 
 .reciepient-name {
- flex-grow: 3;
+ /* flex-grow: 3; */
  flex-basis: auto;
  /* align-self: left; */
 }
 
 .reciepient-quantity {
- flex-grow: 1;
+ /* flex-grow: 1; */
  flex-basis: auto;
  /* align-self: center; */
 }
 
 .recipient-control {
- flex-grow: 1;
+ /* flex-grow: 1; */
  flex-basis: auto;
+  border-radius: 20rpx;
+  background-color: #558b2f;
+  color: #ffe57f;
+  width: 20rpx;
+  height: 20rpx;
  /* align-self: right; */
 }

@@ -4,15 +4,26 @@
   font-size: 50rpx;
 }
 
+.nameContainer{
+  margin:10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.gradeClassContainer{
+  margin:10rpx;
+  display: flex;
+  flex-direction: row;
+}
+
 .main-page{
   display: flex;
   flex-direction: column;
+  background-color:#F5F5F6;
 }
 
 .inputBox {
-  margin-left:40rpx;
-  margin-top:15rpx;
-  margin-bottom: 15rpx;
+  margin-left: 10rpx;
   height: 40rpx;
   font-size: 35rpx;
 }
@@ -30,16 +41,13 @@
 
 .smallPicker {
   margin-left: 40rpx;
-  margin-top: 30rpx;
-  margin-bottom: 40rpx;
+  margin-right:20rpx;
   height: 45rpx;
   font-size: 35rpx;
 }
 
 .smallText {
   margin-left: 40rpx;
-  margin-top: 15rpx;
-  margin-bottom: 15rpx;
   font-size: 35rpx;
 }
 
@@ -65,12 +73,12 @@
 .inputBoxWrapper{
   display: flex;
   flex-direction: column;
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  margin-bottom: 7rpx;
   padding: 12rpx;
+  margin: 15rpx;
   background-color: white;
   color: black;
+  border-radius: 15rpx;
+  box-shadow: 0 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.2), 0 1rpx 2rpx 0 rgba(0, 0, 0, 0.19);
 }
 
 @import "./weui.wxss";

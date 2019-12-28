@@ -32,21 +32,6 @@ Page({
     itemNum: 5,
     total: 0
   },
-
-  onLoad() {
-    // change navigation bar color
-    wx.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#0c9460',
-      animation: {
-        duration: 500,
-        timingFunc: 'easeIn'
-      }
-    });
-    wx.setNavigationBarTitle({
-      title: 'Reserve',
-    })
-  },
   
   //////////////////////
   //input 

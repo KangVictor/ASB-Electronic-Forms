@@ -2,5 +2,5 @@
 <view class = "inputBoxWrapper" id="{{name}}">
   <text class = "smallText"> {{name}} ({{value}} pt)</text>
   <text class = "smallText"> {{quantity}}</text>
-  <image src="{{imgurl}}"></image>
+  <image class="itemImage" src="{{imgurl}}"></image>
 </view>

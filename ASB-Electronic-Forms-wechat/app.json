@@ -9,9 +9,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#0c9460",
+    "navigationBarTitleText": "ASB Electronic Form",
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#7A7E83",

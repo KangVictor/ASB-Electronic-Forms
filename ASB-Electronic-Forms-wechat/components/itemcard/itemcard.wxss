@@ -4,7 +4,21 @@
   margin-left: 20rpx;
   margin-right: 20rpx;
   margin-bottom: 7rpx;
-  padding: 12rpx;
+  padding: 30rpx;
   background-color: white;
   color: black;
+  border-radius: 25rpx;
+  box-shadow: 0 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.2), 0 1rpx 2rpx 0 rgba(0, 0, 0, 0.19);
+}
+
+.smallText {
+  margin-left: 10rpx;
+  font-size: 35rpx;
+}
+
+.itemImage{
+  height: 200rpx;
+  width:240rpx;
+  border-radius: 25rpx;
+  box-shadow:0 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.2), 0 1rpx 2rpx 0 rgba(0, 0, 0, 0.19);
 }

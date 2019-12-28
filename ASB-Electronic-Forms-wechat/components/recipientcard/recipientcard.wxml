@@ -7,6 +7,6 @@
   </view>
 
   <view class="row-box" wx:if="{{!removable}}">
-    <button class='recipient-control' bindtap>+</button>
+    <button class='recipient-control' bindtap="">+</button>
   </view>
 </view>

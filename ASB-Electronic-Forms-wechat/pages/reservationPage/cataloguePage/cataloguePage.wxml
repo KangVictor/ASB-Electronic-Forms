@@ -1,35 +1,35 @@
 <view class="main-page">
   <text class="title"> December Delights </text>
 
-  <text class="section-text">From</text>
   <view class="inputBoxWrapper">
-    <text class = "smallText">Name {{nameFilled}}</text>
-    <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" 
-  placeholder='ex) Victor Kang'/>
-  </view>
+    <view class="nameContainer">
+      <text class="smallText">Name: </text>
+      <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" placeholder='Victor'/>
+    </view>
+    
+    <view class="gradeClassContainer">
+      <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
+          <view class="smallPicker">
+            Grade: {{arrayGrade[indexGrade]}}
+          </view>
+      </picker>
 
-  <view class="inputBoxWrapper">
-    <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
-    <view class="smallPicker">
-        Grade: {{arrayGrade[indexGrade]}}
-      </view>
-    </picker>
-    <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
-      <view class="smallPicker">
-        Class: {{arrayClass[indexClass]}}
-      </view>
-    </picker>
+      <picker bindchange="bindPickerClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+        <view class="smallPicker">
+          Class: {{arrayClass[indexClass]}}
+        </view>
+      </picker>
+    </view>
   </view>
 
   <text class="section-text">Items</text>
 
   <view wx:for="{{items}}">
     <itemcard name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
-    <recipientcard removable='false' />
+    <recipientcard/>
   </view>
 
 
   <text class = "costText">{{total}} pt</text>
-  <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button> 
-  <text class = 'informText' hidden='{{fillInTextHidden}}'>* must be filled in</text>
+  <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button>
 </view>

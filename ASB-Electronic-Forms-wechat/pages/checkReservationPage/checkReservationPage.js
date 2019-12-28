@@ -26,14 +26,6 @@ Page({
     console.log(this.data.items[0].name)
     // request to the server for price and quantities of the item
     wx.cloud.init();
-    wx.setNavigationBarColor({
-      frontColor: '#ffffff',
-      backgroundColor: '#03A9AC',
-      animation: {
-        duration: 500,
-        timingFunc: 'easeIn'
-      }
-    });
     wx.setNavigationBarTitle({
       title: 'reservation check',
     })

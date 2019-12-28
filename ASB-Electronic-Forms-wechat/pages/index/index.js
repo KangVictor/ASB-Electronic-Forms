@@ -52,9 +52,6 @@ Page({
         timingFunc: 'easeIn'
       }
     });
-    wx.setNavigationBarTitle({
-      title: 'ASB Electronic Form',
-    })
   },
 
   onAdminButton() {
