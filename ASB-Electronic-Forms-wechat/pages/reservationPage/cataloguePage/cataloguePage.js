@@ -24,37 +24,13 @@ Page({
       // { name: 'Single Tube Watergun', quantity: 0, value: 5 },
       // { name: 'Double Tube Watergun', quantity: 0, value: 8 },
       // { name: 'Classic Watergun', quantity: 0, value: 15 }
-      { 
-        name: 'Candy Cane', quantity: 0, value: 3, imgUrl: '/resources/candy-cane.jpeg', itemNum:0,
-      ccrecipients: [
-        { rName: 'a', rGrade: 9, rClass: 1, rQuantity: 1 },
-        { rName: 'b', rGrade: 9, rClass: 1, rQuantity: 1 }
-      ]},
-      {
-        name: 'Chocolate', quantity: 0, value: 5, imgUrl: '/resources/chocolate.jpeg', itemNum: 1,
-      ccrecipients: [
-        {}
-      ]},
-      {
-        name: 'Brownie', quantity: 0, value: 10, imgUrl: '/resources/brownies.jpeg', itemNum: 2,
-        ccrecipients: [
-          {}
-        ]},
-      {
-        name: 'Gingerbread Cookie', quantity: 0, value: 15, imgUrl: '/resources/gingerbread.jpg', itemNum: 3,
-        ccrecipients: [
-          {}
-        ]},
-      {
-        name: 'Sugar Cookie', quantity: 0, value: 10, imgUrl: '/resources/sugar-cookies.jpg', itemNum: 4,
-        ccrecipients: [
-          {}
-        ]}
+      {name: 'Candy Cane', quantity: 0, value: 3, imgUrl: '/resources/candy-cane.jpeg', itemNum:0},
+      {name: 'Chocolate', quantity: 0, value: 5, imgUrl: '/resources/chocolate.jpeg', itemNum: 1},
+      {name: 'Brownie', quantity: 0, value: 10, imgUrl: '/resources/brownies.jpeg', itemNum: 2},
+      {name: 'Gingerbread Cookie', quantity: 0, value: 15, imgUrl: '/resources/gingerbread.jpg', itemNum: 3,},
+      {name: 'Sugar Cookie', quantity: 0, value: 10, imgUrl: '/resources/sugar-cookies.jpg', itemNum: 4}
     ],
-    recipients: [
-      { rName: 'a', rGrade: 9, rItem: 0, rClass: 1, rQuantity: 1 },
-      { rName: 'b', rGrade: 9, rItem: 0, rClass: 1, rQuantity: 1 },
-      { rName: 'k', rGrade: 9, rItem: 1, rClass: 1, rQuantity: 1}
+    recipients: [ // format: { rName: 'a', rGrade: 9, rItem: 0, rClass: 1, rQuantity: 1 }
     ],
     itemNum: 5,
     total: 0
@@ -110,7 +86,7 @@ Page({
         break;
       }
     }
-    this.data.recipients.push({rName:'hello', rGrade: 9, rClass:1, rItem:i, rQuantity: 1})
+    this.data.recipients.push({rName:'', rGrade: 9, rClass:1, rItem:i, rQuantity: 1})
 
     // Without changing value with setData, UI(WXML)is not updated
     var tempRecipients = this.data.recipients

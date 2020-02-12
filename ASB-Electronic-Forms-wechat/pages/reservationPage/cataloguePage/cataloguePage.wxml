@@ -29,8 +29,7 @@
     <itemcard name="{{i.name}}" imgurl="{{i.imgUrl}}" value="{{i.value}}"/>
 
     <view wx:for="{{recipients}}" wx:for-item="recipient">
-      <text wx:if="{{recipient.rItem==i.itemNum}}">{{recipient.rName}}</text>
-      <!-- <text>{{recipient.rName}}</text> -->
+      <recipientcard wx:if="{{recipient.rItem==i.itemNum}}" recipientName="{{recipient.rName}}" recipientGrade="{{recipient.rGrade}}" recipientClass="{{recipient.rClass}}" quantity="{{recipient.rQuantity}}"/>
     </view>
 
     <button id="{{i.name}}" class="addRecipientButton" bindtap="onAddRecipient"/>
