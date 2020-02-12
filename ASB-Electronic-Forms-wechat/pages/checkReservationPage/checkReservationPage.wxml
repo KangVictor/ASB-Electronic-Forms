@@ -4,29 +4,18 @@
   <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
     <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
       <view>
-      {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}}) 
+      {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}})
       </view>
       <br />
-      <view wx:if="{{item.studentQuan[0] != 0}}">
-        {{items[0].name}} : {{item.studentQuan[0]}} 
+
+      <view wx:for="{{[0,1,2,3,4]}}" wx:for-item="i">
+        <view wx:if="{{item.studentQuan[i] != 0}}">
+          {{items[i].name}} : {{item.studentQuan[i]}} 
+        </view>
+        <br />
       </view>
-      <br />
-      <view wx:if="{{item.studentQuan[1] != 0}}">
-        {{items[1].name}} : {{item.studentQuan[1]}} 
-      </view>
-      <br />
-      <view wx:if="{{item.studentQuan[2] != 0}}">
-        {{items[2].name}} : {{item.studentQuan[2]}} 
-      </view>
-      <br />
-      <view wx:if="{{item.studentQuan[3] != 0}}">
-        {{items[3].name}} : {{item.studentQuan[3]}} 
-      </view>
-      <br />
-      <view wx:if="{{item.studentQuan[4] != 0}}">
-        {{items[4].name}} : {{item.studentQuan[4]}} 
-      </view>
-      <view >
+      
+      <view>
       {{item.studentTotal}} pt
       </view>
       <br />

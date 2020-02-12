@@ -24,8 +24,16 @@
 
 .inputBox {
   margin-left: 10rpx;
-  height: 40rpx;
   font-size: 35rpx;
+}
+
+.addRecipientButton {
+  margin: 10rpx;
+  height: 40rpx;
+  width: 40rpx;
+  font-size: 35rpx;
+  color: white;
+  background-color: #3f9675;
 }
 
 .reserveButton {

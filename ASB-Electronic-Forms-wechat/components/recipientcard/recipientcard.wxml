@@ -1,12 +1,8 @@
 <!--components/recipientcard/recipientcard.wxml-->
 <view>
-  <view class="row-box" wx:if="{{removable}}">
+  <view class="row-box">
     <input type='test' class="reciepient-name" placeholder='recipient name'/>
     <input type='number' class="reciepient-quantity" placeholder='0'/>
-    <button class='recipient-control' bindtap>-</button>
-  </view>
-
-  <view class="row-box" wx:if="{{!removable}}">
-    <button class='recipient-control' bindtap="">+</button>
+    <button class='recipient-control' bindtap='deleteRecipient'>-</button>
   </view>
 </view>

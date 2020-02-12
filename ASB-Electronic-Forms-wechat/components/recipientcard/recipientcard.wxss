@@ -23,7 +23,8 @@
   border-radius: 20rpx;
   background-color: #558b2f;
   color: #ffe57f;
-  width: 20rpx;
-  height: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 35rpx;
  /* align-self: right; */
 }

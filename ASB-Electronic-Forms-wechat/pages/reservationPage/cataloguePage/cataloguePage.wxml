@@ -1,6 +1,7 @@
 <view class="main-page">
   <text class="title"> December Delights </text>
 
+  <text class="section-text">From</text>
   <view class="inputBoxWrapper">
     <view class="nameContainer">
       <text class="smallText">Name: </text>
@@ -24,11 +25,16 @@
 
   <text class="section-text">Items</text>
 
-  <view wx:for="{{items}}">
-    <itemcard name="{{item.name}}" imgurl="{{item.imgUrl}}" value="{{item.value}}"/>
-    <recipientcard/>
-  </view>
+  <view wx:for="{{items}}" wx:for-item="i">
+    <itemcard name="{{i.name}}" imgurl="{{i.imgUrl}}" value="{{i.value}}"/>
 
+    <view wx:for="{{recipients}}" wx:for-item="recipient">
+      <text wx:if="{{recipient.rItem==i.itemNum}}">{{recipient.rName}}</text>
+      <!-- <text>{{recipient.rName}}</text> -->
+    </view>
+
+    <button id="{{i.name}}" class="addRecipientButton" bindtap="onAddRecipient"/>
+  </view>
 
   <text class = "costText">{{total}} pt</text>
   <button class="reserveButton" bindtap="onReserveButton" disabled='{{reserveButtonDisabled}}'>Submit</button>
