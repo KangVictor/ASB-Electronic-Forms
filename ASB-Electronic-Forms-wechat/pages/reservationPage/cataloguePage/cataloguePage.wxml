@@ -28,8 +28,9 @@
   <view wx:for="{{items}}" wx:for-item="i">
     <itemcard name="{{i.name}}" imgurl="{{i.imgUrl}}" value="{{i.value}}"/>
 
-    <view wx:for="{{recipients}}" wx:for-item="recipient">
-      <recipientcard wx:if="{{recipient.rItem==i.itemNum}}" recipientName="{{recipient.rName}}" recipientGrade="{{recipient.rGrade}}" recipientClass="{{recipient.rClass}}" quantity="{{recipient.rQuantity}}"/>
+    <view wx:for="{{recipients}}" wx:for-index="idx" wx:for-item="recipient">
+      <recipientcard  wx:if="{{recipient.rItem==i.itemNum && recipient.deleted==false}}" bind:nameinput="onRecipientNameInput" bind:gradechange="onRecipientGradeChange" bind:classchange="onRecipientClassChange" bind:inputquantity="onRecipientQuantityInput"  bind:ondelete="onDeleteRecipient"
+       recipientName="{{recipient.rName}}" recipientGrade="{{recipient.rGrade}}" recipientClass="{{recipient.rClass}}" quantity="{{recipient.rQuantity}}" recipientNumber="{{idx}}"/>
     </view>
 
     <button id="{{i.name}}" class="addRecipientButton" bindtap="onAddRecipient"/>

@@ -1,8 +1,22 @@
 <!--components/recipientcard/recipientcard.wxml-->
 <view>
   <view class="row-box">
-    <input type='test' class="reciepient-name" placeholder='recipient name'/>
-    <input type='number' class="reciepient-quantity" placeholder='0'/>
-    <button class='recipient-control' bindtap='deleteRecipient'>-</button>
+    <input bindinput="onNameInput" type='text' class="recipient-name" placeholder='recipient name'/>
+
+    <picker class="recipient-grade" bindchange="onGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
+      <view class="smallPicker">
+        {{arrayGrade[indexGrade]}} 
+      </view>
+    </picker>
+
+    <picker class="recipient-class" bindchange="onClassChange" value="{{indexClass}}" range="{{arrayClass}}">
+      <view class="smallPicker">
+        ({{arrayClass[indexClass]}})
+      </view>
+  </picker>
+
+    <input type='number' bindinput="onQuantityInput" class="recipient-quantity" placeholder='1'/>
+
+    <button class='recipient-delete-button' bindtap='onDelete'>-</button>
   </view>
 </view>

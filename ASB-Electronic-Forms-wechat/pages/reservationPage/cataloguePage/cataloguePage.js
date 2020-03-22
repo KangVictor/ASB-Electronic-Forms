@@ -86,13 +86,55 @@ Page({
         break;
       }
     }
-    this.data.recipients.push({rName:'', rGrade: 9, rClass:1, rItem:i, rQuantity: 1})
+    this.data.recipients.push({rName:'', rGrade: 9, rClass:1, rItem:i, rQuantity: 1, deleted: false})
 
     // Without changing value with setData, UI(WXML)is not updated
     var tempRecipients = this.data.recipients
     this.setData({
       recipients: tempRecipients
     })
+  },
+
+  onRecipientNameInput: function(e) {
+    var targetIndex = e.detail.id
+    var name = e.detail.name
+    this.data.recipients[targetIndex].rName = name
+    console.log(this.data.recipients)
+  },
+
+  onRecipientGradeChange: function (e) {
+    var targetIndex = e.detail.id
+    var changedGrade = Number(e.detail.grade)
+    this.data.recipients[targetIndex].rGrade = changedGrade
+    console.log(this.data.recipients)
+  },
+
+  onRecipientClassChange: function (e) {
+    var targetIndex = e.detail.id
+    var changedClass = Number(e.detail.classnum)
+    this.data.recipients[targetIndex].rClass = changedClass
+    console.log(this.data.recipients)
+  },
+
+  onRecipientQuantityInput: function (e) {
+    var targetIndex = e.detail.id
+    var changedQuantity = Number(e.detail.quantity)
+    this.data.recipients[targetIndex].rQuantity = changedQuantity
+    console.log(this.data.recipients)
+  },
+
+  onDeleteRecipient: function (e) {
+    var targetIndex = e.detail.id
+    // this.data.recipients.splice(targetIndex, 1)
+    
+    this.data.recipients[targetIndex].deleted = true
+    this.data.recipients[targetIndex].rQuantity = 0
+
+    var tempRecipients = this.data.recipients
+    this.setData({
+      recipients: tempRecipients
+    })
+    console.log(this.data.recipients)
   },
 
   onReserveButton: function () {

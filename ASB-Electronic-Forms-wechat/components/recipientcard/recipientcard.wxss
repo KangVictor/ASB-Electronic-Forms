@@ -2,29 +2,43 @@
 .row-box{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  margin: 10rpx;
 }
 
-.reciepient-name {
- /* flex-grow: 3; */
- flex-basis: auto;
- /* align-self: left; */
+.recipient-name {
+  align-self: flex-start;
+  width: 250rpx;
+  margin-right: 10rpx;
 }
 
 .reciepient-quantity {
- /* flex-grow: 1; */
- flex-basis: auto;
- /* align-self: center; */
+  width: 40rpx;
 }
 
-.recipient-control {
- /* flex-grow: 1; */
- flex-basis: auto;
+.recipient-grade {
+  margin-left: 10rpx;
+  width: 12rpx;
+  margin-right: 10rpx;
+}
+
+.recipient-class {
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  width: 15rpx;
+}
+
+.recipient-quantity {
+  margin-left: 30rpx;
+  width: 30rpx;
+}
+
+.recipient-delete-button {
+  align-self: flex-end;
   border-radius: 20rpx;
   background-color: #558b2f;
   color: #ffe57f;
-  width: 40rpx;
   height: 40rpx;
   font-size: 35rpx;
- /* align-self: right; */
+  margin-right: 10rpx;
+  margin-left: 10rpx;
 }
