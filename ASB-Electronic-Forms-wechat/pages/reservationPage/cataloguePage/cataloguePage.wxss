@@ -28,7 +28,9 @@
 }
 
 .addRecipientButton {
-  margin: 10rpx;
+  margin-left: 30rpx;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
   height: 40rpx;
   width: 40rpx;
   font-size: 35rpx;

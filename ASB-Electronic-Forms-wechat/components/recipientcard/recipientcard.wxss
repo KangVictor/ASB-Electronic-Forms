@@ -1,39 +1,51 @@
 /* components/recipientcard/recipientcard.wxss */
+.margin-box{
+  margin-top: 7rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 7rpx;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  background-color: white;
+  color: black;
+  border-radius: 25rpx;
+  box-shadow: 0 2rpx 2rpx 0rpx rgba(0, 0, 0, 0.1), 0 1rpx 2rpx 0 rgba(0, 0, 0, 0.19);
+}
+
 .row-box{
   display: flex;
   flex-direction: row;
-  margin: 10rpx;
 }
 
 .recipient-name {
+  flex: 10 0 0;
   align-self: flex-start;
-  width: 250rpx;
   margin-right: 10rpx;
-}
-
-.reciepient-quantity {
-  width: 40rpx;
 }
 
 .recipient-grade {
+  flex:0.5 0 0;
   margin-left: 10rpx;
-  width: 12rpx;
-  margin-right: 10rpx;
+  margin-right: 5rpx;
 }
 
 .recipient-class {
-  margin-left: 20rpx;
-  margin-right: 20rpx;
-  width: 15rpx;
+  flex:0.5 0 0;
+  margin-left: 10rpx;
+  margin-right: 15rpx;
 }
 
 .recipient-quantity {
-  margin-left: 30rpx;
-  width: 30rpx;
+  flex:2 0 0;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
 }
 
 .recipient-delete-button {
-  align-self: flex-end;
+  width: 30rpx;
+  align-self: center;
   border-radius: 20rpx;
   background-color: #558b2f;
   color: #ffe57f;

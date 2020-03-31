@@ -1,5 +1,5 @@
 <!--components/recipientcard/recipientcard.wxml-->
-<view>
+<view class="margin-box">
   <view class="row-box">
     <input bindinput="onNameInput" type='text' class="recipient-name" placeholder='recipient name'/>
 
