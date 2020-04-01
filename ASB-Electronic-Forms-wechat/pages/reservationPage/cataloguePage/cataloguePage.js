@@ -63,7 +63,7 @@ Page({
   },
   
   bindPickerGradeChange: function (e) {
-    const getGrade = this.data.arrayGrade[e.detail.value];
+    const getGrade = Number(this.data.arrayGrade[e.detail.value])
     this.setData({
       indexGrade: e.detail.value,
       studentGrade: getGrade
@@ -71,7 +71,7 @@ Page({
   },
 
   bindPickerClassChange: function (e) {
-    const getClass = this.data.arrayClass[e.detail.value];
+    const getClass = Number(this.data.arrayClass[e.detail.value])
     this.setData({
       indexClass: e.detail.value,
       studentClass: getClass
@@ -93,6 +93,13 @@ Page({
     this.setData({
       recipients: tempRecipients
     })
+
+    // change total pt
+    var currentTotal = 0
+    for (var i = 0; i < this.data.recipients.length; i++) {
+      currentTotal += (this.data.recipients[i].rQuantity * this.data.items[this.data.recipients[i].rItem].value)
+    }
+    this.setData({ total: currentTotal })
   },
 
   onRecipientNameInput: function(e) {
@@ -119,8 +126,16 @@ Page({
   onRecipientQuantityInput: function (e) {
     var targetIndex = e.detail.id
     var changedQuantity = Number(e.detail.quantity)
+    // if empty, then it is just 1 (since there is a placeholder 1)
+    if (e.detail.quantity == '') {changedQuantity = 1}
     this.data.recipients[targetIndex].rQuantity = changedQuantity
-    console.log(this.data.recipients)
+
+    // change total pt
+    var currentTotal = 0
+    for(var i = 0; i < this.data.recipients.length; i++){
+      currentTotal += (this.data.recipients[i].rQuantity * this.data.items[this.data.recipients[i].rItem].value)
+    }
+    this.setData({total:currentTotal})
   },
 
   onDeleteRecipient: function (e) {
@@ -135,6 +150,13 @@ Page({
       recipients: tempRecipients
     })
     console.log(this.data.recipients)
+
+    // change total pt
+    var currentTotal = 0
+    for (var i = 0; i < this.data.recipients.length; i++) {
+      currentTotal += (this.data.recipients[i].rQuantity * this.data.items[this.data.recipients[i].rItem].value)
+    }
+    this.setData({ total: currentTotal })
   },
 
   onReserveButton: function () {
@@ -147,7 +169,7 @@ Page({
         showCancel: false
       })
     }
-    else if (this.data.total == 0) {
+    else if (this.data.total <= 0) {
       wx.showModal({
         title: 'Error',
         content: "You can't reserve nothing ;-;",
@@ -163,65 +185,96 @@ Page({
         confirmText: 'Ok'
       })
     }
-    else { // can reserve in this circumstance
-      var studentQu = [];
-      for(var i = 0; i < this.data.itemNum; i++) {
-        studentQu[i] = this.data.items[i].quantity
+    else {
+      // check each recipient
+      var canReserve = true
+      for (var i = 0; i < this.data.recipients.length; i++) {
+        if (this.data.recipients[i].rName == '') {// if student's name is blank
+          canReserve = false
+          wx.showModal({
+            title: 'Error',
+            content: 'Please fill in recipient name!',
+            confirmText: 'Ok',
+            showCancel: false
+          })
+          break
+        }
+        else if (!this.data.studentName.match(english)) { // check if name contains nonEnglish letters
+          canReserve = false
+          wx.showModal({
+            title: 'error',
+            content: 'Accepts English Letters Only',
+            showCancel: false,
+            confirmText: 'Ok'
+          })
+          break
+        }
       }
-      const studentNa = this.data.studentName;
-      const studentCl = this.data.studentClass;
-      const studentGr = this.data.studentGrade;
-      const studentTo = this.data.total;
+    
+      if(canReserve) {
+        const studentNa = this.data.studentName
+        const studentCl = this.data.studentClass
+        const studentGr = this.data.studentGrade
+        const studentTo = this.data.total
 
-      this.setData({ reserveButtonDisabled: true })
-      const self = this;
-      wx.showModal({
-        title: 'Confirm',
-        content: studentNa + " " + studentGr + '(' + studentCl + ') ' + 'will you reserve?',
-        cancelText: 'No',
-        confirmText: 'Submit',
-        success(res) {
-          if(res.confirm) { // if the student wants to submit
-            wx.cloud.init();
-            wx.showLoading({
-              title: 'Confirming',
-            })
-            wx.cloud.callFunction({
-              name: "postReservation",
-              data: {
-                studentName: studentNa,
-                studentGrade: studentGr,
-                studentClass: studentCl,
-                studentTotal: studentTo,
-                studentQuan: studentQu
-              },
-              success: (res) => {
-                wx.hideLoading()
-                console.log('case a')
-                if(res.result == "fail") {
-                  wx.navigateTo({ // if failed, navigate to submit fail page
-                    url: '/pages/submitFailPage/submitFailPage?',
-                  });
-                } else {
-                  wx.navigateTo({ // if successfully sent reservation, navigate to submit page
-                    url: '/pages/submitPage/submitPage?id=code: ' + res.result.toString() + " name: " + studentNa,
-                  });
-                }
-              },
-              fail: (res) => {
-                console.log('case b')
-                wx.hideLoading()
-                wx.navigateTo({ // if failed to send reservation, navigate to submit fail page
-                  url: '/pages/submitFailPage/submitFailPage?',
-                });
-              }
-            })
-          } else {
-            console.log('in')
-            self.setData({reserveButtonDisabled:false})
+        const tempRecipientList = this.data.recipients
+        var recipientLi = []
+        for (var i = 0; i < tempRecipientList.length; i++) {
+          if (tempRecipientList[i].deleted == false) { // if not deleted a recipient
+            recipientLi.push(tempRecipientList[i])
           }
         }
-      });
+
+        this.setData({ reserveButtonDisabled: true })
+        const self = this;
+        wx.showModal({
+          title: 'Confirm',
+          content: studentNa + " " + studentGr + '(' + studentCl + ') ' + 'will you reserve?',
+          cancelText: 'No',
+          confirmText: 'Submit',
+          success(res) {
+            if (res.confirm) { // if the student wants to submit
+              wx.cloud.init();
+              wx.showLoading({
+                title: 'Confirming',
+              })
+              wx.cloud.callFunction({
+                name: "postReservation",
+                data: {
+                  studentName: studentNa,
+                  studentGrade: studentGr,
+                  studentClass: studentCl,
+                  studentTotal: studentTo,
+                  recipientList: recipientLi
+                },
+                success: (res) => {
+                  wx.hideLoading()
+                  console.log('case a')
+                  if (res.result == "fail") {
+                    wx.navigateTo({ // if failed, navigate to submit fail page
+                      url: '/pages/submitFailPage/submitFailPage?',
+                    });
+                  } else {
+                    wx.navigateTo({ // if successfully sent reservation, navigate to submit page
+                      url: '/pages/submitPage/submitPage?id=code: ' + res.result.toString() + " name: " + studentNa,
+                    });
+                  }
+                },
+                fail: (res) => {
+                  console.log('case b')
+                  wx.hideLoading()
+                  wx.navigateTo({ // if failed to send reservation, navigate to submit fail page
+                    url: '/pages/submitFailPage/submitFailPage?',
+                  });
+                }
+              })
+            } else {
+              console.log('in')
+              self.setData({ reserveButtonDisabled: false })
+            }
+          }
+        });
+      }
     }
   },
 })

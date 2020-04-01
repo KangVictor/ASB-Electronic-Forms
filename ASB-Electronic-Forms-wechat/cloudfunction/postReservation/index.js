@@ -19,8 +19,8 @@ exports.main = async (event, context) => {
       studentName: lowerCasedName,
       studentClass: event.studentClass,
       studentGrade: event.studentGrade,
-      studentQuan: event.studentQuan,
       studentTotal: event.studentTotal,
+      recipients: event.recipientList,
       confirmed: false
     },
     fail(res) {
