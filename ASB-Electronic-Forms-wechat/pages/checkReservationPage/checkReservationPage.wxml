@@ -1,26 +1,31 @@
 <input class="inputBox" bindinput="bindSearchInput" placeholder='Name or code'/>
 
 <scroll-view class="scroller" scroll-y="true">
-  <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:key="unique" style="display: block">
-    <view class="resBoxWrapper" bindtap='onConfirm' id='{{item._id}}'>
+  <block wx:for="{{showReservation}}" wx:length="{{showNum}}" wx:for-item="reservation" style="display: block">
+    <view class="resBoxWrapper" bindtap='onConfirm' id='{{reservation._id}}'>
       <view>
-      {{item._id}}: {{item.studentName}} {{item.studentGrade}}({{item.studentClass}})
+      {{reservation._id}}: {{reservation.studentName}} {{reservation.studentGrade}}({{reservation.studentClass}})
       </view>
       <br />
 
-      <view wx:for="{{[0,1,2,3,4]}}" wx:for-item="i">
-        <view wx:if="{{item.studentQuan[i] != 0}}">
-          {{items[i].name}} : {{item.studentQuan[i]}} 
+      <!-- <view wx:for="{{reservation.recipients}}" wx:for-item="recipient">
+        <view wx:if="{{recipient.deleted==false}}">
+          {{recipient.name}}
+        </view>
+        <view wx:for="{{[0,1,2,3,4,5,6,7,8]}}" wx:for-item="i">
+          <view wx:if="{{recipient.rQuantity[i] != 0 && recipient.rItem == i}}">
+            {{items[i].name}} : {{recipient.rQuantity}} 
+          </view>
         </view>
         <br />
-      </view>
+      </view> -->
       
       <view>
-      {{item.studentTotal}} pt
+      {{reservation.studentTotal}} pt
       </view>
       <br />
       <view >
-      confirmed: {{item.confirmed}}
+      confirmed: {{reservation.confirmed}}
       </view>
     </view>
   </block>
