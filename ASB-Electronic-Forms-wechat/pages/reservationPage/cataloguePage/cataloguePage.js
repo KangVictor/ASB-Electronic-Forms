@@ -24,11 +24,15 @@ Page({
       // { name: 'Single Tube Watergun', quantity: 0, value: 5 },
       // { name: 'Double Tube Watergun', quantity: 0, value: 8 },
       // { name: 'Classic Watergun', quantity: 0, value: 15 }
-      {name: 'Candy Cane', quantity: 0, value: 3, imgUrl: '/resources/candy-cane.jpeg', itemNum:0},
-      {name: 'Chocolate', quantity: 0, value: 5, imgUrl: '/resources/chocolate.jpeg', itemNum: 1},
-      {name: 'Brownie', quantity: 0, value: 10, imgUrl: '/resources/brownies.jpeg', itemNum: 2},
-      {name: 'Gingerbread Cookie', quantity: 0, value: 15, imgUrl: '/resources/gingerbread.jpg', itemNum: 3,},
-      {name: 'Sugar Cookie', quantity: 0, value: 10, imgUrl: '/resources/sugar-cookies.jpg', itemNum: 4}
+      {name: 'Red Rose', quantity: 0, value: 5, imgUrl: '/resources/520/red-rose.jpg', itemNum:0},
+      {name: 'Champagne Rose', quantity: 0, value: 5, imgUrl: '/resources/520/champagne-rose.jpg', itemNum: 1},
+      {name: 'Succulent Pot', quantity: 0, value: 6, imgUrl: '/resources/520/succuelnt-pot.jpg', itemNum: 2},
+      {name: 'Sunflower', quantity: 0, value: 10, imgUrl: '/resources/520/sunflower.jpg', itemNum:3},
+      {name: '11 Red Rose Bouquet', quantity: 0, value: 60, imgUrl: '/resources/520/11-red-rose-bouquet.jpg', itemNum: 4},
+      {name: '11 Champagne Rose Bouquet', quantity: 0, value: 65, imgUrl: '/resources/520/11-champagne-rose-bouquet.jpg', itemNum: 5},
+      {name: 'Daisy Bouquet', quantity: 0, value: 35, imgUrl: '/resources/520/daisy-bouquet.jpg', itemNum: 6},
+      {name: '99 Rose Bouquet', quantity: 0, value: 450, imgUrl: '/resources/520/99-rose-bouquet.jpg', itemNum: 7},
+      {name: '6 Sunflower Bouquet', quantity: 0, value: 10, imgUrl: '/resources/520/6-sunflower-bouquet.jpg', itemNum: 8}
     ],
     recipients: [ // format: { rName: 'a', rGrade: 9, rItem: 0, rClass: 1, rQuantity: 1 }
     ],

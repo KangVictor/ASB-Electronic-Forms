@@ -7,7 +7,7 @@ Page({
     circular: true,
     interval: 2000,
     duration: 1500,
-    imgUrls: ['/resources/brownies.jpeg', '/resources/candy-cane.jpeg', '/resources/chocolate.jpeg', '/resources/gingerbread.jpg', '/resources/sugar-cookies.jpg'],
+    imgUrls: ['/resources/520/red-rose.jpg', '/resources/520/champagne-rose.jpg', '/resources/520/sunflower.jpg', '/resources/520/11-red-rose-bouquet.jpg', '/resources/520/11-champagne-rose-bouquet.jpg', '/resources/520/succuelnt-pot.jpg', '/resources/520/6-sunflower-bouquet.jpg', '/resources/520/daisy-bouquet.jpg', '/resources/520/99-rose-bouquet.jpg'],
     backColor: '#f8f8f8',
     adminAccounts:[]
   },
