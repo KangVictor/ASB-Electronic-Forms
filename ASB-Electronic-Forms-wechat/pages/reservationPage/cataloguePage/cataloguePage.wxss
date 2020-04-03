@@ -20,6 +20,7 @@
   display: flex;
   flex-direction: column;
   background-color:#F5F5F6;
+  margin-bottom: 20rpx;
 }
 
 .inputBox {

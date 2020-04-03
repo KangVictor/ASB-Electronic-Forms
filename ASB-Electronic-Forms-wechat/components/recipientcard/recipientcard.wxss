@@ -45,12 +45,11 @@
 
 .recipient-delete-button {
   width: 30rpx;
+  height: 40rpx;
   align-self: center;
   border-radius: 20rpx;
   background-color: #558b2f;
   color: #ffe57f;
-  height: 40rpx;
-  font-size: 35rpx;
-  margin-right: 10rpx;
-  margin-left: 10rpx;
+  font-size: 15rpx;
+  margin:5rpx;
 }
