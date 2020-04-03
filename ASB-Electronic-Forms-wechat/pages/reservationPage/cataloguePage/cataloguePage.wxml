@@ -1,5 +1,5 @@
 <view class="main-page">
-  <text class="title"> December Delights </text>
+  <text class="title"> 520 Qingrenjie </text>
 
   <text class="section-text">From</text>
   <view class="inputBoxWrapper">
@@ -33,7 +33,7 @@
        recipientName="{{recipient.rName}}" recipientGrade="{{recipient.rGrade}}" recipientClass="{{recipient.rClass}}" quantity="{{recipient.rQuantity}}" recipientNumber="{{idx}}"/>
     </view>
 
-    <button id="{{i.name}}" class="addRecipientButton" bindtap="onAddRecipient"/>
+    <button id="{{i.name}}" class="addRecipientButton" bindtap="onAddRecipient"> + </button>
   </view>
 
   <text class = "costText">{{total}} pt</text>

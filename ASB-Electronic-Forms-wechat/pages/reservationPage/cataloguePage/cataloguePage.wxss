@@ -29,13 +29,15 @@
 }
 
 .addRecipientButton {
-  margin-left: 30rpx;
-  margin-top: 10rpx;
-  margin-bottom: 20rpx;
-  height: 40rpx;
-  width: 40rpx;
-  font-size: 35rpx;
-  color: white;
+  margin-left: 25rpx;
+  margin-right: 25rpx;
+  margin-top: 20rpx;
+  padding-top: 2rpx;
+  padding-bottom: 2rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #ffe57f;
+  border-radius: 20rpx;
   background-color: #3f9675;
 }
 
@@ -65,7 +67,6 @@
 .section-text {
   margin-left: 55rpx;
   margin-top: 20rpx;
-  margin-bottom: 10rpx;
   font-size:33rpx;
 }
 
