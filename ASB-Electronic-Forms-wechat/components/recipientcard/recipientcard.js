@@ -42,6 +42,16 @@ Component({
    */
   methods: {
     onNameInput:function (e) {
+      var english = /^[A-Za-z\s]*$/ //regex
+      if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
+        wx.showModal({
+          title:'error',
+          content:'Accepts English Letters Only',
+          showCancel: false,
+          confirmText: 'Ok'
+        })
+      }
+      
       console.log(this.properties.recipientNumber)
       var myEventDetail = { 
         "id": this.properties.recipientNumber,

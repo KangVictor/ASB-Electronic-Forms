@@ -43,7 +43,7 @@ Page({
   //////////////////////
   //input 
   bindNameInput: function (e) {
-    var english = /^[A-Za-z\s]*$/; //regex
+    var english = /^[A-Za-z\s]*$/ //regex
     if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title:'error',
@@ -193,25 +193,37 @@ Page({
       // check each recipient
       var canReserve = true
       for (var i = 0; i < this.data.recipients.length; i++) {
-        if (this.data.recipients[i].rName == '') {// if student's name is blank
-          canReserve = false
-          wx.showModal({
-            title: 'Error',
-            content: 'Please fill in recipient name!',
-            confirmText: 'Ok',
-            showCancel: false
-          })
-          break
-        }
-        else if (!this.data.studentName.match(english)) { // check if name contains nonEnglish letters
-          canReserve = false
-          wx.showModal({
-            title: 'error',
-            content: 'Accepts English Letters Only',
-            showCancel: false,
-            confirmText: 'Ok'
-          })
-          break
+        if(this.data.recipients[i].deleted == false) { //if not delted recipient
+          if (this.data.recipients[i].rName == '') {// if student's name is blank
+            canReserve = false
+            wx.showModal({
+              title: 'Error',
+              content: 'Please fill in recipient name!',
+              confirmText: 'Ok',
+              showCancel: false
+            })
+            break
+          }
+          else if (!this.data.recipients[i].rName.match(english)) { // check if name contains nonEnglish letters
+            canReserve = false
+            wx.showModal({
+              title: 'error',
+              content: 'Name accepts english letters only',
+              showCancel: false,
+              confirmText: 'Ok'
+            })
+            break
+          }
+          else if(this.data.recipients[i].rQuantity <= 0){ // if quantity is below or equal to 0
+            canReserve = false
+            wx.showModal({
+              title: 'error',
+              content: 'Please input appropriate quanity!',
+              showCancel: false,
+              confirmText: 'Ok'
+            })
+            break
+          }
         }
       }
     
