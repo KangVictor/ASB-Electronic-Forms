@@ -176,7 +176,7 @@ Page({
     else if (this.data.total <= 0) {
       wx.showModal({
         title: 'Error',
-        content: "You can't reserve nothing ;-;",
+        content: "Please reserve something ;-;",
         confirmText: 'Ok',
         showCancel: false
       })
@@ -184,7 +184,7 @@ Page({
     else if (!this.data.studentName.match(english)) { // check if name contains nonEnglish letters
       wx.showModal({
         title: 'error',
-        content: 'Accepts English Letters Only',
+        content: 'English Letters Only!',
         showCancel: false,
         confirmText: 'Ok'
       })
