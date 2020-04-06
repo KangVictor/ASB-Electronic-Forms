@@ -1,14 +1,17 @@
 <view class="main-page">
-  <text class="title"> 520 Qingrenjie </text>
+  <text class="title"> 520 </text>
 
   <text class="section-text">From</text>
   <view class="inputBoxWrapper">
-    <view class="nameContainer">
+    <checkbox class="anonymousCheckbox" bindtap="onSenderAnonymous" checked="{{senderAnonymous}}">Anonymous</checkbox>
+    <text wx:if="{{senderAnonymous}}" class="caution-text"> * Memorize your code that appears after submission! You cannot confirm anonymous orders with name! * </text>
+
+    <view wx:if="{{!senderAnonymous}}" class="nameContainer">
       <text class="smallText">Name: </text>
       <input class="inputBox" id='inputBoxName' bindinput="bindNameInput" placeholder='Victor'/>
     </view>
     
-    <view class="gradeClassContainer">
+    <view wx:if="{{!senderAnonymous}}" class="gradeClassContainer">
       <picker bindchange="bindPickerGradeChange" value="{{indexGrade}}" range="{{arrayGrade}}">
           <view class="smallPicker">
             Grade: {{arrayGrade[indexGrade]}}

@@ -4,6 +4,18 @@
   font-size: 50rpx;
 }
 
+.anonymousCheckbox{
+  margin: 15rpx;
+  margin-bottom: 25rpx;
+}
+
+.caution-text{
+  margin: 12rpx;
+  align-content: center;
+  font-size: 27rpx;
+  color: #e64340;
+}
+
 .nameContainer{
   margin:10rpx;
   display: flex;

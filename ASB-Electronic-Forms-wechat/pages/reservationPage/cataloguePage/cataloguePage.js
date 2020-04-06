@@ -2,12 +2,9 @@ const app = getApp()
 
 Page({
   data: {
-    exArray: [1,2],
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     //input related
-    studentName:'',
+    senderAnonymous: false,
+    studentName: '',
     studentGrade: 9,
     studentClass: 1,
     arrayGrade: ['9', '10'],
@@ -42,6 +39,15 @@ Page({
   
   //////////////////////
   //input 
+  //anonymous checkbox
+  onSenderAnonymous:function (e) {
+    const currentAnonymous = this.data.senderAnonymous
+    this.setData({senderAnonymous:!currentAnonymous})
+    if (this.data.senderAnonymous == true) {
+      this.setData({studentName:"anonymous"})
+    }
+  },
+
   bindNameInput: function (e) {
     var english = /^[A-Za-z\s]*$/ //regex
     if (! e.detail.value.match(english)) { // check if name contains nonEnglish letters
