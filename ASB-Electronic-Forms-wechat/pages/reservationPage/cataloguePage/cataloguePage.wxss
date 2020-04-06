@@ -5,8 +5,9 @@
 }
 
 .anonymousCheckbox{
+  font-size: 30rpx;
   margin: 15rpx;
-  margin-bottom: 25rpx;
+  margin-bottom: 20rpx;
 }
 
 .caution-text{
