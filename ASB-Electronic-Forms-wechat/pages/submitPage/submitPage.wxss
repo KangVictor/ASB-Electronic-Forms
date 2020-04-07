@@ -8,12 +8,19 @@
   color:white;
 }
 
+.code-image {
+  height:800rpx;
+  width: 600rpx;
+}
+
 .smallText {
   margin-top:20rpx;
   font-size:45rpx;
+  text-align: center;
 }
 
 .bigText {
   margin-top:20rpx;
   font-size:50rpx;
+  text-align: center;
 }

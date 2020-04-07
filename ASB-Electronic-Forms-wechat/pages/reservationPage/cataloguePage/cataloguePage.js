@@ -44,7 +44,9 @@ Page({
     const currentAnonymous = this.data.senderAnonymous
     this.setData({senderAnonymous:!currentAnonymous})
     if (this.data.senderAnonymous == true) {
-      this.setData({studentName:"anonymous"})
+      this.setData({
+        studentName:"anonymous"
+      })
     }
   },
 
@@ -234,9 +236,13 @@ Page({
       }
     
       if(canReserve) {
-        const studentNa = this.data.studentName
-        const studentCl = this.data.studentClass
-        const studentGr = this.data.studentGrade
+        var studentNa = this.data.studentName
+        var studentCl = this.data.studentClass
+        var studentGr = this.data.studentGrade
+        if(this.data.senderAnonymous){
+          studentCl = 0
+          studentGr = 0
+        }
         const studentTo = this.data.total
         
 
@@ -252,7 +258,7 @@ Page({
         const self = this;
         wx.showModal({
           title: 'Confirm',
-          content: studentNa + " " + studentGr + '(' + studentCl + ') ' + 'will you reserve?',
+          content: studentNa + " " + studentGr + '(' + studentCl + ')' + ', will you reserve?',
           cancelText: 'No',
           confirmText: 'Submit',
           success(res) {
