@@ -24,11 +24,12 @@
       {{reservation.studentTotal}} pt
       </view>
       <br />
-      <view >
-      confirmed: {{reservation.confirmed}}
+      <view wx:if="{{reservation.confirmed}}">
+        Confirmed
+      </view>
+      <view wx:if="{{!reservation.confirmed}}">
+        Not confirmed
       </view>
     </view>
   </block>
 </scroll-view> 
-
-
