@@ -7,7 +7,7 @@
   <text class='smallText'>Remember your code to</text>
   <text class='smallText'>find your order easily!</text> -->
   
-  <image class="code-image" src="/resources/qrcode.jpg"></image>
+  <image class="code-image" src="/resources/qrcode.jpeg"></image>
   <text class='smallText'>Contact ASB member on qr code above!</text>
   <text class='smallText'>Remember to tell your code!</text>
   <text class='smallText'>_________________</text>

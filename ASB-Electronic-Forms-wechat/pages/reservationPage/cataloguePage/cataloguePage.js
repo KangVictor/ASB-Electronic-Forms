@@ -47,6 +47,10 @@ Page({
       this.setData({
         studentName:"anonymous"
       })
+    } else {
+      this.setData({
+        studentName:""
+      })
     }
   },
 

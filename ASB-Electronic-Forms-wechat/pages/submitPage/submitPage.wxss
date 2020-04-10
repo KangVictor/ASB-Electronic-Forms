@@ -10,7 +10,7 @@
 
 .code-image {
   height:800rpx;
-  width: 600rpx;
+  width: 700rpx;
 }
 
 .smallText {
