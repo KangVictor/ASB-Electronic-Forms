@@ -1,4 +1,11 @@
 /* pages/submitPage/submitPage.wxss */
+.row-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+}
+
 .goButton {
   margin-top: 30rpx;
   height: 120rpx;
@@ -9,13 +16,13 @@
 }
 
 .code-image {
-  height:800rpx;
+  height:950rpx;
   width: 700rpx;
 }
 
 .smallText {
   margin-top:20rpx;
-  font-size:45rpx;
+  font-size:40rpx;
   text-align: center;
 }
 

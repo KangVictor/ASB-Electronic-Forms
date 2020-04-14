@@ -1,4 +1,4 @@
-<view class="row-container">
+<view class="row-box">
   <!-- <text class='smallText'>Success!</text>
   <text class='smallText'>Come to ZTB lobby</text>
   <text class='smallText'>during lunch to confirm.</text> -->
@@ -7,10 +7,10 @@
   <text class='smallText'>Remember your code to</text>
   <text class='smallText'>find your order easily!</text> -->
   
-  <image class="code-image" src="/resources/qrcode.jpeg"></image>
+  <image class="code-image" src="/resources/qrcode.jpg"></image>
+  <text class='bigText'>{{code}}</text>
   <text class='smallText'>Contact ASB member on qr code above!</text>
   <text class='smallText'>Remember to tell your code!</text>
   <text class='smallText'>_________________</text>
-  <text class='bigText'>{{code}}</text>
   <button class='goButton' bindtap='returnHome'>return</button>
 </view>
