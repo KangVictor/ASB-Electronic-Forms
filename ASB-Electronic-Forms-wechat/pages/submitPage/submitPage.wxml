@@ -6,10 +6,12 @@
   <text class='bigText'>Take a screenshot of this page!</text>
   <text class='smallText'>Remember your code to</text>
   <text class='smallText'>find your order easily!</text> -->
-  
-  <image class="code-image" src="/resources/qrcode.jpg"></image>
+
   <text class='bigText'>{{code}}</text>
-  <text class='smallText'>Contact ASB member on qr code above!</text>
+  <text class="smallText"> </text>
+  <text class="smallText">_________________</text>
+  <text class='smallText'>Contact ASB member to confirm!</text>
+  <text class="smallText">Flowers will be sent in May 20th</text>
   <text class='smallText'>Remember to tell your code!</text>
   <text class='smallText'>_________________</text>
   <button class='goButton' bindtap='returnHome'>return</button>
