@@ -86,6 +86,8 @@ button:last-child{
 }
 .swiper-item{
   display: block;
+  width: 100%;
+  height: 100%;
 }
 .page-section-title{
   margin-top: 60rpx;
