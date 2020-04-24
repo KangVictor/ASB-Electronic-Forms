@@ -19,6 +19,18 @@
   margin-bottom: 20rpx;
 }
 
+.row-box {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 100rpx;
+}
+
+.smallText{
+  margin: 20rpx;
+  align-self: center;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;

@@ -23,10 +23,11 @@ bindtap='onAdminButton'>
   Check Reservations (ASB)
 </button>
 
-<view class="row-container">
-  <text class='smallText'>_________________</text>
-  <text class='smallText'>1. Correctly fill in your name, grade, and class</text>
-  <text class='smallText'>2. Reserve your treats for December Delights</text>
-  <text class='smallText'>3. Come to ZTB lobby during lunch to confirm</text>
-  <text class='smallText'>_________________</text>
+<view class="row-box">
+  <text class='smallText'>1. Fill in your name, grade, and class</text>
+  <text class='smallText'>2. Choose a flower to send to your friend</text>
+  <text class='smallText'>(pt are ASB points! Not the actual currency!)</text>
+  <text class='smallText'>3. Fill in friend's name, grade, and class</text>
+  <text class='smallText'>4. Message ASB to confirm that </text>
+  <text class='smallText'>you would like to send it!</text>
 </view>
