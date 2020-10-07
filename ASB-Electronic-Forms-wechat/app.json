@@ -6,7 +6,8 @@
     "pages/serverFailPage/serverFailPage",
     "pages/reservationPage/whiteValentinePage/whiteValentinePage",
     "pages/checkReservationPage/checkReservationPage",
-    "pages/reservationPage/selectEventPage/selectEventPage"
+    "pages/reservationPage/selectEventPage/selectEventPage",
+    "pages/reservationPage/blackoutPage/blackoutPage"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -19,5 +19,11 @@ Page({
    wx.navigateTo({
      url: '../whiteValentinePage/whiteValentinePage',
    })
+ },
+
+ onBlackOutButton: function() {
+   wx.navigateTo({
+     url: '../blackoutPage/blackoutPage',
+   })
  }
 })
