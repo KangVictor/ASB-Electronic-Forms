@@ -1,0 +1,8 @@
+<!--pages/reservationPage/selectEventPage/selectEventPage.wxml-->
+<button class='goButton' bindtap='onWhiteValentineButton'>
+  White Valentine
+</button>
+
+<button class='goButton' bindtap='onBlackOutButton'>
+  BlackOut
+</button>
